@@ -4,6 +4,8 @@
 
 To develop a web app that allows students to take notes during courses/labs
 
+* The thinking behind this is that note-taking requires effort. Rather than passively taking information in, the act of encoding the information into words or pictures forms new pathways in the brain, which stores it more firmly in long-term memory. On top of that, having the information stored in a new place gives students the opportunity to revisit it later and reinforce the learning that happened the first time around.
+
 ## Description
 
 * The application must allow students to organise their notes by classes they attend and individual study activities.
