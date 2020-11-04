@@ -29,3 +29,6 @@ https://www.studocu.com/
 
 Evernote
 https://evernote.com/
+
+Keep
+https://keep.google.com/u/0/
