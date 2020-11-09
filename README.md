@@ -9,7 +9,7 @@ To develop a web app that allows students to take notes during courses/labs
 
 * The application must allow students to organise their notes by classes they attend and individual study activities.
 * The platform is based on a Single Page Application architecture. It will be accessible on a desktop, mobile or tablet browser (depending on user preferences).
-* The note editor should be easy to use so that the student can take notes during the class. It will implement a markdown sistem to allow simple text formatting.
+* The note editor is easy to use so that the student can take notes during the class. It will implement a markdown sistem to allow simple text formatting.
 * The notes can be organised in folders, every folder being a class, there the student can also store the notes from the seminars.
 
 ## Minimal functionalities
@@ -40,4 +40,5 @@ Keep
 https://keep.google.com/u/0/
 
 Microsof Office Word
+
 Google docs
