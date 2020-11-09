@@ -29,6 +29,7 @@ To develop a web app that allows students to take notes during courses/labs
 
 
 Examples
+
 StuDocu
 https://www.studocu.com/
 
@@ -37,3 +38,6 @@ https://evernote.com/
 
 Keep
 https://keep.google.com/u/0/
+
+Microsof Office Word
+Google docs
