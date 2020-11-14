@@ -56,4 +56,4 @@ Google docs
 
 ## How we'll work:
 
-*To develop this app we will use the Kanban method.
+* To develop this app we will use the Kanban method.
