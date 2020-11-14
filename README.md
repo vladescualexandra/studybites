@@ -42,3 +42,13 @@ https://keep.google.com/u/0/
 Microsof Office Word
 
 Google docs
+
+## Design Sketch 
+//we will insert this later
+
+## Short description about the components 
+
+* We want our app to be easy to use for our customers, therefore we arranged our components in a simple layout:
+* -on the left side you can find a menu which includes: username, a search bar (you can search within your notes), a 'new' button to add notes or folders, the actual folders and our logo
+* -on the right side you'll see the folder name, the title, a blank space to insert your note and tools to write however you like.
+
