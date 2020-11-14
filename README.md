@@ -44,7 +44,7 @@ Microsof Office Word
 Google docs
 
 ## Design Sketch 
-![Sketch](https://raw.githubusercontent.com/vladescualexandra/studybites/master/studybites.png?token=ARGJNHGQE7BLWKNTAHT44VC7WAO7U)
+![Sketch](https://raw.githubusercontent.com/vladescualexandra/studybites/master/studybites.png?token=ARGJNHH6VO2CFBL4G4FNLBK7WAPY6)
 
 ## Short description about the components 
 
