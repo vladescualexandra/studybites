@@ -54,3 +54,6 @@ Google docs
  
  * on the right side you'll see the folder name, the title, a blank space to insert your note and tools to write however you like.
 
+## How we'll work:
+
+*To develop this app we will use the Kanban method.
