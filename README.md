@@ -28,7 +28,7 @@ To develop a web app that allows students to take notes during courses/labs
 * As a student I want to be able to organize a study group. I can invite multiple colleagues that will share notes within the group
 
 
-Examples
+## Examples
 
 StuDocu
 https://www.studocu.com/
