@@ -44,7 +44,7 @@ Microsof Office Word
 Google docs
 
 ## Design Sketch 
-//we will insert this later
+![Sketch](https://raw.githubusercontent.com/vladescualexandra/webtech-project/master/studybites.png?token=ARGJNHH3O5VZY2TFM7DGYCC7WANXC)
 
 ## Short description about the components 
 
