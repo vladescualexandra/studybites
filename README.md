@@ -53,3 +53,17 @@ Google docs
 * Roles will be allocated as follows:
 * All of us will be working as web developers;
 * Adriana & Ionela will be the UI/UX designers, Bianca the tester and Codruta will handle the optimization.
+
+## API CALLS
+
+* GET/NOTES
+* GET/NOTES/:ID
+* GET/SHARED
+* GET/SHARED/:ID
+* POST/NOTES/:ID
+* POST/SHARED
+* POST/USER
+
+
+
+
