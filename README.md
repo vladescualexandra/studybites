@@ -54,7 +54,7 @@ Google docs
 * All of us will be working as web developers;
 * Adriana & Ionela will be the UI/UX designers, Bianca the tester and Codruta will handle the optimization.
 
-## API CALLS
+## API Calls:
 
 * GET/NOTES
 * GET/NOTES/:ID
