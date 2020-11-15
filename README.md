@@ -37,7 +37,7 @@ Microsof Office Word
 Google docs
 
 ## Design Sketch 
-![Sketch](https://raw.githubusercontent.com/vladescualexandra/studybites/master/studybites.png?token=ARGJNHH6VO2CFBL4G4FNLBK7WAPY6)
+![Sketch](https://github.com/vladescualexandra/studybites/blob/master/studybites.png)
 
 ## Short description about the components 
 
