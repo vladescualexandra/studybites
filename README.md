@@ -13,19 +13,12 @@ To develop a web app that allows students to take notes during courses/labs
 * The notes can be organised in folders, every folder being a class, there the student can also store the notes from the seminars.
 
 ## Minimal functionalities
-* First of all --: every student need to login in with their istitutional account.
-* Second --: the notes can be shared with other students, a particularity important especially when you have a project with other classmates.
-* Third --: the app allow you to add attachments and you have also a section dedicated for tutorials (with the links) with their notes.
-* Then --: you can search over the app using keywords as to find everything you need in short time
-* --: you can have a private group of classmates where you can share your notes
 
-* As a student I want to be able to login with my institutional account (@stud.ase.ro) to manage my notes.
-* As a student I want to be able to view, add, edit and delete notes so that I can better organize information
-* As a student I want the option to add attachments (images, documents) to the notes I take so that I can have more details about the subject
-* As a student I want to be able to organize notes based on classes, date, labels (tags) and keywords so that I can retrieve information easily 
-* As a student I want to be able to share notes with other colleagues 
-* As a student I want to be able to integrate content from other sources and take notes (like for example while I listen to a youtube video, i read a book on kindle, attending an online conference)
-* As a student I want to be able to organize a study group. I can invite multiple colleagues that will share notes within the group
+* First of all, every student need to login in with their istitutional account.
+* Second, the notes can be shared with other students, a particularity important especially when you have a project with other classmates.
+* Third, the app allow you to add attachments and you have also a section dedicated for tutorials (with the links) with their notes.
+* Then you can search over the app using keywords as to find everything you need in short time
+* Also you can have a private group of classmates where you can share your notes
 
 
 ## Examples
