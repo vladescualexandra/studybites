@@ -50,3 +50,6 @@ Google docs
 ## How we'll work:
 
 * To develop this app we will use the Kanban method.
+* Roles will be allocated as follows:
+* All of us will be working as web developers;
+* Adriana & Ionela will be the UI/UX designers, Bianca the tester and Codruta will handle the optimization.
