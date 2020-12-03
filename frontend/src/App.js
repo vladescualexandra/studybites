@@ -1,13 +1,23 @@
 import './App.css';
-import NotesList from './containers/NotesList';
 import Menu from './containers/Menu';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div>
-      <Menu />
-    </div>
-  );
+class App extends Component{
+  constructor() {
+    super();
+
+    this.state = {
+      id: 0
+    }
+  }
+  
+  render() {
+    return (
+        <div>
+          <Menu />
+      </div>
+    );
+  }
 }
 
 export default App;

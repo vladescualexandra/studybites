@@ -9,28 +9,29 @@ class NotesList extends Component {
     constructor(props) {
         super(props) 
         this.state = {
-            notes: []
+            notes: [],
         }
 
         this.showNote = (id) => {
             fetch(API_BASE_URL + `/notes/${id}`)
             .then((response) => response.json())
             .then((result) => {
-                console.log(result.content)
-            })  
+               console.log(result.content);
+            }) 
         }
+
         
     }
-    
+
+
     componentDidMount() {
         fetch(API_BASE_URL + `/users/${user.id}/notes`)
         .then((response) => response.json())
         .then((result) => {
             this.setState({
-                notes: result
+                notes: result,
             })
-        })
-    
+        })    
     }
 
     render() {

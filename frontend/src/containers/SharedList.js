@@ -17,8 +17,7 @@ class SharedList extends Component {
             fetch(API_BASE_URL + `/shared/${id}`)
             .then((response) => response.json())
             .then((result) => {
-                console.log(result.title);
-                console.log(result.content);
+                console.log("SHARED: Title: " + result.title + "/ Content: " + result.content);
             })
 
             fetch(API_BASE_URL + `/shared/${id}/collaborators`)
@@ -43,6 +42,7 @@ class SharedList extends Component {
                 notes: result
             })
         })
+        console.log(this.state.notes);
     }
     render() {
         return (

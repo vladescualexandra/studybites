@@ -167,47 +167,6 @@ db.sequelize.sync({force: true}).then(async () => {
         content: 'Work in progress.'
     });
 
-    // await db.Collaborators.create({
-    //     sharedID: shared_tw.id,
-    //     userID: ADMIN_BIANCA.id
-    // });
-
-    // await db.Collaborators.create({
-    //     sharedID: shared_tw.id,
-    //     userID: ADMIN_ADRIANA.id
-    // });
-
-    // await db.Collaborators.create({
-    //     sharedID: shared_tw.id,
-    //     userID: ADMIN_CODRUTA.id
-    // });
-
-    // await db.Collaborators.create({
-    //     sharedID: shared_tw.id,
-    //     userID: ADMIN_IONELA.id
-    // });
-
-    // await db.Collaborators.create({
-    //     sharedID: shared_econometrie.id,
-    //     userID: ADMIN_ADRIANA.id
-    // });
-
-    // await db.Collaborators.create({
-    //     sharedID: shared_econometrie.id,
-    //     userID: ADMIN_IONELA.id
-    // });
-
-    // await db.Collaborators.create({
-    //     sharedID: shared_dam.id,
-    //     userID: ADMIN_BIANCA.id
-    // });
-
-    // await db.Collaborators.create({
-    //     sharedID: shared_dam.id,
-    //     userID: ADMIN_CODRUTA.id
-    // });
-    
-
     await db.Collaborators.create({
         sharedId: shared_tw.id,
         userId: ADMIN_BIANCA.id

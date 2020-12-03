@@ -19,7 +19,6 @@ class BooksList extends Component {
         fetch(API_BASE_URL + `/users/${user.id}/books`)
         .then((response) => response.json())
         .then((result) => {
-            console.log(result)
             this.setState({
                 books: result
             })
@@ -34,7 +33,7 @@ class BooksList extends Component {
                     {this.state.books.map((book, index) => <Book key={index} 
                                                     id = {book.id}
                                                     name = {book.name}
-                                                    onShow={this.showNotes}/>)}
+                                                   />)}
                 </ul>
             </div>
         )

@@ -6,7 +6,7 @@ class Note extends Component {
 
         this.state = {
             id: props.id, 
-            title: props.title
+            title: props.title,
         }
     }
 
@@ -14,7 +14,8 @@ class Note extends Component {
     return (
         <div>
             <input type="button" value={this.props.title}
-                onClick={() => this.props.onShow(this.props.id)}></input>
+                onClick={() => this.props.onShow(this.props.id)}
+                ></input>
         </div>
     );
     }

@@ -23,18 +23,13 @@ class NotesByBookList extends Component {
     }
     
     componentDidMount() {
-        console.log(this.state.bookID);
         fetch(API_BASE_URL + `/books/${this.state.bookID}/notes`)
         .then((response) => response.json())
         .then((result) => {
-            console.log(result)
             this.setState({
                 notes: result
             })
         })
-
-        console.log('comp - NotesByBookList')
-        console.log(this.state.notes);
     
     }
 

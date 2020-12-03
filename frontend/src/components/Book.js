@@ -17,7 +17,7 @@ class Book extends Component {
         return (
             <div>
                 <input type="button" value={this.props.name}
-                    onClick={() => this.props.onShow(this.props.id)}/>
+                   />
                         <NotesByBookList id={this.state.id}/>
             </div>
         );
