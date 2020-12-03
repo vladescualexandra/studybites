@@ -1,0 +1,9 @@
+# Dependency directories
+node_modules/
+
+# dotenv environment variables file
+.env
+
+# Database config
+backend/config/db.json
+backend/config/secrets.json
