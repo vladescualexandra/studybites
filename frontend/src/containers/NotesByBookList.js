@@ -5,10 +5,11 @@ const user = {
     id: 1
 };
 
-class NotesList extends Component {
+class NotesByBookList extends Component {
     constructor(props) {
         super(props) 
         this.state = {
+            bookID: props.id,
             notes: []
         }
 
@@ -19,17 +20,21 @@ class NotesList extends Component {
                 console.log(result.content)
             })  
         }
-        
     }
     
     componentDidMount() {
-        fetch(API_BASE_URL + `/users/${user.id}/notes`)
+        console.log(this.state.bookID);
+        fetch(API_BASE_URL + `/books/${this.state.bookID}/notes`)
         .then((response) => response.json())
         .then((result) => {
+            console.log(result)
             this.setState({
                 notes: result
             })
         })
+
+        console.log('comp - NotesByBookList')
+        console.log(this.state.notes);
     
     }
 
@@ -39,7 +44,7 @@ class NotesList extends Component {
                 <ul>
                     {this.state.notes.map((note, index) => <Note key={index} 
                                                     id = {note.id}
-                                                    title={note.title}
+                                                    title = {note.title}
                                                     onShow={this.showNote} />)}
                 </ul>
             </div>
@@ -47,4 +52,4 @@ class NotesList extends Component {
     }
 }
 
-export default NotesList;
+export default NotesByBookList;

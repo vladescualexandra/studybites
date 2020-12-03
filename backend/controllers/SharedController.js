@@ -5,7 +5,7 @@ module.exports.findAllShared = async (req, res) => {
     await db.Shared.findAll({
         include: [{
             model: db.Users,
-            where: { id: user.id}
+            where: { id: user.id }
         }]
     }).then((result) => {
         if (result) {
@@ -80,4 +80,22 @@ module.exports.deleteShared = (req, res) => {
         console.log(err);
         res.status(500).send('database error')
     })
+}
+
+module.exports.findCollaborators = async (req, res) => {
+    let shared = await db.Shared.findByPk(req.params.id);
+    await db.Collaborators.findAll({
+        where: {
+            sharedId: shared.id
+        }
+    }).then((result) => {
+        if (result) {
+            res.status(200).send(result);
+        } else {
+            res.status(404).send('not found');
+        }
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send('server error');
+    });
 }

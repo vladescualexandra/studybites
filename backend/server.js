@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 
+const cors = require('cors');
+app.use(cors());
+
 const users = require('./routes/users');
 const notes = require('./routes/notes');
 const books = require('./routes/books');
@@ -20,4 +23,4 @@ app.use('/', reminders);
 app.use('/', collaborators);
 
 
-app.listen(3001);
+app.listen(8080);

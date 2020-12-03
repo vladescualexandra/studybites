@@ -3,7 +3,9 @@ const db = require('../models/index');
 module.exports.findAllNotes = async (req, res) => {
     let user = await db.Users.findByPk(req.params.id);
     db.Notes.findAll({
+        where : {
         userID: user.id
+        }
     }).then((result) => {
         if (result) {
             res.status(200).send(result);

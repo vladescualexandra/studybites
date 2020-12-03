@@ -3,7 +3,9 @@ const db = require('../models/index');
 module.exports.findAllBooks = async (req, res) => {
     let user = await db.Users.findByPk(req.params.id);
     db.Books.findAll({
-        userID: user.id
+        where : {
+            userID: user.id
+            }
     }).then((result) => {
         if (result) {
             res.status(200).send(result);
@@ -76,4 +78,22 @@ module.exports.deleteBook = (req, res) => {
         console.log(err);
         res.status(500).send('database error')
     })
+}
+
+module.exports.findNotesByBook = async (req, res) => {
+    let book = await db.Books.findByPk(req.params.id);
+    db.Notes.findAll({
+        where : {
+            bookID: book.id
+        }
+    }).then((result) => {
+        if (result) {
+            res.status(200).send(result);
+        } else {
+            res.status(404).send('not found');
+        }
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send('server error');
+    });
 }

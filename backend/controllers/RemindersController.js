@@ -4,7 +4,9 @@ const Reminders = require('../models/Reminders');
 module.exports.findAllReminders = async (req, res) => {
     let user = await db.Users.findByPk(req.params.id);
     db.Reminders.findAll({
-        userID: user.id
+        where : {
+            userID: user.id
+            }
     }).then((result) => {
         if (result) {
             res.status(200).send(result);
