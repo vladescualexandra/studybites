@@ -2,18 +2,12 @@ const db = require('../models/index');
 
 module.exports.findAllShared = async (req, res) => {
     let user = await db.Users.findByPk(req.params.id);
-    let collabs = await db.Collaborators.findAll({
-        userId: user.id
-    })
-
-    let result = [];
-    let func = await function() {
-    for (let key in collabs) {
-    db.Shared.findAll(({
-        id: collaborator.id
-    })
-}
-    
+    await db.Shared.findAll({
+        include: [{
+            model: db.Users,
+            where: { id: user.id}
+        }]
+    }).then((result) => {
         if (result) {
             res.status(200).send(result);
         } else {
@@ -25,10 +19,12 @@ module.exports.findAllShared = async (req, res) => {
     });
 }
 
-module.exports.findShared = (req, res) => {
+module.exports.findShared = async (req, res) => {
     let user = await db.Users.findByPk(req.params.id);
-    db.Shared.findAll({
-        userId: user.id
+    await db.Shared.findByPk(req.params.id, {
+        include: [{
+            model: db.Users
+        }]
     }).then((result) => {
         if (result) {
             res.status(200).send(result);
