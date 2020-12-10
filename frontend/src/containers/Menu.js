@@ -16,10 +16,21 @@ class Menu extends Component {
         this.state = {
             name: null,
             email: null,
-            selected: {}
+            selected: {
+                type: this.props.type,
+                id: this.props.id
+            }
         }
 
-        
+        this.handleSelect = async (selectedId, selectedType) => {
+            this.props.onSelect(selectedId, selectedType);
+            await this.setState({
+                selected: {
+                    type: selectedType,
+                    id: selectedId
+                }
+            });
+        }
     } 
 
 
@@ -37,17 +48,13 @@ class Menu extends Component {
 
     render() {
         return (
-            <div>
+            <div id="menu" onSelect={this.handleSelect}>
                 <h3>{this.state.name}</h3>
                 <h4>{this.state.email}</h4>
-                <input type="button" value="Notes" />
-                <NotesList />
-                <input type="button" value="Books" />
-                <BooksList />
-                <input type="button" value="Reminders" />
-                <RemindersList />
-                <input type="button" value="Shared" />
-                <SharedList />
+                <NotesList onSelect={this.handleSelect}/>
+                <BooksList onSelect={this.handleSelect}/>
+                <RemindersList onSelect={this.handleSelect}/>
+                <SharedList onSelect={this.handleSelect}/>
             </div>
         )
     }

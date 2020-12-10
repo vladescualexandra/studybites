@@ -10,14 +10,30 @@ class NotesList extends Component {
         super(props) 
         this.state = {
             notes: [],
+            active: false,
+            classes: "list"
         }
 
+
         this.showNote = (id) => {
-            fetch(API_BASE_URL + `/notes/${id}`)
-            .then((response) => response.json())
-            .then((result) => {
-               console.log(result.content);
-            }) 
+            // fetch(API_BASE_URL + `/notes/${id}`)
+            // .then((response) => response.json())
+            // .then((result) => {
+            //    console.log(result.content);
+            // }) 
+
+            this.props.onSelect(id, 'notes');
+        }
+
+
+        this.showItems = async () => {
+            let on = !this.state.active;
+            let cls = on ? "list-active" : "list";
+
+            await this.setState({
+                active: on,
+                classes: cls
+            })   
         }
 
         
@@ -37,7 +53,8 @@ class NotesList extends Component {
     render() {
         return (
             <div>
-                <ul>
+                <input class="mainList" type="button" value="Notes" onClick={this.showItems}/>
+                <ul className={this.state.classes}>
                     {this.state.notes.map((note, index) => <Note key={index} 
                                                     id = {note.id}
                                                     title={note.title}

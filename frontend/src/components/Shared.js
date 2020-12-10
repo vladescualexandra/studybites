@@ -13,7 +13,7 @@ class Shared extends Component {
     render() {
         return (
             <div>
-                <input type="button" value={this.props.title}
+                <input class="listItem" type="button" value={this.props.title}
                     onClick={() => this.props.onShow(this.props.id)}></input>
             </div>
         )

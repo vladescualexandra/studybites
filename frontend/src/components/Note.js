@@ -6,14 +6,14 @@ class Note extends Component {
 
         this.state = {
             id: props.id, 
-            title: props.title,
+            title: props.title
         }
     }
 
     render() {
     return (
         <div>
-            <input type="button" value={this.props.title}
+            <input class="listItem" type="button" value={this.props.title}
                 onClick={() => this.props.onShow(this.props.id)}
                 ></input>
         </div>

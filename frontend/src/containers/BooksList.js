@@ -9,9 +9,30 @@ class BooksList extends Component {
     constructor(props) {
         super(props) 
         this.state = {
-            books: []
+            books: [],
+            active: false,
+            classes: "list"
+        }
+   
+        this.showItems = async () => {
+            let on = !this.state.active;
+            let cls = on ? "list-active" : "list";
+            await  this.setState({
+                active: on,
+                classes: cls
+            })        
         }
 
+        this.handleSelect = async (selectedId, selectedType) => {
+            console.log(selectedId, selectedType)
+            this.props.onSelect(selectedId, selectedType);
+            await this.setState({
+                selected: {
+                    type: selectedType,
+                    id: selectedId
+                }
+            });
+        }
         
     }
     
@@ -29,7 +50,8 @@ class BooksList extends Component {
     render() {
         return (
             <div>
-                <ul>
+                <input class="mainList" type="button" value="Books" onClick={this.showItems}/>
+                <ul className={this.state.classes}>
                     {this.state.books.map((book, index) => <Book key={index} 
                                                     id = {book.id}
                                                     name = {book.name}
