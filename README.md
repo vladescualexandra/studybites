@@ -142,7 +142,10 @@ get: /shared/:id
 post: /users/:id/shared
 put: /shared/:id
 delete: /shared/:id
+
+get: /shared/:id/collaborators
+get: /collaborators/:id
+post: /users/:id/collaborators
+put: /collaborators/:id
+delete: /collaborators/:id
 ```
-
-
-
