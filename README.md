@@ -55,15 +55,34 @@ Google docs
 * Adriana & Ionela will be the UI/UX designers, Bianca the tester and Codruta will handle the optimization.
 
 ## API Calls:
+```
+get: /users/:id
+post: /users
 
-* GET/NOTES
-* GET/NOTES/:ID
-* GET/SHARED
-* GET/SHARED/:ID
-* POST/NOTES/:ID
-* POST/SHARED
-* POST/USER
+get: /users/:id/notes
+get: /notes/:id
+post: /users/:id/notes
+put: /notes/:id
+delete: /notes/:id
 
+get: /users/:id/books
+get: /books/:id
+post: /users/:id/books
+put: /books/:id
+delete: /books/:id
+
+get: /users/:id/reminders
+get: /reminders/:id
+post: /users/:id/reminders
+put: /reminders/:id
+delete: /reminders/:id
+
+get: /users/:id/shared
+get: /shared/:id
+post: /users/:id/shared
+put: /shared/:id
+delete: /shared/:id
+```
 
 
 
