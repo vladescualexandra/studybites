@@ -13,25 +13,26 @@ class BooksList extends Component {
             active: false,
             classes: "list"
         }
-
-        this.showItems = () => {
-           
-
+   
+        this.showItems = async () => {
             let on = !this.state.active;
             let cls = on ? "list-active" : "list";
-
-
-            console.log(on, cls)
-
-            this.setState({
+            await  this.setState({
                 active: on,
                 classes: cls
-            })
-
-            console.log(this.state)
-        
+            })        
         }
 
+        this.handleSelect = async (selectedId, selectedType) => {
+            console.log(selectedId, selectedType)
+            this.props.onSelect(selectedId, selectedType);
+            await this.setState({
+                selected: {
+                    type: selectedType,
+                    id: selectedId
+                }
+            });
+        }
         
     }
     
@@ -49,7 +50,7 @@ class BooksList extends Component {
     render() {
         return (
             <div>
-                <input type="button" value="Books" onClick={this.showItems}/>
+                <input class="mainList" type="button" value="Books" onClick={this.showItems}/>
                 <ul className={this.state.classes}>
                     {this.state.books.map((book, index) => <Book key={index} 
                                                     id = {book.id}

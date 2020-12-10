@@ -7,18 +7,39 @@ class Book extends Component {
 
         this.state = {
             id: props.id, 
-            name: null
+            name: null,
+            active: false,
+            classes: "list"
         }
 
+        this.showItems = async () => {
+            let on = !this.state.active;
+            let cls = on ? "list-active" : "list";
+
+            await this.setState({
+                active: on,
+                classes: cls
+            })   
+        }
+
+        this.handleSelect = async (selectedId, selectedType) => {
+            await this.setState({
+                selected: {
+                    id: selectedId, 
+                    type: selectedType
+                }
+            })
+        }
     }
 
 
     render() {
         return (
             <div>
-                <input type="button" value={this.props.name}
-                   />
-                        <NotesByBookList id={this.state.id}/>
+                <input class="listItem" type="button" value={this.props.name} onClick={this.showItems}/>
+                <ul className={this.state.classes}>
+                    <NotesByBookList id={this.state.id}/>
+                </ul>
             </div>
         );
     }

@@ -62,12 +62,11 @@ class SharedList extends Component {
                 notes: result
             })
         })
-        console.log(this.state.notes);
     }
     render() {
         return (
             <div>
-                <input type="button" value="Shared" onClick={this.showItems}/>
+                <input class="mainList" type="button" value="Shared" onClick={this.showItems}/>
                 <ul className={this.state.classes}>
                     {this.state.notes.map((note, index) => <Shared key={index} 
                                                     id = {note.id}

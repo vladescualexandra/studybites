@@ -1,5 +1,6 @@
 import './App.css';
 import Menu from './containers/Menu';
+import Editor from './containers/Editor';
 import React, {Component} from 'react';
 
 class App extends Component{
@@ -7,14 +8,23 @@ class App extends Component{
     super();
 
     this.state = {
-      id: 0
+      id: 0,
+      type: ''
+    }
+
+    this.handleSelect = async (selectedId, selectedType) => {
+      await this.setState({
+        id: selectedId, 
+        type: selectedType
+      })
     }
   }
   
   render() {
     return (
         <div>
-          <Menu />
+          <Menu onSelect={this.handleSelect}/>
+          <Editor id={this.state.id} type={this.state.type}/>
       </div>
     );
   }

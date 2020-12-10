@@ -7,15 +7,13 @@ class NotesByBookList extends Component {
         super(props) 
         this.state = {
             bookID: props.id,
-            notes: []
+            notes: [],
+            active: false,
+            classes: "list"
         }
 
-        this.showNote = (id) => {
-            fetch(API_BASE_URL + `/notes/${id}`)
-            .then((response) => response.json())
-            .then((result) => {
-                console.log(result.content)
-            })  
+        this.showNote = () => {
+            console.log("show note");
         }
     }
     
@@ -33,12 +31,11 @@ class NotesByBookList extends Component {
     render() {
         return (
             <div>
-                <ul>
-                    {this.state.notes.map((note, index) => <Note key={index} 
+                {this.state.notes.map((note, index) => <Note key={index} 
                                                     id = {note.id}
                                                     title = {note.title}
-                                                    onShow={this.showNote} />)}
-                </ul>
+                                                    onShow={this.showNote}/>
+                )}            
             </div>
         )
     }
