@@ -42,8 +42,22 @@ node createdb.js
 ```
 node server.js
 ```
+## Configurare frontend
+1. Navighează în directorul frontend
+```
+cd frontend
+```
+2. Instalează modulele npm
+```
+npm install
+```
+3. Adăugați setările pentru mediu în fișierul .env
+```
+REACT_APP_API_BASEURL="http://127.0.0.1:3001"
+REACT_APP_BASEURL=""http://127.0.0.1:8080"
+```
 
-## Configurare frontend în mod dezvoltare
+## Pornire aplicație în mod dezvoltare
 
 1. Navighează în directorul frontend și pornește aplicația de React
 ```
