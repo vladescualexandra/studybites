@@ -40,13 +40,9 @@ class Menu extends Component {
             <div>
                 <h3>{this.state.name}</h3>
                 <h4>{this.state.email}</h4>
-                <input type="button" value="Notes" />
                 <NotesList />
-                <input type="button" value="Books" />
                 <BooksList />
-                <input type="button" value="Reminders" />
                 <RemindersList />
-                <input type="button" value="Shared" />
                 <SharedList />
             </div>
         )

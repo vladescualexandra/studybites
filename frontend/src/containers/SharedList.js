@@ -10,7 +10,9 @@ class SharedList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            notes: []
+            notes: [],
+            active: false,
+            classes: "list"
         }
 
         this.showShared = (id) => {
@@ -32,6 +34,24 @@ class SharedList extends Component {
                 } 
             })
         } 
+
+        this.showItems = () => {
+           
+
+            let on = !this.state.active;
+            let cls = on ? "list-active" : "list";
+
+
+            console.log(on, cls)
+
+            this.setState({
+                active: on,
+                classes: cls
+            })
+
+            console.log(this.state)
+        
+        }
     }
 
     componentDidMount() {
@@ -47,7 +67,8 @@ class SharedList extends Component {
     render() {
         return (
             <div>
-                <ul>
+                <input type="button" value="Shared" onClick={this.showItems}/>
+                <ul className={this.state.classes}>
                     {this.state.notes.map((note, index) => <Shared key={index} 
                                                     id = {note.id}
                                                     title={note.title}

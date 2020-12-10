@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import Note from '../components/Note.js'
 const API_BASE_URL = process.env.REACT_APP_API_BASEURL;
-const user = {
-    id: 1
-};
 
 class NotesByBookList extends Component {
     constructor(props) {

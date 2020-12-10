@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Menu collapse */
+.list {
+  display: none;
+  margin-bottom: 20px;
+}
+
+.list-active {
+  border: 1px solid pink;
+  max-height: 100px;
+  transition: all linear 0.5s 0.3s;
+}

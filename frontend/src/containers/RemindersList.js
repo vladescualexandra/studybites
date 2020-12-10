@@ -11,7 +11,9 @@ class RemindersList extends Component {
         super(props);
 
         this.state = {
-            reminders: []
+            reminders: [],
+            active: false,
+            classes: "list"
         }
 
         this.showReminder = (id) => {
@@ -20,6 +22,24 @@ class RemindersList extends Component {
             .then((result) => {
                 console.log(result.details)
             })
+        }
+
+        this.showItems = () => {
+           
+
+            let on = !this.state.active;
+            let cls = on ? "list-active" : "list";
+
+
+            console.log(on, cls)
+
+            this.setState({
+                active: on,
+                classes: cls
+            })
+
+            console.log(this.state)
+        
         }
     }
 
@@ -36,7 +56,8 @@ class RemindersList extends Component {
     render () {
         return (
             <div>
-                <ul>
+                <input type="button" value="Reminders" onClick={this.showItems} />
+                <ul className={this.state.classes}>
                     {this.state.reminders.map((reminder, index) => <Reminder key={index}
                                                                     id = {reminder.id}
                                                                     title = {reminder.title}

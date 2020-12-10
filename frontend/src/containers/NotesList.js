@@ -10,6 +10,8 @@ class NotesList extends Component {
         super(props) 
         this.state = {
             notes: [],
+            active: false,
+            classes: "list"
         }
 
         this.showNote = (id) => {
@@ -18,6 +20,25 @@ class NotesList extends Component {
             .then((result) => {
                console.log(result.content);
             }) 
+        }
+
+
+        this.showItems = () => {
+           
+
+            let on = !this.state.active;
+            let cls = on ? "list-active" : "list";
+
+
+            console.log(on, cls)
+
+            this.setState({
+                active: on,
+                classes: cls
+            })
+
+            console.log(this.state)
+        
         }
 
         
@@ -37,7 +58,8 @@ class NotesList extends Component {
     render() {
         return (
             <div>
-                <ul>
+                <input type="button" value="Notes" onClick={this.showItems}/>
+                <ul className={this.state.classes}>
                     {this.state.notes.map((note, index) => <Note key={index} 
                                                     id = {note.id}
                                                     title={note.title}

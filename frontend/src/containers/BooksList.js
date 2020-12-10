@@ -9,7 +9,27 @@ class BooksList extends Component {
     constructor(props) {
         super(props) 
         this.state = {
-            books: []
+            books: [],
+            active: false,
+            classes: "list"
+        }
+
+        this.showItems = () => {
+           
+
+            let on = !this.state.active;
+            let cls = on ? "list-active" : "list";
+
+
+            console.log(on, cls)
+
+            this.setState({
+                active: on,
+                classes: cls
+            })
+
+            console.log(this.state)
+        
         }
 
         
@@ -29,7 +49,8 @@ class BooksList extends Component {
     render() {
         return (
             <div>
-                <ul>
+                <input type="button" value="Books" onClick={this.showItems}/>
+                <ul className={this.state.classes}>
                     {this.state.books.map((book, index) => <Book key={index} 
                                                     id = {book.id}
                                                     name = {book.name}
