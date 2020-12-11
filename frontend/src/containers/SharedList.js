@@ -32,7 +32,7 @@ class SharedList extends Component {
         
         }
     }
-
+git
     componentDidMount() {
         this.store.getAll();
         this.store.emitter.addListener(CODES.CODE_GET_ALL_SHARED, () => {
