@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-const API_BASE_URL = process.env.REACT_APP_API_BASEURL;
-
+import CODES from '../codes.json';
+import NotesStore from '../stores/NotesStore';
+import RemindersStore from '../stores/RemindersStore';
 
 class Editor extends Component {
 
@@ -12,51 +13,42 @@ class Editor extends Component {
             title: '',
             content: ''
         }
+
+        this.store = null;
     }
 
     componentDidMount() {
-        if (this.props.id !== 0) {
-            console.log(API_BASE_URL + `/${this.props.type}/${this.props.id}`);
-            fetch(API_BASE_URL + `/${this.props.type}/${this.props.id}`)
-            .then((response) => response.json())
-            .then((result) => {
 
-            this.setState({
-                title: result.title,
-                content: result.content
-            })
-            }) 
-        }
     }
 
     componentDidUpdate(prevProps) {
-     
         if (this.props.id !== prevProps.id) {
-            fetch(API_BASE_URL + `/${this.props.type}/${this.props.id}`)
-            .then((response) => response.json())
-            .then((result) => {
-                this.setState({
-                    id: this.props.id, 
-                    type: this.props.type,
-                    title: result.title,
-                })
-
-                switch(this.props.type) {
-                    case "reminders": 
+            switch(this.props.type) {
+                case "notes":
+                    this.store = new NotesStore();
+                    this.store.getById(this.props.id);
+                    this.store.emitter.addListener(CODES.CODE_GET_NOTE_BY_ID, () => {
                         this.setState({
-                            content: result.details
-                        });
-                        break;
-                default:
-                    this.setState({
-                        content: result.content
-                    });
+                            title: this.store.object.title,
+                            content: this.store.object.content
+                        })
+                    })
                     break;
-                }
-            })
-  
-        }
-        
+                case "reminders":
+                    this.store = new RemindersStore();
+                    this.store.getById(this.props.id);
+                    this.store.emitter.addListener(CODES.CODE_GET_REMINDER_BY_ID, () => {
+                        this.setState({
+                            title: this.store.object.title,
+                            content: this.store.object.details
+                        })
+                    })
+                    break;
+                default:
+                    this.store = new RemindersStore();
+                    break;
+            }       
+        } 
     }
 
     render() {

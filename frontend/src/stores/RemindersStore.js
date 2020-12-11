@@ -7,7 +7,7 @@ const SERVER_URL = process.env.REACT_APP_API_BASEURL;
 class RemindersStore {
     constructor() {
         this.reminders = [];
-
+        this.object = {};
         this.emitter = new EventEmitter();
         this.user = new User();
     }
@@ -20,8 +20,12 @@ class RemindersStore {
         this.emitter.emit(CODES.CODE_GET_ALL_REMINDERS);
     }
 
-    async getById() {
+    async getById(id) {
+        let response = await fetch(SERVER_URL + `/reminders/${id}`);
+        let data = await response.json();
 
+        this.object = data;
+        this.emitter.emit(CODES.CODE_GET_REMINDER_BY_ID);
     }
 
     async create(reminder) {

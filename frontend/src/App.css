@@ -44,6 +44,7 @@
   color: #CCC5B9;
   background-color: #04080F;
   margin-top: -20px;
+  overflow: scroll;
   position: fixed;
   top: 0;
   bottom: 0;

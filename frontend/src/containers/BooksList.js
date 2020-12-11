@@ -50,7 +50,6 @@ class BooksList extends Component {
                 books: this.store.books
             })
         })
-        console.log(this.store.books);
     }
 
     render() {

@@ -20,7 +20,7 @@ class NotesByBookStore {
         this.emitter.emit(CODES.CODE_GET_ALL_NOTES_BY_BOOKS);
     }
 
-    async getById() {
+    async getById(id) {
 
     }
 
