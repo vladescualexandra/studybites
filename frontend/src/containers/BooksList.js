@@ -20,18 +20,24 @@ class BooksList extends Component {
             await  this.setState({
                 active: on,
                 classes: cls
-            })        
+            });        
+
+        }
+
+        this.showNote = (id) => {
+            this.props.onSelect(id, 'notes');
         }
 
         this.handleSelect = async (selectedId, selectedType) => {
-            console.log(selectedId, selectedType)
+            
+
             this.props.onSelect(selectedId, selectedType);
             await this.setState({
                 selected: {
                     type: selectedType,
                     id: selectedId
                 }
-            });
+            });           
         }
         
     }
@@ -55,6 +61,8 @@ class BooksList extends Component {
                     {this.state.books.map((book, index) => <Book key={index} 
                                                     id = {book.id}
                                                     name = {book.name}
+                                                    onShow = {this.showNote}
+                                                    onSelect = {this.handleSelect}
                                                    />)}
                 </ul>
             </div>

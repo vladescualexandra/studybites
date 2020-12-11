@@ -12,8 +12,9 @@ class NotesByBookList extends Component {
             classes: "list"
         }
 
-        this.showNote = () => {
-            console.log("show note");
+        this.showNote = (id) => {
+            // console.log(id);
+            this.props.onSelect(id, 'notes');
         }
     }
     

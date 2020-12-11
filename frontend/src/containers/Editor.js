@@ -32,13 +32,9 @@ class Editor extends Component {
     componentDidUpdate(prevProps) {
      
         if (this.props.id !== prevProps.id) {
-            console.log("update");
             fetch(API_BASE_URL + `/${this.props.type}/${this.props.id}`)
             .then((response) => response.json())
             .then((result) => {
-
-                
-
                 this.setState({
                     id: this.props.id, 
                     type: this.props.type,

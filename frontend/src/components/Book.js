@@ -9,7 +9,11 @@ class Book extends Component {
             id: props.id, 
             name: null,
             active: false,
-            classes: "list"
+            classes: "list",
+            selected: {
+                id: 0, 
+                type: 'note'
+            }
         }
 
         this.showItems = async () => {
@@ -29,6 +33,8 @@ class Book extends Component {
                     type: selectedType
                 }
             })
+
+            this.props.onShow(this.state.selected.id)
         }
     }
 
@@ -38,7 +44,9 @@ class Book extends Component {
             <div>
                 <input className="listItem" type="button" value={this.props.name} onClick={this.showItems}/>
                 <ul className={this.state.classes}>
-                    <NotesByBookList id={this.state.id}/>
+                    <NotesByBookList id={this.state.id}
+                        onSelect={this.handleSelect}
+                        />
                 </ul>
             </div>
         );
