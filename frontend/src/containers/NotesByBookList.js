@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Note from '../components/Note.js'
-const API_BASE_URL = process.env.REACT_APP_API_BASEURL;
+import CODES from '../codes.json';
+import NotesByBookStore from '../stores/NotesByBookStore.js';
 
 class NotesByBookList extends Component {
     constructor(props) {
@@ -11,22 +12,21 @@ class NotesByBookList extends Component {
             active: false,
             classes: "list"
         }
+        
+        this.store = new NotesByBookStore();
 
         this.showNote = (id) => {
-            // console.log(id);
             this.props.onSelect(id, 'notes');
         }
     }
     
     componentDidMount() {
-        fetch(API_BASE_URL + `/books/${this.state.bookID}/notes`)
-        .then((response) => response.json())
-        .then((result) => {
+        this.store.getAll(this.state.bookID);
+        this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES_BY_BOOKS, () => {
             this.setState({
-                notes: result
+                notes: this.store.notes
             })
         })
-    
     }
 
     render() {

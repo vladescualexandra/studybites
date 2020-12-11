@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import Reminder from '../components/Reminder';
-
-const API_BASE_URL = process.env.REACT_APP_API_BASEURL;
-const user = {
-    id: 1
-};
+import CODES from '../codes.json';
+import RemindersStore from '../stores/RemindersStore';
 
 class RemindersList extends Component {
     constructor(props) {
@@ -15,6 +12,8 @@ class RemindersList extends Component {
             active: false,
             classes: "list"
         }
+
+        this.store = new RemindersStore();
 
         this.showReminder = (id) => {
             this.props.onSelect(id, 'reminders');
@@ -32,11 +31,10 @@ class RemindersList extends Component {
     }
 
     componentDidMount() {
-        fetch(API_BASE_URL + `/users/${user.id}/reminders`)
-        .then((response) => response.json())
-        .then((result) => {
+        this.store.getAll();
+        this.store.emitter.addListener(CODES.CODE_GET_ALL_REMINDERS, () => {
             this.setState({
-                reminders: result
+                reminders: this.store.reminders
             })
         })
     }

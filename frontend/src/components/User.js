@@ -6,9 +6,9 @@ class User extends Component {
         super(props);
 
         this.state = {
-            id: props.id,
-            name: props.name,
-            email: props.email
+            id: 1,
+            name: '',
+            email: ''
         }
     }
 
@@ -19,6 +19,7 @@ class User extends Component {
         .then((response) => response.json())
         .then((result) => {
             this.setState({
+                id: user,
                 name: result.name,
                 email: result.email
             })

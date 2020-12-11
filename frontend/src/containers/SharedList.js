@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import Shared from '../components/Shared.js'
-const API_BASE_URL = process.env.REACT_APP_API_BASEURL;
-const user = {
-    id: 1
-};
+import CODES from '../codes.json';
+import SharedStore from '../stores/SharedStore.js';
 
 
 class SharedList extends Component {
@@ -14,6 +12,8 @@ class SharedList extends Component {
             active: false,
             classes: "list"
         }
+
+        this.store = new SharedStore();
 
         this.showShared = (id) => {
             this.props.onSelect(id, 'shared');
@@ -34,11 +34,10 @@ class SharedList extends Component {
     }
 
     componentDidMount() {
-        fetch(API_BASE_URL + `/users/${user.id}/shared`)
-        .then((response) => response.json())
-        .then((result) => {
+        this.store.getAll();
+        this.store.emitter.addListener(CODES.CODE_GET_ALL_SHARED, () => {
             this.setState({
-                notes: result
+                notes: this.store.shared
             })
         })
     }

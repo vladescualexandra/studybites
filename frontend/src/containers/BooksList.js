@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import Book from '../components/Book.js'
-const API_BASE_URL = process.env.REACT_APP_API_BASEURL;
-const user = {
-    id: 1
-};
+import BooksStore from '../stores/BooksStore.js';
+import CODES from '../codes.json';
+
 
 class BooksList extends Component {
     constructor(props) {
@@ -13,6 +12,8 @@ class BooksList extends Component {
             active: false,
             classes: "list"
         }
+
+        this.store = new BooksStore();
    
         this.showItems = async () => {
             let on = !this.state.active;
@@ -43,14 +44,13 @@ class BooksList extends Component {
     }
     
     componentDidMount() {
-        fetch(API_BASE_URL + `/users/${user.id}/books`)
-        .then((response) => response.json())
-        .then((result) => {
+        this.store.getAll();
+        this.store.emitter.addListener(CODES.CODE_GET_ALL_BOOKS, () => {
             this.setState({
-                books: result
+                books: this.store.books
             })
         })
-    
+        console.log(this.store.books);
     }
 
     render() {
