@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import Note from '../components/Note.js'
-const API_BASE_URL = process.env.REACT_APP_API_BASEURL;
-const user = {
-    id: 1
-};
+import NotesStore from '../stores/NotesStore.js';
+import CODES from '../codes.json';
 
 class NotesList extends Component {
     constructor(props) {
@@ -14,14 +12,9 @@ class NotesList extends Component {
             classes: "list"
         }
 
+        this.store = new NotesStore();
 
         this.showNote = (id) => {
-            // fetch(API_BASE_URL + `/notes/${id}`)
-            // .then((response) => response.json())
-            // .then((result) => {
-            //    console.log(result.content);
-            // }) 
-
             this.props.onSelect(id, 'notes');
         }
 
@@ -41,19 +34,18 @@ class NotesList extends Component {
 
 
     componentDidMount() {
-        fetch(API_BASE_URL + `/users/${user.id}/notes`)
-        .then((response) => response.json())
-        .then((result) => {
+        this.store.getAll();
+        this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, () => {
             this.setState({
-                notes: result,
+                notes: this.store.notes
             })
-        })    
+        })
     }
 
     render() {
         return (
             <div>
-                <input class="mainList" type="button" value="Notes" onClick={this.showItems}/>
+                <input className="mainList" type="button" value="Notes" onClick={this.showItems}/>
                 <ul className={this.state.classes}>
                     {this.state.notes.map((note, index) => <Note key={index} 
                                                     id = {note.id}

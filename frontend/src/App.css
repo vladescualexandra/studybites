@@ -66,6 +66,10 @@
   width: 100%;
   height: 10%;
   padding-left: 2%;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 #content {
@@ -74,6 +78,10 @@
   width: 100%;
   height: 100%;
   padding: 2%;
+  border: none;
+  border-top: 2px solid black;
+  font-size: 16px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 
@@ -92,7 +100,7 @@
   border: none;
   background-color: #04080F;
   color: #EB551C;
-  padding: 10%;
+  padding: 5%;
 }
 
 #menu .listItem {
@@ -100,5 +108,11 @@
   border: none;
   background-color: #04080F;
   color: #CCC5B9;
-  padding: 5%;
+  padding: 2%;
+  text-align: left;
+}
+
+#user {
+  text-align: center;
+  padding-top: 10%;
 }
