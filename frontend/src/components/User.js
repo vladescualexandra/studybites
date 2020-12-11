@@ -27,9 +27,8 @@ class User extends Component {
 
     render() {
         return (
-            <div>
-                <h3>{this.state.name}</h3>
-                <h4>{this.state.email}</h4>
+            <div id="user">
+                <h4>{this.state.name}</h4>
             </div>
         )
     }

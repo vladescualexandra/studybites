@@ -67,14 +67,12 @@ class Editor extends Component {
                     type="text" 
                     placeholder="Title"
                     value={this.state.title ? this.state.title : ''}
-                    onChange={(e) => {this.updateTitle(e.target.value)}}
                     /> <br/>
                 <textarea 
                     id="content" 
                     type="textarea" 
                     placeholder="Content" 
                     value={this.state.content ? this.state.content : ''}
-                    onChange={(e) => {this.updateContent(e.target.value)}}
                     />
             </div>
         )
