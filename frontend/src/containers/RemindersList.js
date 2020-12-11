@@ -17,12 +17,6 @@ class RemindersList extends Component {
         }
 
         this.showReminder = (id) => {
-            fetch(API_BASE_URL + `/reminders/${id}`)
-            .then((response) => response.json())
-            .then((result) => {
-                console.log(result.details)
-            })
-
             this.props.onSelect(id, 'reminders');
         }
 
@@ -50,7 +44,7 @@ class RemindersList extends Component {
     render () {
         return (
             <div>
-                <input class="mainList"  type="button" value="Reminders" onClick={this.showItems} />
+                <input className="mainList"  type="button" value="Reminders" onClick={this.showItems} />
                 <ul className={this.state.classes}>
                     {this.state.reminders.map((reminder, index) => <Reminder key={index}
                                                                     id = {reminder.id}

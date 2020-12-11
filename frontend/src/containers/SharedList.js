@@ -16,40 +16,19 @@ class SharedList extends Component {
         }
 
         this.showShared = (id) => {
-            fetch(API_BASE_URL + `/shared/${id}`)
-            .then((response) => response.json())
-            .then((result) => {
-                console.log("SHARED: Title: " + result.title + "/ Content: " + result.content);
-            })
-
-            fetch(API_BASE_URL + `/shared/${id}/collaborators`)
-            .then((response) => response.json())
-            .then((result) => {
-                for (let item of result) {
-                    fetch(API_BASE_URL + `/users/${item.userId}`)
-                    .then((response) => response.json())
-                    .then((result) => {
-                        console.log("Collaborator: " + result.name);
-                    });
-                } 
-            })
+            this.props.onSelect(id, 'shared');
         } 
 
         this.showItems = () => {
            
-
             let on = !this.state.active;
             let cls = on ? "list-active" : "list";
-
-
-            console.log(on, cls)
 
             this.setState({
                 active: on,
                 classes: cls
             })
 
-            console.log(this.state)
         
         }
     }
@@ -66,7 +45,7 @@ class SharedList extends Component {
     render() {
         return (
             <div>
-                <input class="mainList" type="button" value="Shared" onClick={this.showItems}/>
+                <input className="mainList" type="button" value="Shared" onClick={this.showItems}/>
                 <ul className={this.state.classes}>
                     {this.state.notes.map((note, index) => <Shared key={index} 
                                                     id = {note.id}

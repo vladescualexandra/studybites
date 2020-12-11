@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import User from '../components/User';
 import NotesList from './NotesList';
 import BooksList from './BooksList';
 import RemindersList from './RemindersList';
@@ -49,8 +50,7 @@ class Menu extends Component {
     render() {
         return (
             <div id="menu" onSelect={this.handleSelect}>
-                <h3>{this.state.name}</h3>
-                <h4>{this.state.email}</h4>
+                <User />
                 <NotesList onSelect={this.handleSelect}/>
                 <BooksList onSelect={this.handleSelect}/>
                 <RemindersList onSelect={this.handleSelect}/>

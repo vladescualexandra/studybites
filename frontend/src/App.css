@@ -92,7 +92,7 @@
   border: none;
   background-color: #04080F;
   color: #EB551C;
-  padding: 10%;
+  padding: 5%;
 }
 
 #menu .listItem {
@@ -100,5 +100,6 @@
   border: none;
   background-color: #04080F;
   color: #CCC5B9;
-  padding: 5%;
+  padding: 2%;
+  text-align: left;
 }

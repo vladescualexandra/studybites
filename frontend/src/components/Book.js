@@ -36,7 +36,7 @@ class Book extends Component {
     render() {
         return (
             <div>
-                <input class="listItem" type="button" value={this.props.name} onClick={this.showItems}/>
+                <input className="listItem" type="button" value={this.props.name} onClick={this.showItems}/>
                 <ul className={this.state.classes}>
                     <NotesByBookList id={this.state.id}/>
                 </ul>

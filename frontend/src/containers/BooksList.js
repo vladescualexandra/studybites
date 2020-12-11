@@ -50,7 +50,7 @@ class BooksList extends Component {
     render() {
         return (
             <div>
-                <input class="mainList" type="button" value="Books" onClick={this.showItems}/>
+                <input className="mainList" type="button" value="Books" onClick={this.showItems}/>
                 <ul className={this.state.classes}>
                     {this.state.books.map((book, index) => <Book key={index} 
                                                     id = {book.id}

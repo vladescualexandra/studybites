@@ -15,15 +15,18 @@ class Editor extends Component {
     }
 
     componentDidMount() {
-        fetch(API_BASE_URL + `/${this.props.type}/${this.props.id}`)
-        .then((response) => response.json())
-        .then((result) => {
+        if (this.props.id !== 0) {
+            console.log(API_BASE_URL + `/${this.props.type}/${this.props.id}`);
+            fetch(API_BASE_URL + `/${this.props.type}/${this.props.id}`)
+            .then((response) => response.json())
+            .then((result) => {
 
-        //    this.setState({
-        //        title: result.title,
-        //        content: result.content
-        //    })
-        }) 
+            this.setState({
+                title: result.title,
+                content: result.content
+            })
+            }) 
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -48,13 +51,14 @@ class Editor extends Component {
                             content: result.details
                         });
                         break;
-                    default:
-                        this.setState({
-                            content: result.content
-                        });
-                        break;
+                default:
+                    this.setState({
+                        content: result.content
+                    });
+                    break;
                 }
-            }) 
+            })
+  
         }
         
     }
@@ -62,12 +66,23 @@ class Editor extends Component {
     render() {
         return (
             <div id="editor">
-                <input id="title" type="text" placeholder="Title" value={this.state.title}/> <br/>
-                <textarea id="content" type="textarea" placeholder="Content" value={this.state.content}/>
+                <input 
+                    id="title" 
+                    type="text" 
+                    placeholder="Title"
+                    value={this.state.title ? this.state.title : ''}
+                    onChange={(e) => {this.updateTitle(e.target.value)}}
+                    /> <br/>
+                <textarea 
+                    id="content" 
+                    type="textarea" 
+                    placeholder="Content" 
+                    value={this.state.content ? this.state.content : ''}
+                    onChange={(e) => {this.updateContent(e.target.value)}}
+                    />
             </div>
         )
     }
-
 }
 
 
