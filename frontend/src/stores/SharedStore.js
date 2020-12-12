@@ -7,7 +7,7 @@ const SERVER_URL = process.env.REACT_APP_API_BASEURL;
 class SharedStore {
     constructor() {
         this.shared = [];
-
+        this.object = {};
         this.emitter = new EventEmitter();
         this.user = new User();
     }
@@ -20,7 +20,12 @@ class SharedStore {
         this.emitter.emit(CODES.CODE_GET_ALL_SHARED);
     }
 
-    async getById() {
+    async getById(id) {
+        let response = await fetch(SERVER_URL + `/shared/${id}`);
+        let data = await response.json();
+
+        this.object = data;
+        this.emitter.emit(CODES.CODE_GET_SHARED_BY_ID);
 
     }
 
@@ -29,7 +34,13 @@ class SharedStore {
     }
 
     async update(id, shared) {
-
+        await fetch(SERVER_URL + `/shared/${id}`, {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(shared)
+        });
     }
 
     async delete(id) {

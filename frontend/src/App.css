@@ -92,7 +92,6 @@
 }
 
 .list-active {
-  max-height: 100px;
   transition: all linear 0.5s 0.3s;
 }
 
@@ -116,4 +115,12 @@
 #user {
   text-align: center;
   padding-top: 10%;
+}
+
+#new {
+  width: 100%;
+  border: none;
+  background-color: #EB551C;
+  color: #04080F;
+  padding: 5%;
 }

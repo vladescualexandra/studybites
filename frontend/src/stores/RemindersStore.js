@@ -33,7 +33,13 @@ class RemindersStore {
     }
 
     async update(id, reminder) {
-
+        await fetch(SERVER_URL + `/reminders/${id}`, {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reminder)
+        });
     }
 
     async delete(id) {

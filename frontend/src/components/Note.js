@@ -14,7 +14,7 @@ class Note extends Component {
     render() {
     return (
         <div>
-            <input className="listItem" type="button" value={this.props.title}
+            <input className="listItem" type="button" value={this.props.title ? this.state.title : 'Add title...'}
                 onClick={() => this.props.onShow(this.props.id)}
                 ></input>
         </div>

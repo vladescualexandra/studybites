@@ -30,11 +30,28 @@ class NotesStore {
     }
 
     async create(note) {
+        let response = await fetch(SERVER_URL + `/users/${this.user.state.id}/notes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        });
+
+        let data = await response.json();
+        this.getAll();
+        return data;
 
     }
 
     async update(id, note) {
-
+        await fetch(SERVER_URL + `/notes/${id}`, {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        });
     }
 
     async delete(id) {

@@ -5,6 +5,7 @@ import NotesList from './NotesList';
 import BooksList from './BooksList';
 import RemindersList from './RemindersList';
 import SharedList from './SharedList';
+import NotesStore from '../stores/NotesStore';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASEURL;
 const user = {
@@ -32,6 +33,16 @@ class Menu extends Component {
                 }
             });
         }
+
+        this.addNewNote = async () => {
+            this.store = new NotesStore();
+            let note = await this.store.create({
+                title: '',
+                content: ''
+            });
+            console.log(note);
+            this.props.onSelect(note.id, 'note');
+        }
     } 
 
 
@@ -51,6 +62,7 @@ class Menu extends Component {
         return (
             <div id="menu" onSelect={this.handleSelect}>
                 <User />
+                <input id="new" type="button" value="+ New" onClick={this.addNewNote}/>
                 <NotesList onSelect={this.handleSelect}/>
                 <BooksList onSelect={this.handleSelect}/>
                 <RemindersList onSelect={this.handleSelect}/>

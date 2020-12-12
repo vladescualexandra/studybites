@@ -29,14 +29,13 @@ class NotesList extends Component {
             })   
         }
 
-        
     }
 
 
     componentDidMount() {
         this.store.getAll();
-        this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, () => {
-            this.setState({
+        this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, async () => {
+            await this.setState({
                 notes: this.store.notes
             })
         })
