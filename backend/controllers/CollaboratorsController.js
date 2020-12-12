@@ -19,7 +19,11 @@ module.exports.findCollaborators = async (req, res) => {
 
 module.exports.createCollaborator = async (req, res) => {
     try {
-        // TO DO
+        let collaborator = await db.Collaborators.create({
+            sharedId: req.params.sharedId,
+            userId: req.params.userId
+        })
+        res.status(201).send(collaborator);
     } catch (err) {
         console.log(err);
         res.status(500).send('Server error');

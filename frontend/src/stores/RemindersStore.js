@@ -29,7 +29,17 @@ class RemindersStore {
     }
 
     async create(reminder) {
+        let response = await fetch(SERVER_URL + `/users/${this.user.state.id}/reminders`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reminder)
+        });
 
+        let data = await response.json();
+        this.getAll();
+        return data;
     }
 
     async update(id, reminder) {

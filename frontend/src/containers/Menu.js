@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
 import User from '../components/User';
+import New from './New';
 import NotesList from './NotesList';
 import BooksList from './BooksList';
 import RemindersList from './RemindersList';
 import SharedList from './SharedList';
 import NotesStore from '../stores/NotesStore';
+import RemindersStore from '../stores/RemindersStore';
+import SharedStore from '../stores/SharedStore';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASEURL;
 const user = {
@@ -34,14 +37,36 @@ class Menu extends Component {
             });
         }
 
-        this.addNewNote = async () => {
-            this.store = new NotesStore();
-            let note = await this.store.create({
-                title: '',
-                content: ''
-            });
-            console.log(note);
-            this.props.onSelect(note.id, 'note');
+        this.handleCreate = async (value) => {
+            switch(value) {
+                case "note":
+                    this.store = new NotesStore();
+                    let note = await this.store.create({
+                        title: '',
+                        content: ''
+                    });
+                    this.props.onSelect(note.id, 'notes');
+                    break;
+                case "reminder":
+                    this.store = new RemindersStore();
+                    let reminder = await this.store.create({
+                        title: '',
+                        content: ''
+                    });
+                    this.props.onSelect(reminder.id, 'reminders');
+                    break;
+                case "shared":
+                    this.store = new SharedStore();
+                    let shared = await this.store.create({
+                        title: '',
+                        content: ''
+                    });
+                    this.props.onSelect(shared.id, 'shared');
+                    break;
+                default:
+                    break;
+            }
+            
         }
     } 
 
@@ -62,7 +87,7 @@ class Menu extends Component {
         return (
             <div id="menu" onSelect={this.handleSelect}>
                 <User />
-                <input id="new" type="button" value="+ New" onClick={this.addNewNote}/>
+                <New onCreate={this.handleCreate}/>
                 <NotesList onSelect={this.handleSelect}/>
                 <BooksList onSelect={this.handleSelect}/>
                 <RemindersList onSelect={this.handleSelect}/>

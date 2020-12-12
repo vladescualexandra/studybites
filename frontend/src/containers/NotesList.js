@@ -11,6 +11,7 @@ class NotesList extends Component {
             active: false,
             classes: "list"
         }
+        
 
         this.store = new NotesStore();
 

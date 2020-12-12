@@ -41,7 +41,6 @@ class NotesStore {
         let data = await response.json();
         this.getAll();
         return data;
-
     }
 
     async update(id, note) {

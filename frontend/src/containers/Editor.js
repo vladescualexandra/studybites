@@ -20,7 +20,6 @@ class Editor extends Component {
     }
 
     componentDidMount() {
-
     }
 
     componentDidUpdate(prevProps) {

@@ -7,7 +7,7 @@ class Book extends Component {
 
         this.state = {
             id: props.id, 
-            name: null,
+            name: props.name,
             active: false,
             classes: "list",
             selected: {
@@ -42,7 +42,7 @@ class Book extends Component {
     render() {
         return (
             <div>
-                <input className="listItem" type="button" value={this.props.name} onClick={this.showItems}/>
+                <input className="listItem" type="button" value={this.props.name ? this.state.name : 'Add name...'} onClick={this.showItems}/>
                 <ul className={this.state.classes}>
                     <NotesByBookList id={this.state.id}
                         onSelect={this.handleSelect}
