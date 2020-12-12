@@ -125,31 +125,31 @@ db.sequelize.sync({force: true}).then(async () => {
     await db.Reminders.create({
         userID: ADMIN_BIANCA.id, 
         title: 'Proiect DAM',
-        details: 'DEADLINE 3 IANUARIE'
+        content: 'DEADLINE 3 IANUARIE'
     });
 
     await db.Reminders.create({
         userID: ADMIN_BIANCA.id, 
         title: 'Proiect TW',
-        details: 'DEADLINE FAZA 2: 18 DECEMBRIE'
+        content: 'DEADLINE FAZA 2: 18 DECEMBRIE'
     });
 
     await db.Reminders.create({
         userID: ADMIN_ADRIANA.id, 
         title: 'Proiect Multimedia',
-        details: 'DEADLINE 11 IANUARIE 7:00'
+        content: 'DEADLINE 11 IANUARIE 7:00'
     });
 
     await db.Reminders.create({
         userID: ADMIN_CODRUTA.id, 
         title: 'Proiect CSE',
-        details: 'DEADLINE 10 IANUARIE'
+        content: 'DEADLINE 10 IANUARIE'
     });
 
     await db.Reminders.create({
         userID: ADMIN_IONELA.id, 
         title: 'Proiect Econometrie',
-        details: 'DEADLINE 18 DECEMBRIE'
+        content: 'DEADLINE 18 DECEMBRIE'
     });
 
     let shared_econometrie = await db.Shared.create({

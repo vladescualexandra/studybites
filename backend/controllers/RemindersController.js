@@ -37,7 +37,7 @@ module.exports.createReminder = async (req, res) => {
         let reminder = await  db.Reminders.create({
             userID: user.id,
             title: req.body.title, 
-            details: req.body.details
+            content: req.body.content
         });
         res.status(201).send(reminder);
     } catch (err) {
