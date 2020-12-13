@@ -55,7 +55,11 @@ class SharedStore {
     }
 
     async delete(id) {
-
+        await fetch(SERVER_URL + `/shared/${id}`, {
+            method: 'DELETE', 
+        });
+    
+        this.getAll();
     }
 }
 

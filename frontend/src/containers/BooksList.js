@@ -52,6 +52,17 @@ class BooksList extends Component {
         })
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+            this.store.getAll();
+            this.store.emitter.addListener(CODES.CODE_GET_ALL_BOOKS, async () => {
+                await this.setState({
+                    books: this.store.books
+                })
+            })
+        }
+    }
+
     render() {
         return (
             <div>

@@ -10,11 +10,6 @@ import NotesStore from '../stores/NotesStore';
 import RemindersStore from '../stores/RemindersStore';
 import SharedStore from '../stores/SharedStore';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASEURL;
-const user = {
-    id: 1
-};
-
 class Menu extends Component {
     constructor(props) {
         super(props)
@@ -70,17 +65,6 @@ class Menu extends Component {
         }
     } 
 
-
-    componentDidMount() {
-        fetch(API_BASE_URL + `/users/${user.id}`)
-        .then((result) => result.json())
-        .then((result) => {
-            this.setState({
-                name: result.name, 
-                email: result.email
-            })
-        })
-    }
 
 
     render() {

@@ -53,7 +53,11 @@ class RemindersStore {
     }
 
     async delete(id) {
-
+        await fetch(SERVER_URL + `/reminders/${id}`, {
+            method: 'DELETE', 
+        });
+    
+        this.getAll();
     }
 }
 

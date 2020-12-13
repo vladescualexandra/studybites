@@ -42,6 +42,17 @@ class NotesList extends Component {
         })
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+            this.store.getAll();
+            this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, async () => {
+                await this.setState({
+                    notes: this.store.notes
+                })
+            })
+        }
+    }
+
     render() {
         return (
             <div>

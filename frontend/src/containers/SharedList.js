@@ -32,7 +32,7 @@ class SharedList extends Component {
         
         }
     }
-git
+
     componentDidMount() {
         this.store.getAll();
         this.store.emitter.addListener(CODES.CODE_GET_ALL_SHARED, () => {
@@ -41,6 +41,18 @@ git
             })
         })
     }
+
+    componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+            this.store.getAll();
+            this.store.emitter.addListener(CODES.CODE_GET_ALL_SHARED, async () => {
+                await this.setState({
+                    notes: this.store.shared
+                })
+            })
+        }
+    }
+
     render() {
         return (
             <div>

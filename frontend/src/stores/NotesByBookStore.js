@@ -44,7 +44,11 @@ class NotesByBookStore {
     }
 
     async delete(id) {
-
+        await fetch(SERVER_URL + `/notes/${id}`, {
+            method: 'DELETE', 
+        });
+    
+        this.getAll();
     }
 }
 

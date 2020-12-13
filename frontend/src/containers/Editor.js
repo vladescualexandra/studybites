@@ -20,6 +20,10 @@ class Editor extends Component {
     }
 
     componentDidMount() {
+        this.setState({
+            id: this.props.id, 
+            type: this.props.type
+        })
     }
 
     componentDidUpdate(prevProps) {
@@ -30,6 +34,8 @@ class Editor extends Component {
                     this.store.getById(this.props.id);
                     this.store.emitter.addListener(CODES.CODE_GET_NOTE_BY_ID, () => {
                         this.setState({
+                            id: this.props.id, 
+                            type: this.props.type,
                             title: this.store.object.title,
                             content: this.store.object.content
                         })
@@ -40,6 +46,8 @@ class Editor extends Component {
                     this.store.getById(this.props.id);
                     this.store.emitter.addListener(CODES.CODE_GET_REMINDER_BY_ID, () => {
                         this.setState({
+                            id: this.props.id, 
+                            type: this.props.type,
                             title: this.store.object.title,
                             content: this.store.object.content
                         })
@@ -50,6 +58,8 @@ class Editor extends Component {
                     this.store.getById(this.props.id);
                     this.store.emitter.addListener(CODES.CODE_GET_SHARED_BY_ID, () => {
                         this.setState({
+                            id: this.props.id, 
+                            type: this.props.type,
                             title: this.store.object.title, 
                             content: this.store.object.content
                         })
@@ -69,6 +79,8 @@ class Editor extends Component {
     render() {
         return (
             <div id="editor">
+                 <input type="button" value="Delete" 
+                    onClick={() => this.delete(this.state.id)}></input>
                 <input 
                     id="title" 
                     type="text" 
@@ -105,6 +117,16 @@ class Editor extends Component {
             content: this.state.content
         })
     }, 500);
+
+    delete = async (id) => {
+        this.store.delete(id);
+        this.setState({
+            id: null, 
+            type: null, 
+            title: '',
+            content: ''
+        })
+    }
 }
 
 

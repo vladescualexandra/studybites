@@ -45,7 +45,11 @@ class BooksStore {
     }
 
     async delete(id) {
+        await fetch(SERVER_URL + `/books/${id}`, {
+            method: 'DELETE', 
+        });
 
+        this.getAll();
     }
 }
 
