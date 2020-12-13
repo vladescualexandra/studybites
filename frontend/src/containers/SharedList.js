@@ -8,12 +8,13 @@ class SharedList extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: this.props.id,
             notes: [],
             active: false,
             classes: "list"
         }
 
-        this.store = new SharedStore();
+        this.store = new SharedStore(this.state.id);
 
         this.showShared = (id) => {
             this.props.onSelect(id, 'shared');

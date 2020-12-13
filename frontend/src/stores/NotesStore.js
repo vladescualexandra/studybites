@@ -4,16 +4,17 @@ import CODES from '../codes.json';
 const SERVER_URL = process.env.REACT_APP_API_BASEURL;
 
 class NotesStore {
-    constructor() {
+    constructor(props) {
         this.notes = [];
         this.object = {};
 
         this.emitter = new EventEmitter();
-        this.user = new User();
+        
+        this.user = props;
     }
 
     async getAll() {
-        let response = await fetch(SERVER_URL + `/users/${this.user.state.id}/notes`);
+        let response = await fetch(SERVER_URL + `/users/${this.user}/notes`);
         let data = await response.json();
         
         this.notes = data;
@@ -30,7 +31,7 @@ class NotesStore {
     }
 
     async create(note) {
-        let response = await fetch(SERVER_URL + `/users/${this.user.state.id}/notes`, {
+        let response = await fetch(SERVER_URL + `/users/${this.user.id}/notes`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

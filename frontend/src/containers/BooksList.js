@@ -8,12 +8,13 @@ class BooksList extends Component {
     constructor(props) {
         super(props) 
         this.state = {
+            id: this.props.id, 
             books: [],
             active: false,
             classes: "list"
         }
 
-        this.store = new BooksStore();
+        this.store = new BooksStore(this.state.id);
    
         this.showItems = async () => {
             let on = !this.state.active;

@@ -14,11 +14,10 @@ class Menu extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: null,
-            email: null,
+            id: this.props.id,
             selected: {
-                type: this.props.type,
-                id: this.props.id
+                id: this.props.id,
+                type: this.props.type
             }
         }
 
@@ -65,17 +64,23 @@ class Menu extends Component {
         }
     } 
 
+    async componentDidMount() {
+        await this.setState({
+            id: this.props.id
+        })
+        console.log(this.state)
+    }
 
 
     render() {
         return (
             <div id="menu" onSelect={this.handleSelect}>
-                <User />
-                <New onCreate={this.handleCreate}/>
-                <NotesList onSelect={this.handleSelect}/>
-                <BooksList onSelect={this.handleSelect}/>
-                <RemindersList onSelect={this.handleSelect}/>
-                <SharedList onSelect={this.handleSelect}/>
+                <User id={this.state.id}/>
+                <New id={this.state.id} onCreate={this.handleCreate}/>
+                <NotesList id={this.state.id} onSelect={this.handleSelect}/>
+                <BooksList id={this.state.id} onSelect={this.handleSelect}/>
+                <RemindersList id={this.state.id} onSelect={this.handleSelect}/>
+                <SharedList id={this.state.id} onSelect={this.handleSelect}/>
             </div>
         )
     }

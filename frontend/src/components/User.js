@@ -6,20 +6,28 @@ class User extends Component {
         super(props);
 
         this.state = {
-            id: 1,
+            id: 0,
             name: '',
             email: ''
         }
+
+        this.handleClick = () => {
+            alert("handle click user");
+        }
     }
 
-    componentDidMount() {
-        let user = 1;
+    async componentDidMount() {
 
-        fetch(API_BASE_URL + `/users/${user}`)
+        await this.setState({
+            id: this.props.id
+        })
+
+        fetch(API_BASE_URL + `/users/${this.state.id}`)
         .then((response) => response.json())
         .then((result) => {
+
+            console.log(result)
             this.setState({
-                id: user,
                 name: result.name,
                 email: result.email
             })
@@ -29,7 +37,7 @@ class User extends Component {
     render() {
         return (
             <div id="user">
-                <h4>{this.state.name}</h4>
+                <h4 onClick={this.handleClick}>{this.state.name ? this.state.name : 'login'}</h4>
             </div>
         )
     }

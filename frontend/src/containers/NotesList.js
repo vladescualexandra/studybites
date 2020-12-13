@@ -7,13 +7,14 @@ class NotesList extends Component {
     constructor(props) {
         super(props) 
         this.state = {
+            id: this.props.id,
             notes: [],
             active: false,
             classes: "list"
         }
         
 
-        this.store = new NotesStore();
+        this.store = new NotesStore(this.state.id);
 
         this.showNote = (id) => {
             this.props.onSelect(id, 'notes');
@@ -34,6 +35,7 @@ class NotesList extends Component {
 
 
     componentDidMount() {
+        console.log("notes list for id: ", this.state.id)
         this.store.getAll();
         this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, async () => {
             await this.setState({

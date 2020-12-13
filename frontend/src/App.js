@@ -7,10 +7,14 @@ class App extends Component{
   constructor() {
     super();
 
-    this.state = {
+    this.state = { 
+      user: {
+        id: 1
+      },
       id: 0,
-      type: ''
+      type: '',
     }
+
 
     this.handleSelect = async (selectedId, selectedType) => {
       await this.setState({
@@ -18,12 +22,18 @@ class App extends Component{
         type: selectedType
       })
     }
+
+  
+  }
+
+  
+  componentDidMount() {
   }
   
   render() {
     return (
         <div>
-          <Menu onSelect={this.handleSelect}/>
+          <Menu id={this.state.user.id} onSelect={this.handleSelect}/>
           <Editor id={this.state.id} type={this.state.type}/>
       </div>
     );

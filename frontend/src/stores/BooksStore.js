@@ -1,20 +1,19 @@
 import { EventEmitter } from 'fbemitter';
-import User from '../components/User';
 import CODES from '../codes.json';
 const SERVER_URL = process.env.REACT_APP_API_BASEURL;
 
 
 class BooksStore {
-    constructor() {
+    constructor(props) {
         this.books = [];
         this.object = {};
 
         this.emitter = new EventEmitter();
-        this.user = new User();
+        this.user = props;
     }
 
     async getAll() {
-        let response = await fetch(SERVER_URL + `/users/${this.user.state.id}/books`);
+        let response = await fetch(SERVER_URL + `/users/${this.user}/books`);
         let data = await response.json();
         
         this.books = data;

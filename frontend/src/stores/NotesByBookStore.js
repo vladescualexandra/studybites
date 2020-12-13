@@ -1,15 +1,14 @@
 import { EventEmitter } from 'fbemitter';
-import User from '../components/User';
 import CODES from '../codes.json';
 const SERVER_URL = process.env.REACT_APP_API_BASEURL;
 
 
 class NotesByBookStore {
-    constructor() {
+    constructor(props) {
         this.notes = [];
         this.object = {};
         this.emitter = new EventEmitter();
-        this.user = new User();
+        this.user = props;
     }
 
     async getAll(bookID) {

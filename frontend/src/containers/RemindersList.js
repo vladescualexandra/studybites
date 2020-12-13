@@ -8,12 +8,13 @@ class RemindersList extends Component {
         super(props);
 
         this.state = {
+            id: this.props.id,
             reminders: [],
             active: false,
             classes: "list"
         }
 
-        this.store = new RemindersStore();
+        this.store = new RemindersStore(this.state.id);
 
         this.showReminder = (id) => {
             this.props.onSelect(id, 'reminders');

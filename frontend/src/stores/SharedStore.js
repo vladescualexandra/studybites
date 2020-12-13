@@ -5,15 +5,15 @@ const SERVER_URL = process.env.REACT_APP_API_BASEURL;
 
 
 class SharedStore {
-    constructor() {
+    constructor(props) {
         this.shared = [];
         this.object = {};
         this.emitter = new EventEmitter();
-        this.user = new User();
+        this.user = props;
     }
 
     async getAll() {
-        let response = await fetch(SERVER_URL + `/users/${this.user.state.id}/shared`);
+        let response = await fetch(SERVER_URL + `/users/${this.user}/shared`);
         let data = await response.json();
         
         this.shared = data;
@@ -30,7 +30,7 @@ class SharedStore {
     }
 
     async create(shared) {
-        let response = await fetch(SERVER_URL + `/users/${this.user.state.id}/shared`, {
+        let response = await fetch(SERVER_URL + `/users/${this.user}/shared`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
