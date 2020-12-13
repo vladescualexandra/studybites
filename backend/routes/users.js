@@ -4,6 +4,7 @@ const router = express.Router();
 const usersController = require('../controllers/UsersController.js');
 
 router.get('/users/:id', usersController.findUser);
+router.get('/users', usersController.validateUser);
 router.post('/users', usersController.createUser);
 
 module.exports = router

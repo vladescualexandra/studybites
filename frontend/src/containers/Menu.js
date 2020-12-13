@@ -68,7 +68,6 @@ class Menu extends Component {
         await this.setState({
             id: this.props.id
         })
-        console.log(this.state)
     }
 
 

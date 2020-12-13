@@ -35,7 +35,6 @@ class NotesList extends Component {
 
 
     componentDidMount() {
-        console.log("notes list for id: ", this.state.id)
         this.store.getAll();
         this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, async () => {
             await this.setState({

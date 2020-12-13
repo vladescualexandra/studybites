@@ -1,5 +1,4 @@
 import { EventEmitter } from 'fbemitter';
-import User from '../components/User';
 import CODES from '../codes.json';
 const SERVER_URL = process.env.REACT_APP_API_BASEURL;
 

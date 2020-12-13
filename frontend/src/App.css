@@ -134,3 +134,11 @@
   color: #04080F;
   padding: 5%;
 }
+
+.enabled {
+  width: 100%;
+}
+
+.disabled {
+  display: none;
+}

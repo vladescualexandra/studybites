@@ -6,7 +6,7 @@ class User extends Component {
         super(props);
 
         this.state = {
-            id: 0,
+            id: this.props.id,
             name: '',
             email: ''
         }
@@ -17,16 +17,9 @@ class User extends Component {
     }
 
     async componentDidMount() {
-
-        await this.setState({
-            id: this.props.id
-        })
-
         fetch(API_BASE_URL + `/users/${this.state.id}`)
         .then((response) => response.json())
         .then((result) => {
-
-            console.log(result)
             this.setState({
                 name: result.name,
                 email: result.email
