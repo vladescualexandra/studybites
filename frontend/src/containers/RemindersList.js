@@ -43,15 +43,15 @@ class RemindersList extends Component {
     async componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
 
-            this.store.user = this.props.id;
             await this.setState({
                 id: this.props.id
             })
 
-            this.store.getAll();
+            this.store = new RemindersStore(this.state.id);
+            await this.store.getAll();
             this.store.emitter.addListener(CODES.CODE_GET_ALL_REMINDERS, async () => {
                 await this.setState({
-                    notes: this.store.notes
+                    reminders: this.store.reminders
                 })
             })
         }

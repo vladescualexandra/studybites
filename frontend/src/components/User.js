@@ -27,7 +27,7 @@ class User extends Component {
                 this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
                     console.log("??????")
                 })
-                
+
                 await this.setState({
                     id: newID,
                     name: this.store.user.name,
@@ -35,12 +35,16 @@ class User extends Component {
                 })
 
             } else {
-                console.log("log out");
                 newID = 0;
+                await this.setState({
+                    id: 0, 
+                    name: '',
+                    email: ''
+                });
             }
             this.props.onLogin(newID);
-
         } 
+
 
     }
 
@@ -70,7 +74,7 @@ class User extends Component {
                 <h4 onClick={this.handleClick}>
                     {this.state.name ? this.state.name : 'login'}</h4>
 
-                    <input type="button" onClick={this.handleClick} value="Log out"/>
+                <input id="logout" type="button" onClick={this.handleClick} value="Log out"/>
             </div>
         )
     }

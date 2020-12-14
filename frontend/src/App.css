@@ -142,3 +142,16 @@
 .disabled {
   display: none;
 }
+
+#logout {
+  border: none;
+  background-color: #04080F;
+  color: #EB551C;
+  padding-bottom: 10%;
+}
+
+input[value="Delete"] {
+  border: none;
+  color: #EB551C;
+  background-color: #CCC5B9;
+}

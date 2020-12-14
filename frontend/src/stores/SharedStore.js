@@ -20,12 +20,13 @@ class SharedStore {
     }
 
     async getById(id) {
-        let response = await fetch(SERVER_URL + `/shared/${id}`);
-        let data = await response.json();
+        if (id > 0) {
+            let response = await fetch(SERVER_URL + `/shared/${id}`);
+            let data = await response.json();
 
-        this.object = data;
-        this.emitter.emit(CODES.CODE_GET_SHARED_BY_ID);
-
+            this.object = data;
+            this.emitter.emit(CODES.CODE_GET_SHARED_BY_ID);
+        }
     }
 
     async create(shared) {
@@ -43,22 +44,25 @@ class SharedStore {
     }
 
     async update(id, shared) {
-        await fetch(SERVER_URL + `/shared/${id}`, {
-            method: 'PUT', 
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(shared)
-        });
-
+        if (id > 0) {
+            await fetch(SERVER_URL + `/shared/${id}`, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(shared)
+            });
+        }   
     }
 
     async delete(id) {
-        await fetch(SERVER_URL + `/shared/${id}`, {
-            method: 'DELETE', 
-        });
-    
-        this.getAll();
+        if (id > 0) {
+            await fetch(SERVER_URL + `/shared/${id}`, {
+                method: 'DELETE', 
+            });
+        
+            this.getAll();
+        }
     }
 }
 

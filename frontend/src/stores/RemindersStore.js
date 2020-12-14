@@ -20,12 +20,14 @@ class RemindersStore {
     }
 
     async getById(id) {
-        let response = await fetch(SERVER_URL + `/reminders/${id}`);
-        let data = await response.json();
+        if (id > 0) {
+            let response = await fetch(SERVER_URL + `/reminders/${id}`);
+            let data = await response.json();
 
-        this.object = data;
-        this.emitter.emit(CODES.CODE_GET_REMINDER_BY_ID);
-    }
+            this.object = data;
+            this.emitter.emit(CODES.CODE_GET_REMINDER_BY_ID);
+        }
+    }   
 
     async create(reminder) {
         let response = await fetch(SERVER_URL + `/users/${this.user.state.id}/reminders`, {
@@ -42,21 +44,25 @@ class RemindersStore {
     }
 
     async update(id, reminder) {
-        await fetch(SERVER_URL + `/reminders/${id}`, {
-            method: 'PUT', 
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(reminder)
-        });
+        if (id > 0) {
+            await fetch(SERVER_URL + `/reminders/${id}`, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reminder)
+            });
+        }
     }
 
     async delete(id) {
-        await fetch(SERVER_URL + `/reminders/${id}`, {
-            method: 'DELETE', 
-        });
-    
-        this.getAll();
+        if (id > 0) {
+            await fetch(SERVER_URL + `/reminders/${id}`, {
+                method: 'DELETE', 
+            });
+        
+            this.getAll();
+        }
     }
 }
 

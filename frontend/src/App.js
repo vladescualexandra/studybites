@@ -26,15 +26,16 @@ class App extends Component{
         await this.store.getUserById(value);
         this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
           console.log("??????")
+          await this.setState({
+            user: {
+              id: value,
+              name: this.store.user.name,
+              email: this.store.user.email
+            }
+          })
         })
 
-        await this.setState({
-          user: {
-            id: value,
-            name: this.store.user.name,
-            email: this.store.user.email
-          }
-        })
+        
       } else {
         await this.setState({
           user: {

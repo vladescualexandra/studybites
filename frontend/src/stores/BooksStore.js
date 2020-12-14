@@ -21,12 +21,13 @@ class BooksStore {
     }
 
     async getById(id) {
-        let response = await fetch(SERVER_URL + `/books/${id}`);
-        let data = await response.json();
+        if (id > 0) {
+            let response = await fetch(SERVER_URL + `/books/${id}`);
+            let data = await response.json();
 
-        this.object = data;
-        this.emitter.emit(CODES.CODE_GET)
-
+            this.object = data;
+            this.emitter.emit(CODES.CODE_GET)
+        }
     }
 
     async create(book) {
@@ -34,21 +35,25 @@ class BooksStore {
     }
 
     async update(id, book) {
-        await fetch(SERVER_URL + `/books/${id}`, {
-            method: 'PUT', 
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(book)
-        });
+        if (id > 0) {
+            await fetch(SERVER_URL + `/books/${id}`, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(book)
+            });
+        }
     }
 
     async delete(id) {
-        await fetch(SERVER_URL + `/books/${id}`, {
-            method: 'DELETE', 
-        });
+        if (id > 0) {
+            await fetch(SERVER_URL + `/books/${id}`, {
+                method: 'DELETE', 
+            });
 
-        this.getAll();
+            this.getAll();
+        }
     }
 }
 
