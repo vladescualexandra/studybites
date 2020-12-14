@@ -9,16 +9,38 @@ import SharedList from './SharedList';
 import NotesStore from '../stores/NotesStore';
 import RemindersStore from '../stores/RemindersStore';
 import SharedStore from '../stores/SharedStore';
+import UserStore from '../stores/UserStore';
+import CODES from '../codes.json';
 
 class Menu extends Component {
     constructor(props) {
         super(props)
         this.state = {
             id: this.props.id,
+            name: this.props.name, 
+            email: this.props.email, 
             selected: {
                 id: this.props.id,
                 type: this.props.type
             }
+        }
+
+        this.store = new UserStore();
+
+        this.handleLogin = async (value) => {
+
+            await this.store.getUserById(value);
+            this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
+                console.log("??????")
+            })
+            
+            await this.setState({
+                id: value,
+                name: this.store.user.name,
+                email: this.store.user.email
+            })
+
+           this.props.onLogin(value);    
         }
 
         this.handleSelect = async (selectedId, selectedType) => {
@@ -64,18 +86,30 @@ class Menu extends Component {
         }
     } 
 
-    async componentDidMount() {
-        await this.setState({
-            id: this.props.id
-        })
+    componentDidMount() {
+        console.log("menu")
+        console.log(this.props);
+        console.log(this.state);
     }
 
+    async componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+            await this.setState({
+                id: this.props.id, 
+                name: this.props.name, 
+                email: this.props.email
+            })
+        }
+    }
 
     render() {
         return (
             <div id="menu" onSelect={this.handleSelect}>
-                <User id={this.state.id}/>
-                <New id={this.state.id} onCreate={this.handleCreate}/>
+                <User id={this.state.id} 
+                        name={this.state.name}
+                        email={this.state.email}
+                        onLogin={this.handleLogin}/>
+                <New  id={this.state.id} onCreate={this.handleCreate}/>
                 <NotesList id={this.state.id} onSelect={this.handleSelect}/>
                 <BooksList id={this.state.id} onSelect={this.handleSelect}/>
                 <RemindersList id={this.state.id} onSelect={this.handleSelect}/>

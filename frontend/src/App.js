@@ -2,9 +2,8 @@ import './App.css';
 import Menu from './containers/Menu';
 import Editor from './containers/Editor';
 import React, {Component} from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import "./Login.css";
+import UserStore from './stores/UserStore';
+import CODES from './codes.json';
 
 class App extends Component{
   constructor() {
@@ -12,17 +11,32 @@ class App extends Component{
 
     this.state = { 
       user: {
-        id: 1,
+        id: 0,
         name: '',
         email: ''
       },
       id: 0,
       type: '',
-      login: false, 
-      loginClass: "",
-      appClass: ""
     }
 
+    this.store = new UserStore();
+
+    this.handleLogin = async (value) => {
+
+      await this.store.getUserById(value);
+
+      this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
+        console.log("??????")
+      })
+
+      await this.setState({
+        user: {
+          id: value,
+          name: this.store.user.name,
+          email: this.store.user.email
+        }
+      })
+    }
 
     this.handleSelect = async (selectedId, selectedType) => {
       await this.setState({
@@ -30,77 +44,18 @@ class App extends Component{
         type: selectedType
       })
     }
-
-    this.handleSubmit = async () => {
-        if (this.validate) {
-            await this.setState({
-              login: !this.state.login,
-              loginClass: "disabled", 
-              appClass: "enabled"
-            })
-        }
-      }
-
-      this.validate = () => {
-        return this.state.user.email.length > 0 
-          && this.state.user.password.length > 0;
-      }
-
-      this.setPassword = async (value) => {
-        await this.setState({
-          user: {
-            id: this.state.user.id,
-            email: this.state.user.email, 
-            password: value
-          }
-        })
-      }
-  
-      this.setEmail = async (value) => {
-        await this.setState({
-          user: {
-            id: this.state.user.id, 
-            email: value, 
-            password: this.state.user.password
-          }
-        })
-      }
   }
-  
+
   render() {
     return (
-      <div>
-        <div className={this.loginClass}>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group size="lg" controlId="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                autoFocus
-                type="email"
-                value={this.state.user.email}
-                onChange={(e) => this.setEmail(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group size="lg" controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                value={this.state.user.password}
-                onChange={(e) => this.setPassword(e.target.value)}
-              />
-            </Form.Group>
-            <Button block size="lg" type="button"
-                onClick={() => this.handleSubmit()}>
-              Login
-            </Button>
-          </Form>
-        </div>
-
-        <div className={this.appClass}>
-          <Menu id={this.state.user.id} onSelect={this.handleSelect}/>
+        <div>
+          <Menu id={this.state.user.id} 
+                name={this.state.user.name}
+                email={this.state.user.name}
+                onSelect={this.handleSelect}
+                onLogin={this.handleLogin}/>
           <Editor id={this.state.id} type={this.state.type}/>
         </div>
-      </div>
     );
   }
 }
