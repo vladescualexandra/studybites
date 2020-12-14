@@ -100,15 +100,19 @@ class Editor extends Component {
     }
 
     updateTitle = async (value) => {
-        await this.setState({ title: value });
-        await this.update();
-        this.store.getAll();
+        if (this.state.id) {        
+            await this.setState({ title: value });
+            await this.update();
+            this.store.getAll();
+        }
     } 
 
     updateContent = async (value) => {
-        await this.setState({ content: value });
-        await this.update();
-        this.store.getAll();
+            if (this.state.content) {
+            await this.setState({ content: value });
+            await this.update();
+            this.store.getAll();
+        }
     }
 
     update = debounce(() => {

@@ -19,8 +19,8 @@ class App extends Component{
       id: 0,
       type: '',
       login: false, 
-      loginClass: "enabled",
-      appClass: "disbaled"
+      loginClass: "",
+      appClass: ""
     }
 
 
@@ -33,19 +33,17 @@ class App extends Component{
 
     this.handleSubmit = async () => {
         if (this.validate) {
-          
             await this.setState({
-              login: true,
+              login: !this.state.login,
               loginClass: "disabled", 
               appClass: "enabled"
             })
-          
-
         }
       }
 
       this.validate = () => {
-        return this.state.user.email.length > 0 && this.state.user.password.length > 0;
+        return this.state.user.email.length > 0 
+          && this.state.user.password.length > 0;
       }
 
       this.setPassword = async (value) => {
@@ -68,14 +66,11 @@ class App extends Component{
         })
       }
   }
-
-  
-
   
   render() {
     return (
       <div>
-        <div className={this.state.loginClass}>
+        <div className={this.loginClass}>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group size="lg" controlId="email">
               <Form.Label>Email</Form.Label>
@@ -94,14 +89,14 @@ class App extends Component{
                 onChange={(e) => this.setPassword(e.target.value)}
               />
             </Form.Group>
-            <Button block size="lg" type="button" disabled={!this.validate()}
+            <Button block size="lg" type="button"
                 onClick={() => this.handleSubmit()}>
               Login
             </Button>
           </Form>
         </div>
 
-        <div className={this.state.appClass}>
+        <div className={this.appClass}>
           <Menu id={this.state.user.id} onSelect={this.handleSelect}/>
           <Editor id={this.state.id} type={this.state.type}/>
         </div>
