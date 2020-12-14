@@ -21,11 +21,7 @@ module.exports.findAllShared = async (req, res) => {
 
 module.exports.findShared = async (req, res) => {
     let user = await db.Users.findByPk(req.params.id);
-    await db.Shared.findByPk(req.params.id, {
-        include: [{
-            model: db.Users
-        }]
-    }).then((result) => {
+    await db.Shared.findByPk(req.params.id).then((result) => {
         if (result) {
             res.status(200).send(result);
         } else {
@@ -39,7 +35,18 @@ module.exports.findShared = async (req, res) => {
 
 module.exports.createShared = async (req, res) => {
     try {
-        // TO DO
+        let user = await  db.Users.findByPk(req.params.id);
+        let shared = await  db.Shared.create({ 
+            title: req.body.title, 
+            content: req.body.content
+        });
+        
+        let collaborator = await db.Collaborators.create({
+            sharedId: shared.id, 
+            userId: user.id
+        })
+        
+        res.status(201).send(shared);
     } catch (err) {
         console.log(err);
         res.status(500).send('Server error');

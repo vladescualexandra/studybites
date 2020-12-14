@@ -8,12 +8,13 @@ class RemindersList extends Component {
         super(props);
 
         this.state = {
+            id: this.props.id,
             reminders: [],
             active: false,
             classes: "list"
         }
 
-        this.store = new RemindersStore();
+        this.store = new RemindersStore(this.state.id);
 
         this.showReminder = (id) => {
             this.props.onSelect(id, 'reminders');
@@ -37,6 +38,23 @@ class RemindersList extends Component {
                 reminders: this.store.reminders
             })
         })
+    }
+
+    async componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+
+            await this.setState({
+                id: this.props.id
+            })
+
+            this.store = new RemindersStore(this.state.id);
+            await this.store.getAll();
+            this.store.emitter.addListener(CODES.CODE_GET_ALL_REMINDERS, async () => {
+                await this.setState({
+                    reminders: this.store.reminders
+                })
+            })
+        }
     }
 
     render () {

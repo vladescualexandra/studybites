@@ -8,12 +8,13 @@ class SharedList extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: this.props.id,
             notes: [],
             active: false,
             classes: "list"
         }
 
-        this.store = new SharedStore();
+        this.store = new SharedStore(this.state.id);
 
         this.showShared = (id) => {
             this.props.onSelect(id, 'shared');
@@ -32,7 +33,7 @@ class SharedList extends Component {
         
         }
     }
-git
+
     componentDidMount() {
         this.store.getAll();
         this.store.emitter.addListener(CODES.CODE_GET_ALL_SHARED, () => {
@@ -41,6 +42,24 @@ git
             })
         })
     }
+
+    async componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+
+            await this.setState({
+                id: this.props.id
+            })
+
+            this.store = new SharedStore(this.state.id);
+            await this.store.getAll();
+            this.store.emitter.addListener(CODES.CODE_GET_ALL_SHARED, async () => {
+                await this.setState({
+                    notes: this.store.shared
+                })
+            })
+        }
+    }
+
     render() {
         return (
             <div>

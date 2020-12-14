@@ -44,6 +44,7 @@
   color: #CCC5B9;
   background-color: #04080F;
   margin-top: -20px;
+  overflow: scroll;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -75,13 +76,23 @@
 #content {
   background-color: #CCC5B9;
   color: #04080F;
-  width: 100%;
+  width: 90%;
   height: 100%;
   padding: 2%;
   border: none;
   border-top: 2px solid black;
   font-size: 16px;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#options {
+  width: 10%;
+  background-color: #04080F;
+  position: fixed;
+    top:0;
+    bottom: 0;
+    left: 30%;
+    right: 0; 
 }
 
 
@@ -91,7 +102,6 @@
 }
 
 .list-active {
-  max-height: 100px;
   transition: all linear 0.5s 0.3s;
 }
 
@@ -115,4 +125,33 @@
 #user {
   text-align: center;
   padding-top: 10%;
+}
+
+.new {
+  width: 100%;
+  border: none;
+  background-color: #EB551C;
+  color: #04080F;
+  padding: 5%;
+}
+
+.enabled {
+  width: 100%;
+}
+
+.disabled {
+  display: none;
+}
+
+#logout {
+  border: none;
+  background-color: #04080F;
+  color: #EB551C;
+  padding-bottom: 10%;
+}
+
+input[value="Delete"] {
+  border: none;
+  color: #EB551C;
+  background-color: #CCC5B9;
 }

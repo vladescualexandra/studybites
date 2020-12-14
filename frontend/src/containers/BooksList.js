@@ -8,12 +8,13 @@ class BooksList extends Component {
     constructor(props) {
         super(props) 
         this.state = {
+            id: this.props.id, 
             books: [],
             active: false,
             classes: "list"
         }
 
-        this.store = new BooksStore();
+        this.store = new BooksStore(this.state.id);
    
         this.showItems = async () => {
             let on = !this.state.active;
@@ -50,7 +51,23 @@ class BooksList extends Component {
                 books: this.store.books
             })
         })
-        console.log(this.store.books);
+    }
+
+    async componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+
+            await this.setState({
+                id: this.props.id
+            })
+
+            this.store = new BooksStore(this.state.id);
+            await this.store.getAll();
+            this.store.emitter.addListener(CODES.CODE_GET_ALL_BOOKS, async () => {
+                await this.setState({
+                    books: this.store.books
+                })
+            })
+        }
     }
 
     render() {

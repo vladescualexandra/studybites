@@ -12,6 +12,21 @@ module.exports.findUser = (req, res) => {
     })
 };
 
+module.exports.validateUser = async (req, res) => {
+    try {
+        let user = await db.Users.findAll({
+            where: {
+                email: req.body.email,
+                password: req.body.password
+            }
+        });
+        res.status(200).send(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('server error');
+    }
+}
+
 module.exports.createUser = async (req, res) => {
     try {
         let user = await db.Users.create({
