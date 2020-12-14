@@ -19,9 +19,9 @@ class User extends Component {
         }
 
         this.handleClick = async () => {
-            console.log(this.state.id);
+            let newID;
             if (this.state.id < 1) {
-                let newID = prompt("What's ur id?");
+                newID = prompt("What's ur id?");
 
                 await this.store.getUserById(newID);
                 this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
@@ -34,12 +34,14 @@ class User extends Component {
                     email: this.store.user.email
                 })
 
-                this.props.onLogin(newID);
-
             } else {
-                alert(this.state.id);
+                console.log("log out");
+                newID = 0;
             }
+            this.props.onLogin(newID);
+
         } 
+
     }
 
     async componentDidMount() {
@@ -67,6 +69,8 @@ class User extends Component {
             <div id="user">
                 <h4 onClick={this.handleClick}>
                     {this.state.name ? this.state.name : 'login'}</h4>
+
+                    <input type="button" onClick={this.handleClick} value="Log out"/>
             </div>
         )
     }

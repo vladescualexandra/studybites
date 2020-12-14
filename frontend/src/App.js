@@ -22,21 +22,31 @@ class App extends Component{
     this.store = new UserStore();
 
     this.handleLogin = async (value) => {
+      if (value > 0) {
+        await this.store.getUserById(value);
+        this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
+          console.log("??????")
+        })
 
-      localStorage.setItem('userID', value);
-      await this.store.getUserById(value);
+        await this.setState({
+          user: {
+            id: value,
+            name: this.store.user.name,
+            email: this.store.user.email
+          }
+        })
+      } else {
+        await this.setState({
+          user: {
+            id: value,
+            name: '',
+            email: ''
+          }
+        })
+      }
 
-      this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
-        console.log("??????")
-      })
-
-      await this.setState({
-        user: {
-          id: value,
-          name: this.store.user.name,
-          email: this.store.user.email
-        }
-      })
+      localStorage.setItem('userID', value);   
+      this.componentDidUpdate();   
     }
 
     this.handleSelect = async (selectedId, selectedType) => {
@@ -49,9 +59,7 @@ class App extends Component{
 
   async componentDidMount() {
     if (localStorage.getItem('userID')) {
-      
       let userID = await localStorage.getItem('userID');
-      console.log(userID)
 
       await this.store.getUserById(userID).then(() => {
         this.setState({
@@ -62,7 +70,20 @@ class App extends Component{
           }
         })
       });
-    }
+    } 
+  }
+
+  async componentDidUpdate() {
+    // if (this.state.user.id < 1) {
+    //   console.log("update");
+    //   await this.setState({
+    //     user: {
+    //       id: 0, 
+    //       name: '',
+    //       email: ''
+    //     }
+    //   });
+    // }
   }
 
   render() {
