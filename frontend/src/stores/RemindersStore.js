@@ -12,11 +12,13 @@ class RemindersStore {
     }
 
     async getAll() {
-        let response = await fetch(SERVER_URL + `/users/${this.user}/reminders`);
-        let data = await response.json();
-        
-        this.reminders = data;
-        this.emitter.emit(CODES.CODE_GET_ALL_REMINDERS);
+        if (this.user > 0) {
+            let response = await fetch(SERVER_URL + `/users/${this.user}/reminders`);
+            let data = await response.json();
+            
+            this.reminders = data;
+            this.emitter.emit(CODES.CODE_GET_ALL_REMINDERS);
+        }
     }
 
     async getById(id) {
@@ -30,17 +32,21 @@ class RemindersStore {
     }   
 
     async create(reminder) {
-        let response = await fetch(SERVER_URL + `/users/${this.user.state.id}/reminders`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(reminder)
-        });
+            let response = await fetch(SERVER_URL + `/users/${this.user}/reminders`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reminder)
+            });
 
-        let data = await response.json();
-        this.getAll();
-        return data;
+
+            let data = await response.json();
+            this.object = data;
+            console.log("CREATE REMINDER");
+            console.log(this.object);
+            this.getAll();
+            return this.object;        
     }
 
     async update(id, reminder) {

@@ -30,10 +30,10 @@ class Editor extends Component {
         if (this.props.id !== prevProps.id) {
             switch(this.props.type) {
                 case "notes":
-                    this.store = new NotesStore();
+                    this.store = new NotesStore(this.state.id);
                     this.store.getById(this.props.id);
-                    this.store.emitter.addListener(CODES.CODE_GET_NOTE_BY_ID, () => {
-                        this.setState({
+                    this.store.emitter.addListener(CODES.CODE_GET_NOTE_BY_ID, async () => {
+                        await this.setState({
                             id: this.props.id, 
                             type: this.props.type,
                             title: this.store.object.title,
@@ -42,10 +42,10 @@ class Editor extends Component {
                     })
                     break;
                 case "reminders":
-                    this.store = new RemindersStore();
+                    this.store = new RemindersStore(this.state.id);
                     this.store.getById(this.props.id);
-                    this.store.emitter.addListener(CODES.CODE_GET_REMINDER_BY_ID, () => {
-                        this.setState({
+                    this.store.emitter.addListener(CODES.CODE_GET_REMINDER_BY_ID, async () => {
+                        await this.setState({
                             id: this.props.id, 
                             type: this.props.type,
                             title: this.store.object.title,
@@ -54,10 +54,10 @@ class Editor extends Component {
                     })
                     break;
                 case "shared":
-                    this.store = new SharedStore();
+                    this.store = new SharedStore(this.state.id);
                     this.store.getById(this.props.id);
-                    this.store.emitter.addListener(CODES.CODE_GET_SHARED_BY_ID, () => {
-                        this.setState({
+                    this.store.emitter.addListener(CODES.CODE_GET_SHARED_BY_ID, async () => {
+                        await this.setState({
                             id: this.props.id, 
                             type: this.props.type,
                             title: this.store.object.title, 
@@ -66,7 +66,6 @@ class Editor extends Component {
                     })
                     break;
                 default:
-                    this.store = new NotesStore();
                     this.setState({
                         title: '',
                         content: ''
@@ -100,7 +99,7 @@ class Editor extends Component {
     }
 
     updateTitle = async (value) => {
-        if (this.state.id) {        
+        if (this.state.id && this.store) {        
             await this.setState({ title: value });
             await this.update();
             this.store.getAll();
@@ -108,7 +107,7 @@ class Editor extends Component {
     } 
 
     updateContent = async (value) => {
-            if (this.state.content) {
+        if (this.state.id && this.store) {        
             await this.setState({ content: value });
             await this.update();
             this.store.getAll();
