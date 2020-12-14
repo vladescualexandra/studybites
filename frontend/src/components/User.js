@@ -19,6 +19,7 @@ class User extends Component {
         }
 
         this.handleClick = async () => {
+            console.log(this.state.id);
             if (this.state.id < 1) {
                 let newID = prompt("What's ur id?");
 
@@ -42,9 +43,25 @@ class User extends Component {
     }
 
     async componentDidMount() {
-
+      if (this.props) {
+        await this.setState({
+            id: this.props.id, 
+            name: this.props.name, 
+            email: this.props.email
+        })
+      }  
     }
 
+
+    async componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+            await this.setState({
+                id: this.props.id, 
+                name: this.props.name, 
+                email: this.props.email
+            })
+        }
+    }
     render() {
         return (
             <div id="user">

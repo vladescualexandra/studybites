@@ -23,6 +23,7 @@ class App extends Component{
 
     this.handleLogin = async (value) => {
 
+      localStorage.setItem('userID', value);
       await this.store.getUserById(value);
 
       this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
@@ -43,6 +44,24 @@ class App extends Component{
         id: selectedId, 
         type: selectedType
       })
+    }
+  }
+
+  async componentDidMount() {
+    if (localStorage.getItem('userID')) {
+      
+      let userID = await localStorage.getItem('userID');
+      console.log(userID)
+
+      await this.store.getUserById(userID).then(() => {
+        this.setState({
+          user: {
+            id: userID,
+            name: this.store.user.name,
+            email: this.store.user.email
+          }
+        })
+      });
     }
   }
 

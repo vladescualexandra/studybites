@@ -13,6 +13,8 @@ import UserStore from '../stores/UserStore';
 import CODES from '../codes.json';
 
 class Menu extends Component {
+
+   
     constructor(props) {
         super(props)
         this.state = {
@@ -28,7 +30,6 @@ class Menu extends Component {
         this.store = new UserStore();
 
         this.handleLogin = async (value) => {
-
             await this.store.getUserById(value);
             this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
                 console.log("??????")
@@ -85,12 +86,6 @@ class Menu extends Component {
             
         }
     } 
-
-    componentDidMount() {
-        console.log("menu")
-        console.log(this.props);
-        console.log(this.state);
-    }
 
     async componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
