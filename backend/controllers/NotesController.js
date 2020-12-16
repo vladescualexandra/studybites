@@ -1,21 +1,26 @@
 const db = require('../models/index');
 
 module.exports.findAllNotes = async (req, res) => {
-    let user = await db.Users.findByPk(req.params.id);
-    db.Notes.findAll({
-        where : {
-        userID: user.id
-        }
-    }).then((result) => {
-        if (result) {
-            res.status(200).send(result);
-        } else {
-            res.status(404).send('not found');
-        }
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).send('server error');
-    });
+    if (req.params.id > 0) {
+        let user = await db.Users.findByPk(req.params.id);
+        db.Notes.findAll({
+            where : {
+                userID: user.id
+            }
+        }).then((result) => {
+            if (result) {
+                res.status(200).send(result);
+            } else {
+                res.status(404).send('not found');
+            }
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).send('server error');
+        });
+    } else {
+        res.status(404).send('user not found');
+    }
+    
 }
 
 module.exports.findNote = (req, res) => {

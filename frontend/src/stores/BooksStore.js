@@ -13,11 +13,13 @@ class BooksStore {
     }
 
     async getAll() {
-        let response = await fetch(SERVER_URL + `/users/${this.user}/books`);
-        let data = await response.json();
-        
-        this.books = data;
-        this.emitter.emit(CODES.CODE_GET_ALL_BOOKS);
+        if (this.user > 0) {
+            let response = await fetch(SERVER_URL + `/users/${this.user}/books`);
+            let data = await response.json();
+            
+            this.books = data;
+            this.emitter.emit(CODES.CODE_GET_ALL_BOOKS);
+        }
     }
 
     async getById(id) {

@@ -66,7 +66,7 @@ class Menu extends Component {
         this.handleCreate = async (value) => {
             switch(value) {
                 case "note":
-                    this.store = new NotesStore();
+                    this.store = new NotesStore(this.state.id);
                     let note = await this.store.create({
                         title: '',
                         content: ''
@@ -74,15 +74,17 @@ class Menu extends Component {
                     this.props.onSelect(note.id, 'notes');
                     break;
                 case "reminder":
-                    this.store = new RemindersStore();
+                    this.store = new RemindersStore(this.state.id);
+                    console.log(this.store);
                     let reminder = await this.store.create({
                         title: '',
                         content: ''
                     });
+                    console.log(reminder);
                     this.props.onSelect(reminder.id, 'reminders');
                     break;
                 case "shared":
-                    this.store = new SharedStore();
+                    this.store = new SharedStore(this.state.id);
                     let shared = await this.store.create({
                         title: '',
                         content: ''

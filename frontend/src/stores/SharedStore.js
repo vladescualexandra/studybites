@@ -12,11 +12,13 @@ class SharedStore {
     }
 
     async getAll() {
-        let response = await fetch(SERVER_URL + `/users/${this.user}/shared`);
-        let data = await response.json();
-        
-        this.shared = data;
-        this.emitter.emit(CODES.CODE_GET_ALL_SHARED);
+        if (this.user > 0) {
+            let response = await fetch(SERVER_URL + `/users/${this.user}/shared`);
+            let data = await response.json();
+            
+            this.shared = data;
+            this.emitter.emit(CODES.CODE_GET_ALL_SHARED);
+        }
     }
 
     async getById(id) {
