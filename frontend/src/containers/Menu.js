@@ -34,15 +34,14 @@ class Menu extends Component {
                 this.store = new UserStore();
                 this.store.getUserById(value);
                 this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID,  () => {
-                    console.log("??????")
-                    
+                    this.setState({
+                        id: this.store.user.id,
+                        name: this.store.user.name,
+                        email: this.store.user.email
+                    }) 
                 });
 
-                this.setState({
-                    id: this.store.user.id,
-                    name: this.store.user.name,
-                    email: this.store.user.email
-                }) 
+                
             } else {
                 await this.setState({
                     id: 0,
@@ -75,7 +74,6 @@ class Menu extends Component {
                     break;
                 case "reminder":
                     this.store = new RemindersStore(this.state.id);
-                    console.log(this.store);
                     let reminder = await this.store.create({
                         title: '',
                         content: ''
@@ -96,11 +94,6 @@ class Menu extends Component {
             
         }
     } 
-
-
-    componentDidMount() {
-        console.log("mount menu: ", this.state.id);
-    }
 
     async componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {

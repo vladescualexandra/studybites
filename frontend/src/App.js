@@ -4,8 +4,6 @@ import Editor from './containers/Editor';
 import React, {Component} from 'react';
 import UserStore from './stores/UserStore';
 import CODES from './codes.json';
-import NotesStore from './stores/NotesStore';
-import RemindersStore from './stores/RemindersStore';
 
 class App extends Component{
   constructor() {
