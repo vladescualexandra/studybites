@@ -25,6 +25,7 @@ npm install
 npm install express
 npm install --save sequelize
 npm install --save mysql2
+npm install --save cors
 ```
 
 4. În directorul ./backend/config crează un fișier ```db.json``` cu structura indicată în ```db.sample.json```.
