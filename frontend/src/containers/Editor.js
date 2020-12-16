@@ -122,13 +122,15 @@ class Editor extends Component {
     }, 500);
 
     delete = async (id) => {
-        this.store.delete(id);
-        this.setState({
-            id: null, 
-            type: null, 
-            title: '',
-            content: ''
-        })
+        if (id) {
+            this.store.delete(id);
+            this.setState({
+                id: null, 
+                type: null, 
+                title: '',
+                content: ''
+            })
+        }
     }
 }
 
