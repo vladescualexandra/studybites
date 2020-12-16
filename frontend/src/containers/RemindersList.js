@@ -50,9 +50,10 @@ class RemindersList extends Component {
             this.store = new RemindersStore(this.state.id);
             await this.store.getAll();
             this.store.emitter.addListener(CODES.CODE_GET_ALL_REMINDERS, async () => {
-                await this.setState({
-                    reminders: this.store.reminders
-                })
+                
+            })
+            await this.setState({
+                reminders: this.store.reminders
             })
         }
     }

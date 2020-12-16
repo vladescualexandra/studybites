@@ -17,8 +17,10 @@ class SharedStore {
             let data = await response.json();
             
             this.shared = data;
-            this.emitter.emit(CODES.CODE_GET_ALL_SHARED);
+        } else {
+            this.shared = [];
         }
+        this.emitter.emit(CODES.CODE_GET_ALL_SHARED);
     }
 
     async getById(id) {
@@ -28,7 +30,7 @@ class SharedStore {
 
             this.object = data;
             this.emitter.emit(CODES.CODE_GET_SHARED_BY_ID);
-        }
+        } 
     }
 
     async create(shared) {

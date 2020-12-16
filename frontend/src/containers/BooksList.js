@@ -63,9 +63,10 @@ class BooksList extends Component {
             this.store = new BooksStore(this.state.id);
             await this.store.getAll();
             this.store.emitter.addListener(CODES.CODE_GET_ALL_BOOKS, async () => {
-                await this.setState({
-                    books: this.store.books
-                })
+                
+            });
+            await this.setState({
+                books: this.store.books
             })
         }
     }

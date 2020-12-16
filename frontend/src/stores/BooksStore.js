@@ -18,8 +18,10 @@ class BooksStore {
             let data = await response.json();
             
             this.books = data;
-            this.emitter.emit(CODES.CODE_GET_ALL_BOOKS);
+        } else {
+            this.books = [];
         }
+        this.emitter.emit(CODES.CODE_GET_ALL_BOOKS);
     }
 
     async getById(id) {
