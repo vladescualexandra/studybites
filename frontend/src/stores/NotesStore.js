@@ -18,8 +18,10 @@ class NotesStore {
             let data = await response.json();
             
             this.notes = data;
-            this.emitter.emit(CODES.CODE_GET_ALL_NOTES);
-        } 
+        } else {
+            this.notes = [];
+        }
+        this.emitter.emit(CODES.CODE_GET_ALL_NOTES);
     }
 
     async getById(id) {

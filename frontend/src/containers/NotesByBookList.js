@@ -33,10 +33,11 @@ class NotesByBookList extends Component {
         if (this.props !== prevProps) {
             this.store.getAll(this.state.bookID);
             this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES_BY_BOOKS, async () => {
-                await this.setState({
+                this.setState({
                     notes: this.store.notes
                 })
             })
+            
         }
     }
 

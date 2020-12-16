@@ -150,8 +150,12 @@
   padding-bottom: 10%;
 }
 
-input[value="Delete"] {
+input[value="Delete"], input[value="Save"] {
   border: none;
   color: #EB551C;
   background-color: #CCC5B9;
+}
+
+.disabled {
+  color: black;
 }

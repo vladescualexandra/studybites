@@ -78,8 +78,14 @@ class Editor extends Component {
     render() {
         return (
             <div id="editor">
-                 <input type="button" value="Delete" 
+                 <input className={this.state.id ? "enabled" : "disabled"} 
+                        type="button" value="Delete" 
+                        disabled={this.state.id ? false : true}
                     onClick={() => this.delete(this.state.id)}></input>
+                    <input className={this.state.id ? "enabled" : "disabled"} 
+                        type="button" value="Save" 
+                        disabled={this.state.id ? false : true}
+                    onClick={() => this.save(this.state.id)}></input>
                 <input 
                     id="title" 
                     type="text" 
@@ -118,7 +124,7 @@ class Editor extends Component {
         this.store.update(this.props.id, {
             title: this.state.title, 
             content: this.state.content
-        })
+        });
     }, 500);
 
     delete = async (id) => {
@@ -129,7 +135,15 @@ class Editor extends Component {
                 type: null, 
                 title: '',
                 content: ''
-            })
+            });
+            this.props.onDelete();
+        }
+    }
+
+    save = async (id) => {
+        if (id) {
+            this.store.getAll();
+            this.props.onSave(this.state.type);
         }
     }
 }

@@ -19,28 +19,12 @@ class User extends Component {
         }
 
         this.handleClick = async () => {
+            console.log(this.state.id);
             let newID;
             if (this.state.id < 1) {
                 newID = prompt("What's ur id?");
-
-                await this.store.getUserById(newID);
-                this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
-                    console.log("??????")
-                })
-
-                await this.setState({
-                    id: newID,
-                    name: this.store.user.name,
-                    email: this.store.user.email
-                })
-
             } else {
                 newID = 0;
-                await this.setState({
-                    id: 0, 
-                    name: '',
-                    email: ''
-                });
             }
             this.props.onLogin(newID);
         } 
@@ -49,13 +33,11 @@ class User extends Component {
     }
 
     async componentDidMount() {
-      if (this.props) {
         await this.setState({
             id: this.props.id, 
             name: this.props.name, 
             email: this.props.email
-        })
-      }  
+        });  
     }
 
 
@@ -65,7 +47,7 @@ class User extends Component {
                 id: this.props.id, 
                 name: this.props.name, 
                 email: this.props.email
-            })
+            });
         }
     }
     render() {

@@ -17,8 +17,10 @@ class RemindersStore {
             let data = await response.json();
             
             this.reminders = data;
-            this.emitter.emit(CODES.CODE_GET_ALL_REMINDERS);
+        } else {
+            this.reminders = [];
         }
+        this.emitter.emit(CODES.CODE_GET_ALL_REMINDERS);
     }
 
     async getById(id) {

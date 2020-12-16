@@ -17,8 +17,10 @@ class NotesByBookStore {
             let data = await response.json();
             
             this.notes = data;
-            this.emitter.emit(CODES.CODE_GET_ALL_NOTES_BY_BOOKS);
+        } else {
+            this.notes = [];
         }
+        this.emitter.emit(CODES.CODE_GET_ALL_NOTES_BY_BOOKS);
     }
 
     async getById(id) {

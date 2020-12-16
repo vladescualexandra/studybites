@@ -53,9 +53,11 @@ class SharedList extends Component {
             this.store = new SharedStore(this.state.id);
             await this.store.getAll();
             this.store.emitter.addListener(CODES.CODE_GET_ALL_SHARED, async () => {
-                await this.setState({
-                    notes: this.store.shared
-                })
+                
+            });
+
+            await this.setState({
+                notes: this.store.shared
             })
         }
     }

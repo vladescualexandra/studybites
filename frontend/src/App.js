@@ -4,6 +4,8 @@ import Editor from './containers/Editor';
 import React, {Component} from 'react';
 import UserStore from './stores/UserStore';
 import CODES from './codes.json';
+import NotesStore from './stores/NotesStore';
+import RemindersStore from './stores/RemindersStore';
 
 class App extends Component{
   constructor() {
@@ -16,7 +18,7 @@ class App extends Component{
         email: ''
       },
       id: 0,
-      type: '',
+      type: ''
     }
 
     this.store = new UserStore();
@@ -25,17 +27,17 @@ class App extends Component{
       if (value > 0) {
         await this.store.getUserById(value);
         this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
-          console.log("??????")
-          await this.setState({
-            user: {
-              id: value,
-              name: this.store.user.name,
-              email: this.store.user.email
-            }
-          })
-        })
+          
+        });
 
-        
+        await this.setState({
+          user: {
+            id: this.store.user.id,
+            name: this.store.user.name,
+            email: this.store.user.email
+          }
+        });
+
       } else {
         await this.setState({
           user: {
@@ -45,16 +47,24 @@ class App extends Component{
           }
         })
       }
-
-      localStorage.setItem('userID', value);   
-      this.componentDidUpdate();   
+      localStorage.setItem('userID', value)   
     }
 
     this.handleSelect = async (selectedId, selectedType) => {
       await this.setState({
         id: selectedId, 
         type: selectedType
-      })
+      });
+
+    }
+
+    this.handleSave = async (value) => {
+      this.handleSelect(this.state.id, value);
+      this.componentDidMount();      
+    }
+
+    this.handleDelete = () => {
+      this.componentDidMount();
     }
   }
 
@@ -65,7 +75,7 @@ class App extends Component{
       await this.store.getUserById(userID).then(() => {
         this.setState({
           user: {
-            id: userID,
+            id: parseInt(userID),
             name: this.store.user.name,
             email: this.store.user.email
           }
@@ -74,18 +84,6 @@ class App extends Component{
     } 
   }
 
-  async componentDidUpdate() {
-    // if (this.state.user.id < 1) {
-    //   console.log("update");
-    //   await this.setState({
-    //     user: {
-    //       id: 0, 
-    //       name: '',
-    //       email: ''
-    //     }
-    //   });
-    // }
-  }
 
   render() {
     return (
@@ -94,8 +92,14 @@ class App extends Component{
                 name={this.state.user.name}
                 email={this.state.user.name}
                 onSelect={this.handleSelect}
-                onLogin={this.handleLogin}/>
-          <Editor id={this.state.id} type={this.state.type}/>
+                onLogin={this.handleLogin}
+                />
+          <Editor 
+            id={this.state.id} 
+            type={this.state.type}
+            onEdit={this.handleEdit}
+            onSave={this.handleSave}
+            onDelete={this.handleDelete}/>
         </div>
     );
   }
