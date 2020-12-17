@@ -55,11 +55,10 @@ class NotesList extends Component {
             this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, () => {
                 
             });
-            this.setState({
+            await this.setState({
                 notes: this.store.notes
             });
-        }
-            
+        } 
     }
 
     render() {

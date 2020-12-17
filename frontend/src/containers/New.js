@@ -29,8 +29,10 @@ class New extends Component {
                 <input className="new" type="button" value="+ NEW" onClick={this.showItems}/>
                 <div className={this.state.classes}>
                         <input className="new" type="button" value="Note" onClick={() => this.onCreate("note")}/>
+                        <input className="new" type="button" value="Book" onClick={() => this.onCreate("book")}/>
                         <input className="new" type="button" value="Reminder" onClick={() => this.onCreate("reminder")}/>
                         <input className="new" type="button" value="Shared" onClick={() => this.onCreate("shared")}/>
+
                 </div>
             </div>
         )

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import UserStore from '../stores/UserStore';
-import CODES from '../codes.json';
 
 class User extends Component {
     constructor(props) {

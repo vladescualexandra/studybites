@@ -45,9 +45,6 @@ class RemindersStore {
 
             let data = await response.json();
             this.object = data;
-            console.log("CREATE REMINDER");
-            console.log(this.object);
-            this.getAll();
             return this.object;        
     }
 
@@ -67,9 +64,7 @@ class RemindersStore {
         if (id > 0) {
             await fetch(SERVER_URL + `/reminders/${id}`, {
                 method: 'DELETE', 
-            });
-        
-            this.getAll();
+            });      
         }
     }
 }

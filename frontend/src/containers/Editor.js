@@ -4,16 +4,20 @@ import NotesStore from '../stores/NotesStore';
 import RemindersStore from '../stores/RemindersStore';
 import SharedStore from '../stores/SharedStore';
 import debounce from '../helpers';
+import BooksStore from '../stores/BooksStore';
 
 class Editor extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            userID: this.props.id,
+            bookID: null,
             id: this.props.id,
             type: this.props.type,
             title: '',
-            content: ''
+            content: '',
+            books: []
         }
 
         this.store = null;
@@ -21,13 +25,17 @@ class Editor extends Component {
 
     componentDidMount() {
         this.setState({
+            userID: this.props.userID,
             id: this.props.id, 
             type: this.props.type
         })
     }
 
-    componentDidUpdate(prevProps) {
+    async componentDidUpdate(prevProps) {
         if (this.props.id !== prevProps.id) {
+            await this.setState({
+                userID: this.props.userID
+            });
             switch(this.props.type) {
                 case "notes":
                     this.store = new NotesStore(this.state.id);
@@ -36,10 +44,22 @@ class Editor extends Component {
                         await this.setState({
                             id: this.props.id, 
                             type: this.props.type,
+                            bookID: this.store.object.bookID,
                             title: this.store.object.title,
                             content: this.store.object.content
-                        })
-                    })
+                        });
+
+                    });
+
+
+
+                    let bookStore = new BooksStore(this.state.userID);
+                    bookStore.getAll(this.state.userID);
+                    bookStore.emitter.addListener(CODES.CODE_GET_ALL_BOOKS, async () => {
+                        await this.setState({
+                            books: bookStore.books
+                        });
+                    });
                     break;
                 case "reminders":
                     this.store = new RemindersStore(this.state.id);
@@ -78,14 +98,25 @@ class Editor extends Component {
     render() {
         return (
             <div id="editor">
-                 <input className={this.state.id ? "enabled" : "disabled"} 
+                
+                <input className={this.state.id ? "enabled" : "disabled"} 
                         type="button" value="Delete" 
                         disabled={this.state.id ? false : true}
-                    onClick={() => this.delete(this.state.id)}></input>
-                    <input className={this.state.id ? "enabled" : "disabled"} 
+                        onClick={() => this.delete(this.state.id)}></input>
+
+                <input className={this.state.id ? "enabled" : "disabled"} 
                         type="button" value="Save" 
                         disabled={this.state.id ? false : true}
-                    onClick={() => this.save(this.state.id)}></input>
+                        onClick={() => this.save(this.state.id)}></input>
+
+                
+                <select 
+                    className={this.state.id && this.state.type === 'notes' ? "enabled" : "disabled"}
+                    onChange={(e) => this.handleSelectBook(e.target.value)}>
+                    {this.createSelectItems()}
+                </select>
+
+
                 <input 
                     id="title" 
                     type="text" 
@@ -136,15 +167,46 @@ class Editor extends Component {
                 title: '',
                 content: ''
             });
-            this.props.onDelete();
+            this.props.onDelete(this.state.type);
         }
     }
 
-    save = async (id) => {
+    save = (id) => {
         if (id) {
             this.store.getAll();
             this.props.onSave(this.state.type);
         }
+    }
+
+    setBook = (value) => {
+        let updatedNote = {
+            bookID: value
+        }
+        if (parseInt(value)) {
+            this.store.update(this.state.id, updatedNote);
+        }
+    }
+
+    createSelectItems() {
+        let items = [];
+        
+        for (let i=0; i< this.state.books.length; i++) {
+            if (this.state.books[i]) {
+                items.push(<option key={i} value={this.state.books[i].id} 
+                selected={this.state.bookID === this.state.books[i].id}>
+                    {this.state.books[i].name}
+                </option>);
+            } 
+        }
+        return items;
+    }
+
+    handleSelectBook(value) {
+        let updatedNote = {
+            bookID: parseInt(value)
+        }
+        this.store.update(this.state.id, updatedNote);
+
     }
 }
 
