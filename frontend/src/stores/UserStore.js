@@ -18,7 +18,9 @@ class UserStore {
                 name: data.name,
                 email: data.email
             };
+
             this.emitter.emit(CODES.CODE_GET_USER_BY_ID);    
+            return this.user;
         }
     }
 }

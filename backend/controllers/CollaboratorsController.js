@@ -1,27 +1,40 @@
 const db = require('../models/index');
 
 module.exports.findAllCollaborators = async (req, res) => {
-    // await db.Collaborators.findByPk(req.params.id).then((result) => {
-    //     if (result) {
-    //         res.status(200).send(result);
-    //     } else {
-    //         res.status(404).send('not found');
-    //     }
-    // }).catch((err) => {
-    //     console.log(err);
-    //     res.status(500).send('server error');
-    // });
+    await db.Collaborators.findAll().then((result) => {
+        if (result) {
+            res.status(200).send(result);
+        } else {
+            res.status(404).send('not found');
+        }
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send('server error');
+    });
 }
 
+// getCollaboratorsBySharedId
 module.exports.findCollaborators = async (req, res) => {
-    
+    let shared = await db.Shared.findByPk(req.params.id);
+    try {
+        let collaborators = await db.Collaborators.findByPk(shared.id)
+        .then((result) => {
+            if (result) {
+                res.status(200).send(result);
+            } else {
+                res.status(404).send('not found');
+            }
+        })
+    } catch (err) {
+        res.status(500).send("server error");
+    }
 };
 
 module.exports.createCollaborator = async (req, res) => {
     try {
         let collaborator = await db.Collaborators.create({
-            sharedId: req.params.sharedId,
-            userId: req.params.userId
+            sharedId: req.body.sharedId,
+            userId: req.body.userId
         })
         res.status(201).send(collaborator);
     } catch (err) {

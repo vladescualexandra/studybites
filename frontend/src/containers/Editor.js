@@ -5,6 +5,8 @@ import RemindersStore from '../stores/RemindersStore';
 import SharedStore from '../stores/SharedStore';
 import debounce from '../helpers';
 import BooksStore from '../stores/BooksStore';
+import CollaboratorsStore from '../stores/CollaboratorsStore';
+import UserStore from '../stores/UserStore';
 
 class Editor extends Component {
 
@@ -17,7 +19,8 @@ class Editor extends Component {
             type: this.props.type,
             title: '',
             content: '',
-            books: []
+            books: [],
+            collaborators: []
         }
 
         this.store = null;
@@ -27,12 +30,16 @@ class Editor extends Component {
         this.setState({
             userID: this.props.userID,
             id: this.props.id, 
-            type: this.props.type
+            type: this.props.type,
+            collaborators: [],
+            books: [],
         })
     }
 
     async componentDidUpdate(prevProps) {
         if (this.props.id !== prevProps.id) {
+            console.log("before update: ", this.state.id);
+            console.log(this.state.collaborators);
             await this.setState({
                 userID: this.props.userID
             });
@@ -72,6 +79,8 @@ class Editor extends Component {
                             content: this.store.object.content
                         })
                     })
+
+                    
                     break;
                 case "shared":
                     this.store = new SharedStore(this.state.id);
@@ -82,8 +91,25 @@ class Editor extends Component {
                             type: this.props.type,
                             title: this.store.object.title, 
                             content: this.store.object.content
-                        })
-                    })
+                        });
+                    });
+
+                    let collabsStore = new CollaboratorsStore();
+                    await collabsStore.getCollaboratorsBySharedId(this.state.id);
+                    let collabsIds = collabsStore.collaborators;
+
+                    let userStore = new UserStore();
+                    let col = [];
+                    for (let i = 0; i < collabsIds.length; i++) {
+                        let user = await userStore.getUserById(collabsIds[i].userId);
+                        col.push(user);
+                    }
+                    await this.setState({
+                        collaborators: col
+                    });
+                    console.log("after update: ", this.state.id);
+                    console.log(this.state.collaborators);
+
                     break;
                 default:
                     this.setState({
@@ -115,6 +141,22 @@ class Editor extends Component {
                     onChange={(e) => this.handleSelectBook(e.target.value)}>
                     {this.createSelectItems()}
                 </select>
+
+                <div id="collaborators" 
+                    className={this.state.type === 'shared' ? "enabled" : "disabled"}>
+                    <ol>
+                        {/* {this.getCollaborators()} */}
+                        {this.state.collaborators.map(
+                            (item, index) => (
+                                <li key={index}>{item.name}</li>
+                            ))}
+                    </ol>
+                    <input id="collabID" type="text" placeholder="Add a new collaborator"></input>
+                    <input 
+                    type="button" value="Add" 
+                        onClick={() => this.addCollaborator()}></input>
+                </div>
+                
 
 
                 <input 
@@ -206,7 +248,13 @@ class Editor extends Component {
             bookID: parseInt(value)
         }
         this.store.update(this.state.id, updatedNote);
+    }
 
+    addCollaborator() {
+        let collabID = parseInt(document.getElementById('collabID').value);
+
+        let collabStore = new CollaboratorsStore();
+        collabStore.create(collabID, this.state.id);
     }
 }
 

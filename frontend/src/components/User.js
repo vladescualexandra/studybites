@@ -18,7 +18,6 @@ class User extends Component {
         }
 
         this.handleClick = async () => {
-            console.log(this.state.id);
             let newID;
             if (this.state.id < 1) {
                 newID = prompt("What's ur id?");
