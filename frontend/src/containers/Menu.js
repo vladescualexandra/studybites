@@ -24,7 +24,8 @@ class Menu extends Component {
             selected: {
                 id: this.props.id,
                 type: this.props.type
-            }
+            },
+            update: 0
         }
 
         this.store = null;
@@ -97,12 +98,17 @@ class Menu extends Component {
 
     async componentDidUpdate(prevProps) {
         if (this.props.id !== prevProps.id) {
-            await this.setState({
+             this.setState({
                 id: this.props.id, 
                 name: this.props.name, 
-                email: this.props.email,
+                email: this.props.email
             });
-        };
+        } else if (this.props.update !== prevProps.update) {
+            this.setState({
+                update: this.props.update
+            })
+            console.log(this.state.update);
+        }
     }
 
     render() {
@@ -113,7 +119,7 @@ class Menu extends Component {
                         email={this.state.email}
                         onLogin={this.handleLogin}/>
                 <New  id={this.state.id} onCreate={this.handleCreate}/>
-                <NotesList id={this.state.id} onSelect={this.handleSelect}/>
+                <NotesList update={this.state.update} id={this.state.id} onSelect={this.handleSelect}/>
                 <BooksList id={this.state.id} onSelect={this.handleSelect}/>
                 <RemindersList id={this.state.id} onSelect={this.handleSelect}/>
                 <SharedList id={this.state.id} onSelect={this.handleSelect}/>

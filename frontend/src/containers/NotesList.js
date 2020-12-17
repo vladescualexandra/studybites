@@ -45,7 +45,7 @@ class NotesList extends Component {
 
     async componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
-            await this.setState({
+            this.setState({
                 id: this.props.id
             })
 
@@ -55,11 +55,10 @@ class NotesList extends Component {
             this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, () => {
                 
             });
-            this.setState({
+            await this.setState({
                 notes: this.store.notes
             });
-        }
-            
+        } 
     }
 
     render() {

@@ -136,11 +136,11 @@ class Editor extends Component {
                 title: '',
                 content: ''
             });
-            this.props.onDelete();
+            this.props.onDelete(this.state.type);
         }
     }
 
-    save = async (id) => {
+    save = (id) => {
         if (id) {
             this.store.getAll();
             this.props.onSave(this.state.type);

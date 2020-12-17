@@ -53,16 +53,18 @@ class App extends Component{
         id: selectedId, 
         type: selectedType
       });
-
     }
 
     this.handleSave = async (value) => {
       this.handleSelect(this.state.id, value);
-      this.componentDidMount();      
     }
 
-    this.handleDelete = () => {
-      this.componentDidMount();
+    this.handleDelete = (value) => {
+      // here the menu should be updated
+      // but idk how, cuz the state won't change
+      // since you have to select an item before deleting it
+      // so the state is already set to that id and value
+
     }
   }
 
@@ -89,6 +91,9 @@ class App extends Component{
           <Menu id={this.state.user.id} 
                 name={this.state.user.name}
                 email={this.state.user.name}
+                selectedId={this.state.id}
+                selectedType={this.state.type}
+                update={this.state.update}
                 onSelect={this.handleSelect}
                 onLogin={this.handleLogin}
                 />
