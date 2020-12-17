@@ -26,25 +26,33 @@ class Book extends Component {
             })   
         }
 
-        this.handleSelect = async (selectedId, selectedType) => {
-            await this.setState({
+        this.handleSelect = (selectedId, selectedType) => {
+            this.props.onShow(selectedId);
+            this.setState({
                 selected: {
                     id: selectedId, 
                     type: selectedType
                 }
-            })
-
-            this.props.onShow(this.state.selected.id)
+            });
         }
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props !== prevProps) {
+    componentDidMount() {
+        if (this.props) {
             this.setState({
                 id: this.props.id, 
                 name: this.props.name
             })
         }
+    }
+
+    componentDidUpdate(prevProps) {
+        // if (this.props !== prevProps) {
+        //     this.setState({
+        //         id: this.props.id, 
+        //         name: this.props.name
+        //     })
+        // }
     }
 
 

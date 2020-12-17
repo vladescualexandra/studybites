@@ -96,7 +96,7 @@ class Menu extends Component {
     } 
 
     async componentDidUpdate(prevProps) {
-        if (this.props !== prevProps) {
+        if (this.props.id !== prevProps.id) {
             await this.setState({
                 id: this.props.id, 
                 name: this.props.name, 
