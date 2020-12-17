@@ -11,6 +11,7 @@ import RemindersStore from '../stores/RemindersStore';
 import SharedStore from '../stores/SharedStore';
 import UserStore from '../stores/UserStore';
 import CODES from '../codes.json';
+import BooksStore from '../stores/BooksStore';
 
 class Menu extends Component {
 
@@ -88,6 +89,14 @@ class Menu extends Component {
                         content: ''
                     });
                     this.props.onSelect(shared.id, 'shared');
+                    break;
+                case "book":
+                    this.store = new BooksStore(this.state.id);
+                    let name = prompt("Choose a name for your book", "");
+                    let book = await this.store.create({
+                        name: name
+                    });
+                    this.props.onSelect(book.id, 'book');
                     break;
                 default:
                     break;

@@ -35,7 +35,19 @@ class BooksStore {
     }
 
     async create(book) {
+        if (this.user > 0) {
+            await fetch(SERVER_URL + `/users/${this.user}/books`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(book)
+            });
+        } else {
+            console.log("User id not found.");
+        }
 
+        return book;
     }
 
     async update(id, book) {
