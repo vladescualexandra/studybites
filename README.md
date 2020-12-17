@@ -147,7 +147,7 @@ delete: /shared/:id
 
 get: /shared/:id/collaborators
 get: /collaborators/:id
-post: /users/:id/collaborators
+post: /collaborators
 put: /collaborators/:id
 delete: /collaborators/:id
 ```
