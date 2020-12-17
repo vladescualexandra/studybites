@@ -45,7 +45,7 @@ class NotesList extends Component {
 
     async componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
-            this.setState({
+            await this.setState({
                 id: this.props.id
             })
 

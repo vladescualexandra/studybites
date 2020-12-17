@@ -79,11 +79,10 @@ class App extends Component{
             name: this.store.user.name,
             email: this.store.user.email
           }
-        })
+        });
       });
     } 
   }
-
 
   render() {
     return (
@@ -98,6 +97,7 @@ class App extends Component{
                 onLogin={this.handleLogin}
                 />
           <Editor 
+            userID={this.state.user.id}
             id={this.state.id} 
             type={this.state.type}
             onEdit={this.handleEdit}

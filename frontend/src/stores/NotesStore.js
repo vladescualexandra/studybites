@@ -18,9 +18,7 @@ class NotesStore {
             let data = await response.json();
             
             this.notes = data;
-        } else {
-            this.notes = [];
-        }
+        } 
         this.emitter.emit(CODES.CODE_GET_ALL_NOTES);
     }
 
@@ -57,7 +55,7 @@ class NotesStore {
                 },
                 body: JSON.stringify(note)
             });
-        }
+                }
     }
 
     async delete(id) {

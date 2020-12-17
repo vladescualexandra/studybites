@@ -12,14 +12,12 @@ class BooksStore {
         this.user = props;
     }
 
-    async getAll() {
-        if (this.user > 0) {
-            let response = await fetch(SERVER_URL + `/users/${this.user}/books`);
+    async getAll(userID) {
+        if (userID > 0) {
+            let response = await fetch(SERVER_URL + `/users/${userID}/books`);
             let data = await response.json();
             
             this.books = data;
-        } else {
-            this.books = [];
         }
         this.emitter.emit(CODES.CODE_GET_ALL_BOOKS);
     }
