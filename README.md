@@ -28,6 +28,7 @@ npm install --save mysql2
 npm install --save cors
 ```
 
+
 4. În directorul ./backend/config crează un fișier ```db.json``` cu structura indicată în ```db.sample.json```.
 
 5. Adaugă setările pentru baza de date în fișierul ```db.json```
