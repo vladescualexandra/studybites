@@ -31,11 +31,11 @@ class UserStore {
 
     async validate(email, password) {
         if (email.length > 0 && password.length > 0) {
-            let response = await fetch(SERVER_URL + `/users/${email}/${password}`)
+            let response = await fetch(SERVER_URL + `/user/${email}/${password}`)
             let data = await response.json();
             this.user = data[0];
-            this.emitter.emit(CODES.CODE_GET_USER);    
         }
+        this.emitter.emit(CODES.CODE_GET_USER);    
     }
 
     async getUserById(id) {

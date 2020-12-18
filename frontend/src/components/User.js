@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserStore from '../stores/UserStore';
-// import CODES from '../codes.json';
+import CODES from '../codes.json';
+
 class User extends Component {
     constructor(props) {
         super(props);
@@ -18,11 +19,47 @@ class User extends Component {
 
             let newID;
             if (this.state.id < 1) {
-                newID = prompt("What's ur id?");
+                
+                let acc = prompt("do you have an account already?");
+
+                let name, email, password;
+
+                if (acc === 'no') {
+                    // Sign up
+                    name = prompt("Enter your name:");
+                } 
+                
+                email = prompt("Enter your email:");
+                password = prompt("Enter your password:");
+
+                if (acc === 'yes') {
+                    await this.store.validate(email, password);
+                    await this.store.emitter.emit(CODES.CODE_GET_USER, async () => {
+                        console.log("log in - emit");
+                    });
+                    await this.setState({
+                        id: this.store.user.id,
+                        name: this.store.user.name, 
+                        email: this.store.user.email
+                    });  
+                    this.props.onLogin(this.state.id);
+                } else {
+                    await this.store.create(name, email, password);
+                    await this.store.emitter.emit(CODES.CODE_GET_USER, async () => {
+                        console.log("sign up - emit");
+                    });
+                    await this.setState({
+                        id: this.store.user.id,
+                        name: this.store.user.name, 
+                        email: this.store.user.email
+                    });  
+                    this.props.onLogin(this.state.id);
+                }
+                // newID = prompt("What's ur id?");
             } else {
                 newID = 0;
+                this.props.onLogin(newID);
             }
-            this.props.onLogin(newID);
         } 
     }
 
