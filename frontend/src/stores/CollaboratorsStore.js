@@ -57,6 +57,7 @@ class CollaboratorsStore {
         fetch(SERVER_URL + `/shared/${sharedId}/collaborators/${userId}`, {
             method: 'DELETE'
         });
+        console.log()
         this.getCollaboratorsBySharedId(sharedId);
     }
 
