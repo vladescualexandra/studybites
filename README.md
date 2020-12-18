@@ -55,8 +55,8 @@ npm install
 ```
 3. Adăugați setările pentru mediu în fișierul .env
 ```
-REACT_APP_API_BASEURL="http://127.0.0.1:3001"
-REACT_APP_BASEURL=""http://127.0.0.1:8080"
+REACT_APP_API_BASEURL="http://127.0.0.1:8080"
+REACT_APP_BASEURL="http://127.0.0.1:3000"
 ```
    ATENȚIE: Fără slash(/) la final.
 ## Pornire aplicație în mod dezvoltare
