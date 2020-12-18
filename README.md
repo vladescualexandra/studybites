@@ -58,7 +58,7 @@ npm install
 REACT_APP_API_BASEURL="http://127.0.0.1:3001"
 REACT_APP_BASEURL=""http://127.0.0.1:8080"
 ```
-
+   ATENȚIE: Fără slash(/) la final.
 ## Pornire aplicație în mod dezvoltare
 
 1. Navighează în directorul frontend și pornește aplicația de React
@@ -145,9 +145,9 @@ post: /users/:id/shared
 put: /shared/:id
 delete: /shared/:id
 
-get: /shared/:id/collaborators
-get: /collaborators/:id
+get: /collaborators
+get: shared/:id/collaborators
 post: /collaborators
 put: /collaborators/:id
-delete: /collaborators/:id
+delete: /shared/:sid/collaborators/:cid
 ```
