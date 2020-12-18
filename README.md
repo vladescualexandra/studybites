@@ -67,7 +67,7 @@ REACT_APP_BASEURL="http://127.0.0.1:3000"
 ```
 npm start 
 ```
-Aplicația react va rula pe portul 300, iar serverul pe portul 3001
+Aplicația react va rula pe portul 300, iar serverul pe portul 8080.
 
 ## Description
 

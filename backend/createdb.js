@@ -6,7 +6,8 @@ db.sequelize.sync({force: true}).then(async () => {
 
     /* DATE DE TEST */
 
-    const ADMIN_TEST = db.Users.create({
+
+    const ADMIN_TEST = await db.Users.create({
         name: "test name",
         email: "test",
         password: "test"
@@ -43,7 +44,7 @@ db.sequelize.sync({force: true}).then(async () => {
 
     let test_book2 = await db.Books.create({
         userID: ADMIN_TEST.id,
-        name: "test book 1"
+        name: "test book 2"
     })
 
     let bianca_tw = await db.Books.create({
@@ -102,8 +103,8 @@ db.sequelize.sync({force: true}).then(async () => {
     let test_note2_book2 = await db.Notes.create({
         userID: ADMIN_TEST.id,
         bookID: test_book2.id, 
-        title: "test note 4",
-        content: "test content 4"
+        title: "test note 5",
+        content: "test content 5"
     })
 
     let bianca_note_tw1 = await db.Notes.create({
@@ -252,8 +253,9 @@ db.sequelize.sync({force: true}).then(async () => {
 
     await db.Collaborators.create({
         sharedId: shared_test1.id,
-        userId: ADMIN_BIANCA.id
+        userId: ADMIN_TEST.id
     });
+
 
     await db.Collaborators.create({
         sharedId: shared_test1.id,
@@ -263,7 +265,7 @@ db.sequelize.sync({force: true}).then(async () => {
 
     await db.Collaborators.create({
         sharedId: shared_test2.id,
-        userId: ADMIN_BIANCA.id
+        userId: ADMIN_TEST.id
     });
 
     await db.Collaborators.create({
