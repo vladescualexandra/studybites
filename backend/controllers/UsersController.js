@@ -14,10 +14,12 @@ module.exports.findUser = (req, res) => {
 
 module.exports.validateUser = async (req, res) => {
     try {
+        let email = req.params.email;
+        let password = req.params.password;
         let user = await db.Users.findAll({
             where: {
-                email: req.body.email,
-                password: req.body.password
+                email: email,
+                password: password
             }
         });
         res.status(200).send(user);

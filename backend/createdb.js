@@ -6,6 +6,7 @@ db.sequelize.sync({force: true}).then(async () => {
 
     /* DATE DE TEST */
 
+
     const ADMIN_TEST = await db.Users.create({
         name: "test name",
         email: "test",
@@ -255,10 +256,6 @@ db.sequelize.sync({force: true}).then(async () => {
         userId: ADMIN_TEST.id
     });
 
-    await db.Collaborators.create({
-        sharedId: shared_test1.id,
-        userId: ADMIN_BIANCA.id
-    });
 
     await db.Collaborators.create({
         sharedId: shared_test1.id,
