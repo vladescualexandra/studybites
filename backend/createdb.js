@@ -5,6 +5,13 @@ db.sequelize.sync({force: true}).then(async () => {
     console.log('tables created');
 
     /* DATE DE TEST */
+
+    const ADMIN_TEST = await db.Users.create({
+        name: "test name",
+        email: "test",
+        password: "test"
+    })
+
     const ADMIN_BIANCA = await db.Users.create({
         name: 'Vladescu Alexandra-Bianca', 
         email: secrets.email_bianca,
@@ -28,6 +35,16 @@ db.sequelize.sync({force: true}).then(async () => {
         email: secrets.email_ionela,
         password: secrets.password_ionela
     });
+
+    let test_book1 = await db.Books.create({
+        userID: ADMIN_TEST.id,
+        name: "test book 1"
+    })
+
+    let test_book2 = await db.Books.create({
+        userID: ADMIN_TEST.id,
+        name: "test book 2"
+    })
 
     let bianca_tw = await db.Books.create({
         userID: ADMIN_BIANCA.id,
@@ -53,6 +70,41 @@ db.sequelize.sync({force: true}).then(async () => {
         userID: ADMIN_IONELA.id, 
         name: 'Econometrie'
     });
+
+    let test_note1_book1 = await db.Notes.create({
+        userID: ADMIN_TEST.id,
+        bookID: test_book1.id, 
+        title: "test note 1",
+        content: "test content 1"
+    })
+
+    let test_note2_book1 = await db.Notes.create({
+        userID: ADMIN_TEST.id,
+        bookID: test_book1.id, 
+        title: "test note 2",
+        content: "test content 2"
+    })
+
+    let test_note3_book1 = await db.Notes.create({
+        userID: ADMIN_TEST.id,
+        bookID: test_book1.id, 
+        title: "test note 3",
+        content: "test content 3"
+    })
+
+    let test_note1_book2 = await db.Notes.create({
+        userID: ADMIN_TEST.id,
+        bookID: test_book2.id, 
+        title: "test note 4",
+        content: "test content 4"
+    })
+
+    let test_note2_book2 = await db.Notes.create({
+        userID: ADMIN_TEST.id,
+        bookID: test_book2.id, 
+        title: "test note 5",
+        content: "test content 5"
+    })
 
     let bianca_note_tw1 = await db.Notes.create({
         userID: ADMIN_BIANCA.id, 
@@ -122,6 +174,25 @@ db.sequelize.sync({force: true}).then(async () => {
         !indicii nu au unitati la interpretare`
     });
 
+
+    await db.Reminders.create({
+        userID: ADMIN_TEST.id,
+        title: 'test reminder 1',
+        content: 'test content 1'
+    })
+
+    await db.Reminders.create({
+        userID: ADMIN_TEST.id,
+        title: 'test reminder 2',
+        content: 'test content 2'
+    })
+
+    await db.Reminders.create({
+        userID: ADMIN_TEST.id,
+        title: 'test reminder 3',
+        content: 'test content 3'
+    })
+
     await db.Reminders.create({
         userID: ADMIN_BIANCA.id, 
         title: 'Proiect DAM',
@@ -152,6 +223,18 @@ db.sequelize.sync({force: true}).then(async () => {
         content: 'DEADLINE 18 DECEMBRIE'
     });
 
+
+    let shared_test1 = await db.Shared.create({
+        title: 'test shared 1',
+        content: 'test content 1'
+    });
+
+    let shared_test2 = await db.Shared.create({
+        title: 'test shared 2',
+        content: 'test content 2'
+    });
+
+
     let shared_econometrie = await db.Shared.create({
         title: 'Proiect Econometrie',
         content: 'Work in progress.'
@@ -166,6 +249,38 @@ db.sequelize.sync({force: true}).then(async () => {
         title: 'Proiect TW',
         content: 'Work in progress.'
     });
+
+    await db.Collaborators.create({
+        sharedId: shared_test1.id,
+        userId: ADMIN_TEST.id
+    });
+
+    await db.Collaborators.create({
+        sharedId: shared_test1.id,
+        userId: ADMIN_BIANCA.id
+    });
+
+    await db.Collaborators.create({
+        sharedId: shared_test1.id,
+        userId: ADMIN_ADRIANA.id
+    });
+
+
+    await db.Collaborators.create({
+        sharedId: shared_test2.id,
+        userId: ADMIN_TEST.id
+    });
+
+    await db.Collaborators.create({
+        sharedId: shared_test2.id,
+        userId: ADMIN_CODRUTA.id
+    });
+
+    await db.Collaborators.create({
+        sharedId: shared_test2.id,
+        userId: ADMIN_IONELA.id
+    });
+
 
     await db.Collaborators.create({
         sharedId: shared_tw.id,
