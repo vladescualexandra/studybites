@@ -18,7 +18,6 @@ class User extends Component {
         }
 
         this.handleClick = async () => {
-            console.log(this.state.id);
             let newID;
             if (this.state.id < 1) {
                 newID = prompt("What's ur id?");
@@ -52,6 +51,7 @@ class User extends Component {
     render() {
         return (
             <div id="user">
+                <h5>Your id: {this.state.id ? this.state.id : 'none'}</h5>
                 <h4 onClick={this.handleClick}>
                     {this.state.name ? this.state.name : 'login'}</h4>
 

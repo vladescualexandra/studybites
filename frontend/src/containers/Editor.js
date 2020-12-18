@@ -5,6 +5,7 @@ import RemindersStore from '../stores/RemindersStore';
 import SharedStore from '../stores/SharedStore';
 import debounce from '../helpers';
 import BooksStore from '../stores/BooksStore';
+import CollaboratorsStore from '../stores/CollaboratorsStore';
 
 class Editor extends Component {
 
@@ -17,7 +18,8 @@ class Editor extends Component {
             type: this.props.type,
             title: '',
             content: '',
-            books: []
+            books: [],
+            collaborators: []
         }
 
         this.store = null;
@@ -27,7 +29,9 @@ class Editor extends Component {
         this.setState({
             userID: this.props.userID,
             id: this.props.id, 
-            type: this.props.type
+            type: this.props.type,
+            collaborators: [],
+            books: [],
         })
     }
 
@@ -72,18 +76,30 @@ class Editor extends Component {
                             content: this.store.object.content
                         })
                     })
+
+                    
                     break;
                 case "shared":
                     this.store = new SharedStore(this.state.id);
                     this.store.getById(this.props.id);
-                    this.store.emitter.addListener(CODES.CODE_GET_SHARED_BY_ID, async () => {
-                        await this.setState({
-                            id: this.props.id, 
-                            type: this.props.type,
-                            title: this.store.object.title, 
-                            content: this.store.object.content
-                        })
-                    })
+                    this.store.emitter.addListener(CODES.CODE_GET_SHARED_BY_ID, 
+                        async () => {
+                            await this.setState({
+                                id: this.props.id, 
+                                type: this.props.type,
+                                title: this.store.object.title, 
+                                content: this.store.object.content
+                            });
+                        });
+
+                    let collabsStore = new CollaboratorsStore();
+                    collabsStore.getCollaboratorsBySharedId(this.props.id);    
+                    collabsStore.emitter.addListener(CODES.CODE_GET_COLLABORATORS, 
+                        async () => {
+                            await this.setState({
+                                collaborators: collabsStore.collaborators
+                            })
+                    });
                     break;
                 default:
                     this.setState({
@@ -99,22 +115,44 @@ class Editor extends Component {
         return (
             <div id="editor">
                 
-                <input className={this.state.id ? "enabled" : "disabled"} 
-                        type="button" value="Delete" 
-                        disabled={this.state.id ? false : true}
-                        onClick={() => this.delete(this.state.id)}></input>
+                <div id="buttonsEditor" 
+                    className={this.state.id ? "enabled" : "disabled"}>
+                    <input  type="button" value="Delete" 
+                            disabled={this.state.id ? false : true}
+                            onClick={() => this.delete(this.state.id)}></input>
+                    
 
-                <input className={this.state.id ? "enabled" : "disabled"} 
-                        type="button" value="Save" 
-                        disabled={this.state.id ? false : true}
-                        onClick={() => this.save(this.state.id)}></input>
+                    <input type="button" value="Save" 
+                            disabled={this.state.id ? false : true}
+                            onClick={() => this.save(this.state.id)}></input>
+                </div>
 
-                
                 <select 
-                    className={this.state.id && this.state.type === 'notes' ? "enabled" : "disabled"}
-                    onChange={(e) => this.handleSelectBook(e.target.value)}>
-                    {this.createSelectItems()}
-                </select>
+                        id="bookSelect"
+                        className={this.state.id && this.state.type === 'notes' ? "enabled" : "disabled"}
+                        onChange={(e) => this.handleSelectBook(e.target.value)}>
+                        {this.createSelectItems()}
+                    </select>
+
+                <div id="collaborators" 
+                    className={this.state.type === 'shared' ? "enabled" : "disabled"}>
+                    <div>
+                        {this.getCollaborators()}
+                        
+
+
+                            <span id="addCollab">
+                                <input id="collabID" type="text" placeholder="Add a new collaborator"></input>
+                                <input 
+                                    type="button" value="Add" 
+                                    onClick={() => this.addCollaborator()}>
+                                </input>
+                            </span>
+                    
+                    </div>
+                    
+                </div>
+                
 
 
                 <input 
@@ -206,7 +244,32 @@ class Editor extends Component {
             bookID: parseInt(value)
         }
         this.store.update(this.state.id, updatedNote);
+    }
 
+    getCollaborators() {
+        let items = [];
+
+        for (let i=0; i<this.state.collaborators.length; i++) {
+            items.push(<span id="collab" key={i}>
+                {this.state.collaborators[i].name}
+            <input type="button" value="x" onClick={() => this.deleteCollaborator(this.state.collaborators[i].id)}></input>
+        </span>)
+        }
+
+        return items;
+    }
+
+    addCollaborator() {
+        let collabID = parseInt(document.getElementById('collabID').value);
+        document.getElementById('collabID').value = '';
+        let collabStore = new CollaboratorsStore();
+        collabStore.create(collabID, this.state.id);
+        this.getCollaborators();
+    }
+
+    deleteCollaborator(id) {
+        let collabStore = new CollaboratorsStore();
+        collabStore.delete(this.props.id, id);
     }
 }
 
