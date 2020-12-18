@@ -137,14 +137,8 @@ class Editor extends Component {
                 <div id="collaborators" 
                     className={this.state.type === 'shared' ? "enabled" : "disabled"}>
                     <div>
-                        {/* {this.getCollaborators()} */}
-                        {this.state.collaborators.map(
-                            (item, index) => (
-                                <span id="collab" key={index}>
-                                    {item.name}
-                                    <input type="button" value="x" onClick={() => this.deleteCollaborator(item.id)}></input>
-                                </span>
-                            ))}
+                        {this.getCollaborators()}
+                        
 
 
                             <span id="addCollab">
@@ -252,15 +246,30 @@ class Editor extends Component {
         this.store.update(this.state.id, updatedNote);
     }
 
+    getCollaborators() {
+        let items = [];
+
+        for (let i=0; i<this.state.collaborators.length; i++) {
+            items.push(<span id="collab" key={i}>
+                {this.state.collaborators[i].name}
+            <input type="button" value="x" onClick={() => this.deleteCollaborator(this.state.collaborators[i].id)}></input>
+        </span>)
+        }
+
+        return items;
+    }
+
     addCollaborator() {
         let collabID = parseInt(document.getElementById('collabID').value);
         document.getElementById('collabID').value = '';
         let collabStore = new CollaboratorsStore();
         collabStore.create(collabID, this.state.id);
+        this.getCollaborators();
     }
 
     deleteCollaborator(id) {
-        // console.log("id: ", id);
+        let collabStore = new CollaboratorsStore();
+        collabStore.delete(this.props.id, id);
     }
 }
 

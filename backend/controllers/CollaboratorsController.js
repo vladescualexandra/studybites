@@ -62,19 +62,35 @@ module.exports.updateCollaborator = (req, res) => {
 };
 
 module.exports.deleteCollaborator = (req, res) => {
-    db.Collaborators.findByPk(req.params.id).then((message) => {
-        if (message) {
-            message.destroy().then((result) => {
-                res.status(204).send('resource deleted');
-            }).catch((err) => {
-                console.log(err);
-                res.status(500).send('database error');
-            })
-        } else {
-            res.status(404).send('resource not found');
-        }
-    }).catch((err) => {
+    try {
+        let sh = req.params.sid;
+        let cb = req.params.cid;
+
+        let col = db.Collaborators.findAll({
+            where: {
+                sharedId: sh,
+                userId: cb
+            }
+        }).then(async (message) => {
+            if (message) {
+                try {
+                    message[0].destroy()
+                    .then(() => {
+                        res.status(200).send('resource deleted');
+                    }).catch(() => {
+                        res.status(500).send('database error');
+                    })
+                } catch (err) {
+                    res.status(500).send('database error');
+                }
+            } else {
+                res.status(404).send('resource not found');
+            }
+        })
+
+
+    } catch(err) {
         console.log(err);
         res.status(500).send('database error')
-    })
+    }
 }

@@ -53,6 +53,12 @@ class CollaboratorsStore {
 
     }
 
+    async delete(sharedId, userId) {
+        fetch(SERVER_URL + `/shared/${sharedId}/collaborators/${userId}`, {
+            method: 'DELETE'
+        });
+        this.getCollaboratorsBySharedId(sharedId);
+    }
 
 }
 
