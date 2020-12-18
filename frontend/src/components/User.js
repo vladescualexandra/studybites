@@ -13,12 +13,6 @@ class User extends Component {
 
         this.store = new UserStore();
 
-        // this.handleLogin = async (id, name, email) => {
-        //     this.props.onLogin(id, name, email);
-        // }
-
-
-
         this.handleClick = async () => {
 
 
@@ -29,43 +23,6 @@ class User extends Component {
                 newID = 0;
             }
             this.props.onLogin(newID);
-
-
-            // if (this.state.id < 1) {
-
-                // let log = prompt("Do you have an account? yes/no");
-
-            
-                // let email = prompt("Enter your email:");
-                // let password = prompt("Enter your password:");
-                // let name = '';
-                
-                // if (log === 'yes') {
-                    // this.store.validate(email, password);
-                // } else {
-                //     name = prompt("Enter your name: ");
-                //     this.store.create(name, email, password);
-                // }
-
-                // this.store.emitter.addListener(CODES.CODE_GET_USER, 
-                //     async () => {
-                //         await this.setState({
-                //             id: this.store.user.id,
-                //             name: this.store.user.name,
-                //             email: this.store.user.email
-                //         });
-                     
-                // });
-                // this.props.onLogin(this.state.id);
-
-            // } else {
-            //     await this.setState({
-            //         id: 0,
-            //         name: '',
-            //         email: ''
-            //     });
-            //     this.props.onLogin(0);
-            // }
         } 
     }
 
