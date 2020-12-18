@@ -51,6 +51,7 @@ class User extends Component {
     render() {
         return (
             <div id="user">
+                <h5>Your id: {this.state.id ? this.state.id : 'none'}</h5>
                 <h4 onClick={this.handleClick}>
                     {this.state.name ? this.state.name : 'login'}</h4>
 

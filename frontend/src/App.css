@@ -81,7 +81,7 @@
   padding: 2%;
   border: none;
   border-top: 2px solid black;
-  font-size: 16px;
+  font-size: 16pt;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -135,10 +135,6 @@
   padding: 5%;
 }
 
-.enabled {
-  width: 100%;
-}
-
 .disabled {
   display: none;
 }
@@ -159,3 +155,58 @@ input[value="Delete"], input[value="Save"] {
 .disabled {
   color: black;
 }
+
+#bookSelect {
+  background-color: transparent;
+  border-color: #CCC5B9;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 12pt;
+  padding: 1%;
+}
+
+option {
+  background-color: #CCC5B9;
+}
+
+#buttonsEditor {
+  /* display: inline-block; */
+  padding: 1%;
+}
+
+#collaborators {
+  margin: 2%;
+}
+
+#addCollab {
+  display: inline;
+}
+
+#collab {
+  background-color:#EB551C;
+  padding: 1%;
+  margin-right: 1%;
+  border-radius: 10px;
+  font-size: 10pt;
+  color: #CCC5B9;
+}
+
+#collabID {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+input[value="Add"] {
+  background-color: #CCC5B9;
+  border: none;
+  color: #EB551C;
+}
+
+input[value="x"] {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+}
+
+
