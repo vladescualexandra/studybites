@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserStore from '../stores/UserStore';
-
+import CODES from '../codes.json';
 class User extends Component {
     constructor(props) {
         super(props);
@@ -18,16 +18,41 @@ class User extends Component {
         }
 
         this.handleClick = async () => {
-            let newID;
             if (this.state.id < 1) {
-                newID = prompt("What's ur id?");
+
+                let log = prompt("Do you have an account? yes/no");
+
+            
+                let email = prompt("Enter your email:");
+                let password = prompt("Enter your password:");
+                let name = '';
+                
+                if (log === 'yes') {
+                    this.store.validate(email, password);
+                } else {
+                    name = prompt("Enter your name: ");
+                    this.store.create(name, email, password);
+                }
+
+                this.store.emitter.addListener(CODES.CODE_GET_USER, 
+                    async () => {
+                        await this.setState({
+                            id: this.store.user.id,
+                            name: this.store.user.name,
+                            email: this.store.user.email
+                        });
+                     
+                        this.props.onLogin(this.state.id);
+                });
             } else {
-                newID = 0;
+                await this.setState({
+                    id: 0,
+                    name: '',
+                    email: ''
+                });
+                this.props.onLogin(0);
             }
-            this.props.onLogin(newID);
         } 
-
-
     }
 
     async componentDidMount() {
