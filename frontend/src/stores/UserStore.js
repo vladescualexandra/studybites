@@ -9,6 +9,35 @@ class UserStore {
         this.emitter = new EventEmitter();
     }
 
+
+    async create(name, email, password) {
+        let u = {
+            name: name, 
+            email: email,
+            password: password
+        };
+
+        let response = await fetch(SERVER_URL + `/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(u)
+        });
+        let data = await response.json();
+        this.user = data;
+        this.emitter.emit(CODES.CODE_GET_USER);    
+    }
+
+    async validate(email, password) {
+        if (email.length > 0 && password.length > 0) {
+            let response = await fetch(SERVER_URL + `/users/${email}/${password}`)
+            let data = await response.json();
+            this.user = data[0];
+            this.emitter.emit(CODES.CODE_GET_USER);    
+        }
+    }
+
     async getUserById(id) {
         if (id > 0) {
             let response = await fetch(SERVER_URL + `/users/${id}`);
