@@ -33,7 +33,7 @@ npm install --save cors
 
 5. Adaugă setările pentru baza de date în fișierul ```db.json```
 
-6. În directorul ./backend/config crează un fișier ```secrets.json``` cu structura indicată în ```secrets.sample.json``` și adauă informațiile necesare pentru testare.
+6. În directorul ./backend/config crează un fișier ```secrets.json``` cu structura indicată în ```secrets.sample.json``` și adaugă informațiile necesare pentru testare.
 
 6. Configurează un server MySQL și crează o bază de date (cu numele din db.json).
 
@@ -67,7 +67,34 @@ REACT_APP_BASEURL="http://127.0.0.1:3000"
 ```
 npm start 
 ```
-Aplicația react va rula pe portul 300, iar serverul pe portul 8080.
+Aplicația react va rula pe portul 3000, iar serverul pe portul 8080.
+
+# FAZA 2:
+## Documentation
+On the first run of the application, no user will be connected to the server (No id, name or content will be displayed).
+Text validation is not implemented yet, meaning the user will have to insert the required input without alterations.
+For testing purposes, an account was previously created and populated with data.
+```
+email: test
+password: test
+```
+
+Functionalities: 
+* Clicking on the login will trigger the login/sign up process.
+* Typing 'yes' in the 'do you already have an account?' will continue the login process, followed by the 'enter your email' and 'enter your password' prompts. If the credentials are correct, the client will be logged in, account informations and content will be displayed.
+* Typing 'no' in the 'do you already have an account?' will continue the sign up process, followed by the 'enter your name', 'enter your email' and 'enter your password' prompts. A new account will be created (if the email adress wasn't previously used) and the user will be connected to its account. The information will be displayed, without any content, since none was created yet.
+* Clicking on the username or the 'log out' button will log out of the account.
+* The user will remain connected to its account until manually loging out.
+* If the user isn't connected to it's account, no content can be created.
+* Clicking on Notes/Books/Reminders/Shared buttons will expand the content droppdown list.
+* Clicking on any item in the list will display it in the right editor.
+* For all types of content, two buttons will be displayed in the top left corner of the editor, 'Delete' and 'Save'. 
+* For Notes: a dropdown list with the books is displayed above the title. It's selected by default the book that contains the selected note. Changing the book will move the note in the selected one. -- ISSUE: needs refresh to make the changes visible in the left menu.
+* For Shared: abe the title, the collaborators to the selected item will be displayed, each having an 'x' button that will remove it on click. Next to them it's an input that requires the id of the collaborators that the user wants to include, that will be added if the id is correct and the 'Add' button is clicked. The shared note will be available to all collaborators. -- ISSUE: needs refresh to make the changes visible. 
+* The user can modify the title/content of any item. Any changes are automatically saved to the database. -- ISSUE: Title won't be updated in the left menu unless clicking on it, refreshing the page or clicking the 'Save' button (might not work on the first click').
+* The user can delete an item. -- ISSUE: The user has to click on the item or refresh the page to make it disappearfrom the left menu.
+* Clicking the '+ NEW' button will open an expandable list with choices for the type of content to be added. The item will be automatically created in the database.
+
 
 ## Description
 
@@ -121,6 +148,7 @@ Google docs
 ## API Calls:
 ```
 get: /users/:id
+get: /user/:email/:password
 post: /users
 
 get: /users/:id/notes
@@ -143,6 +171,7 @@ delete: /reminders/:id
 
 get: /users/:id/shared
 get: /shared/:id
+get: /shared/:id/collaborators
 post: /users/:id/shared
 put: /shared/:id
 delete: /shared/:id
