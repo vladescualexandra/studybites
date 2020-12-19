@@ -5,8 +5,6 @@ db.sequelize.sync({force: true}).then(async () => {
     console.log('tables created');
 
     /* DATE DE TEST */
-
-
     const ADMIN_TEST = await db.Users.create({
         name: "test name",
         email: "test",

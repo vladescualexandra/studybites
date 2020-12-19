@@ -43,7 +43,6 @@
 #menu {
   color: #CCC5B9;
   background-color: #04080F;
-  margin-top: -20px;
   overflow: scroll;
   position: fixed;
   top: 0;
@@ -82,7 +81,7 @@
   border: none;
   border-top: 2px solid black;
   font-size: 16pt;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 #options {
@@ -122,9 +121,17 @@
   text-align: left;
 }
 
+#logostudybites {
+  width: 100%;
+}
+
 #user {
   text-align: center;
-  padding-top: 10%;
+  margin-top: 0;
+}
+
+#user * {
+  margin: 1%;
 }
 
 .new {
@@ -209,17 +216,5 @@ input[value="x"] {
 }
 
 
-#logostudybites {
-  border: none;
-  position: fixed;
-  bottom: 0;
-  /* left: 5%;
-  right: 5%; */
-  width: 28%;
-  background-color: #04080F;
-  border: 1px solid pink;
-  margin-bottom: 2%;
-  padding-bottom: 2%;
-  padding-top: 2%;
-}
+
 

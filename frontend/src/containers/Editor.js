@@ -125,6 +125,7 @@ class Editor extends Component {
                     <input type="button" value="Save" 
                             disabled={this.state.id ? false : true}
                             onClick={() => this.save(this.state.id)}></input>
+                                
                 </div>
 
                 <select 

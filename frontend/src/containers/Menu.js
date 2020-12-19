@@ -123,7 +123,9 @@ class Menu extends Component {
 
     render() {
         return (
-            <div id="menu" onSelect={this.handleSelect}>
+            <div id="menu" onSelect={this.handleSelect}>      
+                <img id="logostudybites" src="https://i.ibb.co/kGHWxGC/logostudybites.png" alt="studybites logo"/>
+
                 <User id={this.state.id} 
                         name={this.state.name}
                         email={this.state.email}
@@ -133,7 +135,6 @@ class Menu extends Component {
                 <BooksList id={this.state.id} onSelect={this.handleSelect}/>
                 <RemindersList id={this.state.id} onSelect={this.handleSelect}/>
                 <SharedList id={this.state.id} onSelect={this.handleSelect}/>
-                <img id="logostudybites" src="logostudybites.png" alt="studybites logo"/>
             </div>
         )
     }

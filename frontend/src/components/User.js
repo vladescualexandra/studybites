@@ -20,7 +20,7 @@ class User extends Component {
             let newID;
             if (this.state.id < 1) {
                 
-                let acc = prompt("do you have an account already?");
+                let acc = prompt("do you already have an account?");
 
                 let name, email, password;
 
@@ -55,7 +55,6 @@ class User extends Component {
                     });  
                     this.props.onLogin(this.state.id);
                 }
-                // newID = prompt("What's ur id?");
             } else {
                 newID = 0;
                 this.props.onLogin(newID);
@@ -84,9 +83,9 @@ class User extends Component {
     render() {
         return (
             <div id="user">
-                <h5>Your id: {this.state.id ? this.state.id : 'none'}</h5>
-                <h4 onClick={this.handleClick}>
-                    {this.state.name ? this.state.name : 'login'}</h4>
+                <h6>Your id: {this.state.id ? this.state.id : 'none'}</h6>
+                <h3 onClick={this.handleClick}>
+                    {this.state.name ? this.state.name : 'login'}</h3>
 
                 <input id="logout" type="button" onClick={this.handleClick} value="Log out"/>
             </div>
