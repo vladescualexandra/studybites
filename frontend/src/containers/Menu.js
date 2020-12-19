@@ -133,6 +133,9 @@ class Menu extends Component {
                 <BooksList id={this.state.id} onSelect={this.handleSelect}/>
                 <RemindersList id={this.state.id} onSelect={this.handleSelect}/>
                 <SharedList id={this.state.id} onSelect={this.handleSelect}/>
+                
+                <img src="../logostudybites.png" alt="studybites logo"/>
+
             </div>
         )
     }
