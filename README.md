@@ -33,7 +33,7 @@ npm install --save cors
 
 5. Adaugă setările pentru baza de date în fișierul ```db.json```
 
-6. În directorul ./backend/config crează un fișier ```secrets.json``` cu structura indicată în ```secrets.sample.json``` și adauă informațiile necesare pentru testare.
+6. În directorul ./backend/config crează un fișier ```secrets.json``` cu structura indicată în ```secrets.sample.json``` și adaugă informațiile necesare pentru testare.
 
 6. Configurează un server MySQL și crează o bază de date (cu numele din db.json).
 
@@ -67,7 +67,7 @@ REACT_APP_BASEURL="http://127.0.0.1:3000"
 ```
 npm start 
 ```
-Aplicația react va rula pe portul 300, iar serverul pe portul 8080.
+Aplicația react va rula pe portul 3000, iar serverul pe portul 8080.
 
 ## Description
 
