@@ -13,10 +13,12 @@ class NotesStore {
     }
 
     async getAll() {
-        let response = await fetch(SERVER_URL + `/users/${this.user}/notes`);
-        let data = await response.json();
-        
-        this.notes = data;
+        if (this.user > 0) {
+            let response = await fetch(SERVER_URL + `/users/${this.user}/notes`);
+            let data = await response.json();
+            
+            this.notes = data;
+        } 
         this.emitter.emit(CODES.CODE_GET_ALL_NOTES);
     }
 
@@ -31,7 +33,7 @@ class NotesStore {
     }
 
     async create(note) {
-        let response = await fetch(SERVER_URL + `/users/${this.user.id}/notes`, {
+        let response = await fetch(SERVER_URL + `/users/${this.user}/notes`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -53,7 +55,7 @@ class NotesStore {
                 },
                 body: JSON.stringify(note)
             });
-        }
+                }
     }
 
     async delete(id) {

@@ -3,10 +3,10 @@ const router = express.Router();
 
 const collaborators = require('../controllers/CollaboratorsController.js');
 
-router.get('/shared/:id/collaborators', collaborators.findAllCollaborators)
-router.get('/collaborators/:id', collaborators.findCollaborators);
-router.post('/users/:id/collaborators', collaborators.createCollaborator);
+router.get('/collaborators', collaborators.findAllCollaborators)
+router.get('shared/:id/collaborators', collaborators.findCollaborators);
+router.post('/collaborators', collaborators.createCollaborator);
 router.put('/collaborators/:id', collaborators.updateCollaborator);
-router.delete('/collaborators/:id', collaborators.deleteCollaborator);
+router.delete('/shared/:sid/collaborators/:cid', collaborators.deleteCollaborator);
 
 module.exports = router

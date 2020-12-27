@@ -43,7 +43,6 @@
 #menu {
   color: #CCC5B9;
   background-color: #04080F;
-  margin-top: -20px;
   overflow: scroll;
   position: fixed;
   top: 0;
@@ -64,7 +63,7 @@
 #title {
   background-color: #CCC5B9;
   color: #04080F;
-  width: 100%;
+  width: 95%;
   height: 10%;
   padding-left: 2%;
   border: none;
@@ -76,13 +75,13 @@
 #content {
   background-color: #CCC5B9;
   color: #04080F;
-  width: 90%;
+  width: 95%;
   height: 100%;
-  padding: 2%;
+  padding-left: 2%;
   border: none;
   border-top: 2px solid black;
-  font-size: 16px;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 16pt;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 #options {
@@ -122,9 +121,17 @@
   text-align: left;
 }
 
+#logostudybites {
+  width: 100%;
+}
+
 #user {
   text-align: center;
-  padding-top: 10%;
+  margin-top: 0;
+}
+
+#user * {
+  margin: 1%;
 }
 
 .new {
@@ -133,10 +140,6 @@
   background-color: #EB551C;
   color: #04080F;
   padding: 5%;
-}
-
-.enabled {
-  width: 100%;
 }
 
 .disabled {
@@ -150,8 +153,68 @@
   padding-bottom: 10%;
 }
 
-input[value="Delete"] {
+input[value="Delete"], input[value="Save"] {
   border: none;
   color: #EB551C;
   background-color: #CCC5B9;
 }
+
+.disabled {
+  color: black;
+}
+
+#bookSelect {
+  background-color: transparent;
+  border-color: #CCC5B9;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 12pt;
+  padding: 1%;
+}
+
+option {
+  background-color: #CCC5B9;
+}
+
+#buttonsEditor {
+  padding: 1%;
+}
+
+#collaborators {
+  margin: 2%;
+}
+
+#addCollab {
+  display: inline;
+}
+
+#collab {
+  background-color:#EB551C;
+  padding: 1%;
+  margin-right: 1%;
+  border-radius: 10px;
+  font-size: 10pt;
+  color: #CCC5B9;
+}
+
+#collabID {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+input[value="Add"] {
+  background-color: #CCC5B9;
+  border: none;
+  color: #EB551C;
+}
+
+input[value="x"] {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+}
+
+
+
+

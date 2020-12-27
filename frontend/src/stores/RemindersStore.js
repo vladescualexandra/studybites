@@ -12,10 +12,14 @@ class RemindersStore {
     }
 
     async getAll() {
-        let response = await fetch(SERVER_URL + `/users/${this.user}/reminders`);
-        let data = await response.json();
-        
-        this.reminders = data;
+        if (this.user > 0) {
+            let response = await fetch(SERVER_URL + `/users/${this.user}/reminders`);
+            let data = await response.json();
+            
+            this.reminders = data;
+        } else {
+            this.reminders = [];
+        }
         this.emitter.emit(CODES.CODE_GET_ALL_REMINDERS);
     }
 
@@ -30,17 +34,18 @@ class RemindersStore {
     }   
 
     async create(reminder) {
-        let response = await fetch(SERVER_URL + `/users/${this.user.state.id}/reminders`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(reminder)
-        });
+            let response = await fetch(SERVER_URL + `/users/${this.user}/reminders`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reminder)
+            });
 
-        let data = await response.json();
-        this.getAll();
-        return data;
+
+            let data = await response.json();
+            this.object = data;
+            return this.object;        
     }
 
     async update(id, reminder) {
@@ -59,9 +64,7 @@ class RemindersStore {
         if (id > 0) {
             await fetch(SERVER_URL + `/reminders/${id}`, {
                 method: 'DELETE', 
-            });
-        
-            this.getAll();
+            });      
         }
     }
 }

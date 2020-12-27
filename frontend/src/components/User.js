@@ -14,48 +14,60 @@ class User extends Component {
 
         this.store = new UserStore();
 
-        this.handleLogin = async (id, name, email) => {
-            this.props.onLogin(id, name, email);
-        }
-
         this.handleClick = async () => {
+
+
             let newID;
             if (this.state.id < 1) {
-                newID = prompt("What's ur id?");
+                
+                let acc = prompt("do you already have an account?");
 
-                await this.store.getUserById(newID);
-                this.store.emitter.addListener(CODES.CODE_GET_USER_BY_ID, async () => {
-                    console.log("??????")
-                })
+                let name, email, password;
 
-                await this.setState({
-                    id: newID,
-                    name: this.store.user.name,
-                    email: this.store.user.email
-                })
+                if (acc === 'no') {
+                    // Sign up
+                    name = prompt("Enter your name:");
+                } 
+                
+                email = prompt("Enter your email:");
+                password = prompt("Enter your password:");
 
+                if (acc === 'yes') {
+                    await this.store.validate(email, password);
+                    await this.store.emitter.emit(CODES.CODE_GET_USER, async () => {
+                        console.log("log in - emit");
+                    });
+                    await this.setState({
+                        id: this.store.user.id,
+                        name: this.store.user.name, 
+                        email: this.store.user.email
+                    });  
+                    this.props.onLogin(this.state.id);
+                } else {
+                    await this.store.create(name, email, password);
+                    await this.store.emitter.emit(CODES.CODE_GET_USER, async () => {
+                        console.log("sign up - emit");
+                    });
+                    await this.setState({
+                        id: this.store.user.id,
+                        name: this.store.user.name, 
+                        email: this.store.user.email
+                    });  
+                    this.props.onLogin(this.state.id);
+                }
             } else {
                 newID = 0;
-                await this.setState({
-                    id: 0, 
-                    name: '',
-                    email: ''
-                });
+                this.props.onLogin(newID);
             }
-            this.props.onLogin(newID);
         } 
-
-
     }
 
     async componentDidMount() {
-      if (this.props) {
         await this.setState({
             id: this.props.id, 
             name: this.props.name, 
             email: this.props.email
-        })
-      }  
+        });  
     }
 
 
@@ -65,14 +77,15 @@ class User extends Component {
                 id: this.props.id, 
                 name: this.props.name, 
                 email: this.props.email
-            })
+            });
         }
     }
     render() {
         return (
             <div id="user">
-                <h4 onClick={this.handleClick}>
-                    {this.state.name ? this.state.name : 'login'}</h4>
+                <h6>Your id: {this.state.id ? this.state.id : 'none'}</h6>
+                <h3 onClick={this.handleClick}>
+                    {this.state.name ? this.state.name : 'login'}</h3>
 
                 <input id="logout" type="button" onClick={this.handleClick} value="Log out"/>
             </div>

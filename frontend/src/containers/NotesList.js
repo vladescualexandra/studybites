@@ -37,7 +37,7 @@ class NotesList extends Component {
     componentDidMount() {
         this.store.getAll();
         this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, async () => {
-            await this.setState({
+            this.setState({
                 notes: this.store.notes
             })
         })
@@ -51,13 +51,14 @@ class NotesList extends Component {
 
             this.store = new NotesStore(this.state.id);
             await this.store.getAll();
-            this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, async () => {
-                await this.setState({
-                    notes: this.store.notes
-                })
-            })
-            
-        }
+
+            this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES, () => {
+                
+            });
+            await this.setState({
+                notes: this.store.notes
+            });
+        } 
     }
 
     render() {

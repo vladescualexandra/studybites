@@ -1,21 +1,26 @@
 const db = require('../models/index');
 
 module.exports.findAllBooks = async (req, res) => {
-    let user = await db.Users.findByPk(req.params.id);
-    db.Books.findAll({
-        where : {
-            userID: user.id
+    if (req.params.id > 0) {
+        let user = await db.Users.findByPk(req.params.id);
+        db.Books.findAll({
+            where : {
+                userID: user.id
+                }
+        }).then((result) => {
+            if (result) {
+                res.status(200).send(result);
+            } else {
+                res.status(404).send('not found');
             }
-    }).then((result) => {
-        if (result) {
-            res.status(200).send(result);
-        } else {
-            res.status(404).send('not found');
-        }
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).send('server error');
-    });
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).send('server error');
+        });
+    } else {
+        res.status(404).send('user not found');
+
+    }
 }
 
 module.exports.findBook = (req, res) => {
@@ -23,7 +28,7 @@ module.exports.findBook = (req, res) => {
         if (result) {
             res.status(200).send(result);
         } else {
-            res.status(404).send('note not found');
+            res.status(404).send('book not found');
         }
     }).catch((err) => {
         res.status(500).send('error: ' + err);
@@ -35,7 +40,7 @@ module.exports.createBook = async (req, res) => {
         let user = await db.Users.findByPk(req.params.id);
         let book = await  db.Books.create({
             userID: user.id,
-
+            name: req.body.name
         });
         res.status(201).send(book);
     } catch (err) {
