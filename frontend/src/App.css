@@ -43,12 +43,12 @@
 #menu {
   color: #CCC5B9;
   background-color: #04080F;
-  overflow: scroll;
+  overflow: auto;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  right: 70%; 
+  right:60%; 
 }
 
 #editor {
@@ -56,7 +56,7 @@
   position: fixed;
     top:0;
     bottom: 0;
-    left: 30%;
+    left: 40%;
     right: 0; 
 }
 
@@ -64,12 +64,13 @@
   background-color: #CCC5B9;
   color: #04080F;
   width: 95%;
-  height: 10%;
   padding-left: 2%;
   border: none;
   font-size: 24px;
   font-weight: bold;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding-top: 50px;
+  padding-bottom:0px;
 }
 
 #content {
@@ -82,8 +83,10 @@
   border-top: 2px solid black;
   font-size: 16pt;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding-top: 5%;
+  padding-right: 5%;
 }
-
+/* 
 #options {
   width: 10%;
   background-color: #04080F;
@@ -92,7 +95,7 @@
     bottom: 0;
     left: 30%;
     right: 0; 
-}
+} */
 
 
 .list {
@@ -110,6 +113,8 @@
   background-color: #04080F;
   color: #EB551C;
   padding: 5%;
+  font-size: 14pt;
+
 }
 
 #menu .listItem {
@@ -125,9 +130,11 @@
   width: 100%;
 }
 
-#user {
+#user{
   text-align: center;
   margin-top: 0;
+  padding: 10%;
+  margin-bottom: 5%;
 }
 
 #user * {
@@ -216,5 +223,37 @@ input[value="x"] {
 }
 
 
+#user:hover {
+  cursor: default;
+}
+
+#menu .listItem:hover {
+  background-color: rgba(235,85,28, 0.5);
+  padding: 7%;
+}
 
 
+.login {
+  width: 85%;
+  background-color: transparent;
+  color: white;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid white;
+  padding: 5%;
+  font-size: 12pt;
+}
+
+.loginButton {
+  background-color: transparent;
+  color: #EB551C;
+  border: none;
+  font-size: 12pt;
+  padding-top: 10%;
+  padding-bottom: 7%;
+}
+
+#loginForm {
+  display: inline;
+}

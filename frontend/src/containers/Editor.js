@@ -114,7 +114,6 @@ class Editor extends Component {
     render() {
         return (
             <div id="editor">
-                
                 <div id="buttonsEditor" 
                     className={this.state.id ? "enabled" : "disabled"}>
                     <input  type="button" value="Delete" 
@@ -156,7 +155,7 @@ class Editor extends Component {
                 
 
 
-                <input 
+                <textarea 
                     id="title" 
                     type="text" 
                     placeholder="Title"

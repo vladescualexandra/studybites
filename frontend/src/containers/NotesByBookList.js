@@ -29,17 +29,6 @@ class NotesByBookList extends Component {
         })
     }
 
-    componentDidUpdate(prevProps) {
-        // if (this.props !== prevProps) {
-        //     this.store.getAll(this.state.bookID);
-        //     this.store.emitter.addListener(CODES.CODE_GET_ALL_NOTES_BY_BOOKS, () => {
-        //         this.setState({
-        //             notes: this.store.notes
-        //         })
-        //     })
-            
-        // }
-    }
 
     render() {
         return (

@@ -26,12 +26,12 @@ class New extends Component {
     render() {
         return (
             <div>
-                <input className="new" type="button" value="+ NEW" onClick={this.showItems}/>
-                <div className={this.state.classes}>
-                        <input className="new" type="button" value="Note" onClick={() => this.onCreate("note")}/>
-                        <input className="new" type="button" value="Book" onClick={() => this.onCreate("book")}/>
-                        <input className="new" type="button" value="Reminder" onClick={() => this.onCreate("reminder")}/>
-                        <input className="new" type="button" value="Shared" onClick={() => this.onCreate("shared")}/>
+                <input className="new" type="button" value="NEW" onClick={this.showItems}/>
+                <div id="listNew" className={this.state.classes}>
+                        <input className="new listItemNew" type="button" value="Note" onClick={() => this.onCreate("note")}/>
+                        <input className="new listItemNew" type="button" value="Book" onClick={() => this.onCreate("book")}/>
+                        <input className="new listItemNew" type="button" value="Reminder" onClick={() => this.onCreate("reminder")}/>
+                        <input className="new listItemNew" type="button" value="Shared" onClick={() => this.onCreate("shared")}/>
 
                 </div>
             </div>
