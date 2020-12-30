@@ -48,7 +48,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  right:60%; 
+  right: 75%; 
 }
 
 #editor {
@@ -56,7 +56,7 @@
   position: fixed;
     top:0;
     bottom: 0;
-    left: 40%;
+    left: 25%;
     right: 0; 
 }
 
@@ -81,11 +81,12 @@
   padding-left: 2%;
   border: none;
   border-top: 2px solid black;
-  font-size: 16pt;
+  font-size: 14pt;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   padding-top: 5%;
   padding-right: 5%;
 }
+
 /* 
 #options {
   width: 10%;
@@ -147,6 +148,7 @@
   background-color: #EB551C;
   color: #04080F;
   padding: 5%;
+  font-size: 14pt;
 }
 
 .disabled {
@@ -228,8 +230,8 @@ input[value="x"] {
 }
 
 #menu .listItem:hover {
-  background-color: rgba(235,85,28, 0.5);
   padding: 7%;
+  font-size: 14pt;
 }
 
 
