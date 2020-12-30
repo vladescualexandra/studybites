@@ -22,6 +22,10 @@ app.use('/', shared);
 app.use('/', reminders);
 app.use('/', collaborators);
 
+<<<<<<< HEAD
+app.use('/', express.static('../frontend/build'))
+=======
 app.use('/', express.static('../frontend/build'));
+>>>>>>> be13d844b9ae68eceeff41f9060997ed0635d5c0
 
 app.listen(8080);
