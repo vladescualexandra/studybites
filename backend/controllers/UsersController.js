@@ -22,6 +22,7 @@ module.exports.validateUser = async (req, res) => {
                 password: password
             }
         });
+        console.log(user);
         res.status(200).send(user);
     } catch (err) {
         console.log(err);

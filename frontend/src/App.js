@@ -93,6 +93,7 @@ class App extends Component{
                 onSelect={this.handleSelect}
                 onLogin={this.handleLogin}
                 />
+
           <Editor 
             userID={this.state.user.id}
             id={this.state.id} 
