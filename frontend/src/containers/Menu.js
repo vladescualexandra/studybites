@@ -123,7 +123,8 @@ class Menu extends Component {
 
     render() {
         return (
-            <div id="menu" onSelect={this.handleSelect}>      
+            <div id="menu" onSelect={this.handleSelect}
+                className="resizable">      
                 <img id="logostudybites" src="https://i.ibb.co/kGHWxGC/logostudybites.png" alt="studybites logo"/>
 
                 <User id={this.state.id} 
