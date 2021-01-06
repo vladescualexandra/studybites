@@ -41,8 +41,8 @@
 /* Menu collapse */
 
 #menu {
-  color: #CCC5B9;
-  background-color: #04080F;
+  color: #f2f2f2;
+  background-color: rgb(0, 0, 0);
   overflow: auto;
   position: fixed;
   top: 0;
@@ -51,53 +51,46 @@
   right: 75%; 
 }
 
+#toolbar {
+  margin-top: 100px;
+  background-color: pink;
+
+}
+
+
+
 #editor {
-  background-color: #CCC5B9;
+  background-color: #1a1a1a;
   position: fixed;
-    top:0;
-    bottom: 0;
-    left: 25%;
-    right: 0; 
+  top:0;
+  bottom: 0;
+  left: 25%;
+  right: 0; 
 }
 
 #title {
-  background-color: #CCC5B9;
-  color: #04080F;
-  width: 95%;
+  background-color: transparent;
+  color: #EB551C;
+  width: 99%;
   padding-left: 2%;
   border: none;
   font-size: 24px;
   font-weight: bold;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: "Helvetica";
   padding-top: 50px;
-  padding-bottom:0px;
+  padding-bottom: 0px;
 }
 
 #content {
-  background-color: #CCC5B9;
-  color: #04080F;
-  width: 95%;
+  background-color: transparent;
+  color: #cacac9;
+  width: 99%;
   height: 100%;
-  padding-left: 2%;
   border: none;
-  border-top: 2px solid black;
   font-size: 14pt;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  padding-top: 5%;
-  padding-right: 5%;
+  font-family: "Tahoma", "Slab Serif", Sans-serif, serif;
+  border: none;
 }
-
-/* 
-#options {
-  width: 10%;
-  background-color: #04080F;
-  position: fixed;
-    top:0;
-    bottom: 0;
-    left: 30%;
-    right: 0; 
-} */
-
 
 .list {
   display: none;
@@ -109,20 +102,22 @@
 }
 
 #menu .mainList {
+
   width: 100%;
   border: none;
-  background-color: #04080F;
-  color: #EB551C;
+  background-color: transparent;
+  color: #a8b4b8;
   padding: 5%;
   font-size: 14pt;
+
 
 }
 
 #menu .listItem {
   width: 100%;
   border: none;
-  background-color: #04080F;
-  color: #CCC5B9;
+  background-color: #000000;
+  color: #a8b4b8;
   padding: 2%;
   text-align: left;
 }
@@ -165,7 +160,7 @@
 input[value="Delete"], input[value="Save"] {
   border: none;
   color: #EB551C;
-  background-color: #CCC5B9;
+  background-color: transparent;
 }
 
 .disabled {
@@ -174,15 +169,16 @@ input[value="Delete"], input[value="Save"] {
 
 #bookSelect {
   background-color: transparent;
-  border-color: #CCC5B9;
+  border-color: #cacac9;
+  color: #cacac9;
   font-weight: bold;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: "Helvetica",;
   font-size: 12pt;
   padding: 1%;
 }
 
 option {
-  background-color: #CCC5B9;
+  background-color: transparent;
 }
 
 #buttonsEditor {
@@ -209,14 +205,20 @@ option {
 #collabID {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid black;
+  color: #EB551C;
+  border-bottom: 1px solid #EB551C;
+}
+
+#collabID::placeholder {
+  color: #EB551C;
+
 }
 
 input[value="Add"] {
-  background-color: #CCC5B9;
+  background-color: transparent;
   border: none;
-  color: #EB551C;
 }
+
 
 input[value="x"] {
   background-color: transparent;
@@ -229,10 +231,6 @@ input[value="x"] {
   cursor: default;
 }
 
-#menu .listItem:hover {
-  padding: 7%;
-  font-size: 14pt;
-}
 
 
 .login {

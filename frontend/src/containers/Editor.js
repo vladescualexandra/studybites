@@ -6,6 +6,11 @@ import SharedStore from '../stores/SharedStore';
 import debounce from '../helpers';
 import BooksStore from '../stores/BooksStore';
 import CollaboratorsStore from '../stores/CollaboratorsStore';
+import Quill from 'quill';
+import ReactQuill from 'react-quill';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
+import { withStyles } from '@material-ui/core/styles';
+  
 
 class Editor extends Component {
 
@@ -112,9 +117,11 @@ class Editor extends Component {
     }
 
     render() {
-        return (
-            <div id="editor">
-                <div id="buttonsEditor" 
+
+    return(
+      <div id="editor">
+
+<div id="buttonsEditor" 
                     className={this.state.id ? "enabled" : "disabled"}>
                     <input  type="button" value="Delete" 
                             disabled={this.state.id ? false : true}
@@ -152,26 +159,23 @@ class Editor extends Component {
                     </div>
                     
                 </div>
-                
 
+        <input id="title"
+          placeholder='Note title...'
+          value={this.state.title ? this.state.title : ''}
+          onChange={(e) => this.updateTitle(e.target.value)}
+          >
+        </input>
+        <ReactQuill 
+            id="content"
+          value={this.state.content} 
+          onChange={this.updateContent}
+          >
+        </ReactQuill>
+      </div>
+    );
+  }
 
-                <textarea 
-                    id="title" 
-                    type="text" 
-                    placeholder="Title"
-                    value={this.state.title ? this.state.title : ''}
-                    onChange={(e) => this.updateTitle(e.target.value)}
-                    /> <br/>
-                <textarea 
-                    id="content" 
-                    type="textarea" 
-                    placeholder="Content" 
-                    value={this.state.content ? this.state.content : ''}
-                    onChange={(e) => this.updateContent(e.target.value)}
-                    />
-            </div>
-        )
-    }
 
     updateTitle = async (value) => {
         if (this.state.id && this.store) {        
