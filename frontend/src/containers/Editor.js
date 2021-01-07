@@ -10,7 +10,27 @@ import Quill from 'quill';
 import ReactQuill from 'react-quill';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import { withStyles } from '@material-ui/core/styles';
-  
+import 'react-quill/dist/quill.snow.css'; // ES6
+require('react-quill/dist/quill.snow.css'); // CommonJS
+let Inline = Quill.import('blots/inline');
+class BoldBlot extends Inline { }
+BoldBlot.blotName = 'bold';
+BoldBlot.tagName = 'strong';
+Quill.register('formats/bold', BoldBlot);
+var modules = {
+	toolbar: [
+		[{ font: [] }, { size: [] }],
+		[{ align: [] }, 'direction' ],
+		[ 'bold', 'italic', 'underline', 'strike' ],
+		[{ color: [] }, { background: [] }],
+		[{ script: 'super' }, { script: 'sub' }],
+		['blockquote', 'code-block' ],
+		[{ list: 'ordered' }, { list: 'bullet'}, { indent: '-1' }, { indent: '+1' }],
+		[ 'link', 'image', 'video' ],
+		[ 'clean' ]
+	],
+};
+
 
 class Editor extends Component {
 
@@ -26,8 +46,9 @@ class Editor extends Component {
             books: [],
             collaborators: []
         }
-
-        this.store = null;
+    
+        this.store = null;   
+        this.formats = ["bold"];
     }
 
     componentDidMount() {
@@ -166,10 +187,12 @@ class Editor extends Component {
           onChange={(e) => this.updateTitle(e.target.value)}
           >
         </input>
+        
         <ReactQuill 
             id="content"
-          value={this.state.content} 
-          onChange={this.updateContent}
+            value={this.state.content} 
+            onChange={this.updateContent}
+            modules={modules}
           >
         </ReactQuill>
       </div>
