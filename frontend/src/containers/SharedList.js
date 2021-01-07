@@ -64,7 +64,7 @@ class SharedList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="listContainer">
                 <input className="mainList" type="button" value="Shared" onClick={this.showItems}/>
                 <ul className={this.state.classes}>
                     {this.state.notes.map((note, index) => <Shared key={index} 

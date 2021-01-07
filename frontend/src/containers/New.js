@@ -25,15 +25,19 @@ class New extends Component {
 
     render() {
         return (
-            <div>
-                <input className="new" type="button" value="NEW" onClick={this.showItems}/>
+            <div >
+                <span id="new">
+                    <input id="newNote" type="button" value="New note" onClick={() => this.onCreate("note")}/>
+                    <img id="openNew" 
+                        src="https://www.flaticon.com/svg/static/icons/svg/1012/1012135.svg"
+                        height="15px" alt="open" onClick={this.showItems}/>
+                </span>  
                 <div id="listNew" className={this.state.classes}>
-                        <input className="new listItemNew" type="button" value="Note" onClick={() => this.onCreate("note")}/>
-                        <input className="new listItemNew" type="button" value="Book" onClick={() => this.onCreate("book")}/>
-                        <input className="new listItemNew" type="button" value="Reminder" onClick={() => this.onCreate("reminder")}/>
-                        <input className="new listItemNew" type="button" value="Shared" onClick={() => this.onCreate("shared")}/>
-
-                </div>
+                            <input className="new listItemNew" type="button" value="Note" onClick={() => this.onCreate("note")}/>
+                            <input className="new listItemNew" type="button" value="Book" onClick={() => this.onCreate("book")}/>
+                            <input className="new listItemNew" type="button" value="Reminder" onClick={() => this.onCreate("reminder")}/>
+                            <input className="new listItemNew" type="button" value="Shared" onClick={() => this.onCreate("shared")}/>
+                    </div>
             </div>
         )
     }

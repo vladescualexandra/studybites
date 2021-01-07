@@ -6,6 +6,23 @@ import SharedStore from '../stores/SharedStore';
 import debounce from '../helpers';
 import BooksStore from '../stores/BooksStore';
 import CollaboratorsStore from '../stores/CollaboratorsStore';
+import ReactQuill from 'react-quill';
+
+
+var modules = {
+	toolbar: [
+		[{ font: [] }, { size: [] }],
+		[{ align: [] }, 'direction' ],
+		[ 'bold', 'italic', 'underline', 'strike' ],
+		[{ color: [] }, { background: [] }],
+		[{ script: 'super' }, { script: 'sub' }],
+		['blockquote', 'code-block' ],
+		[{ list: 'ordered' }, { list: 'bullet'}, { indent: '-1' }, { indent: '+1' }],
+		[ 'link', 'image', 'video' ],
+		[ 'clean' ]
+    ]
+};
+
 
 class Editor extends Component {
 
@@ -21,8 +38,9 @@ class Editor extends Component {
             books: [],
             collaborators: []
         }
-
-        this.store = null;
+    
+        this.store = null;   
+        this.formats = ["bold"];
     }
 
     componentDidMount() {
@@ -112,9 +130,11 @@ class Editor extends Component {
     }
 
     render() {
-        return (
-            <div id="editor">
-                <div id="buttonsEditor" 
+
+    return(
+      <div id="editor">
+
+<div id="buttonsEditor" 
                     className={this.state.id ? "enabled" : "disabled"}>
                     <input  type="button" value="Delete" 
                             disabled={this.state.id ? false : true}
@@ -152,26 +172,25 @@ class Editor extends Component {
                     </div>
                     
                 </div>
-                
 
+        <input id="title"
+          placeholder='Note title...'
+          value={this.state.title ? this.state.title : ''}
+          onChange={(e) => this.updateTitle(e.target.value)}
+          >
+        </input>
+        
+        <ReactQuill 
+            id="content"
+            value={this.state.content} 
+            onChange={this.updateContent}
+            modules={modules}
+          >
+        </ReactQuill>
+      </div>
+    );
+  }
 
-                <textarea 
-                    id="title" 
-                    type="text" 
-                    placeholder="Title"
-                    value={this.state.title ? this.state.title : ''}
-                    onChange={(e) => this.updateTitle(e.target.value)}
-                    /> <br/>
-                <textarea 
-                    id="content" 
-                    type="textarea" 
-                    placeholder="Content" 
-                    value={this.state.content ? this.state.content : ''}
-                    onChange={(e) => this.updateContent(e.target.value)}
-                    />
-            </div>
-        )
-    }
 
     updateTitle = async (value) => {
         if (this.state.id && this.store) {        

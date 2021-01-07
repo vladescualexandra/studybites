@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import NotesByBookList from '../containers/NotesByBookList';
+import BooksStore from '../stores/BooksStore';
 
 class Book extends Component {
     constructor(props) {
@@ -35,6 +36,12 @@ class Book extends Component {
                 }
             });
         }
+
+        this.deleteBook = () => {
+            let bs = new BooksStore();
+            bs.delete(this.state.id);
+            console.log("Book deleted");
+        }
     }
 
     componentDidMount() {
@@ -47,24 +54,23 @@ class Book extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        // if (this.props !== prevProps) {
-        //     this.setState({
-        //         id: this.props.id, 
-        //         name: this.props.name
-        //     })
-        // }
     }
 
 
     render() {
         return (
             <div>
-                <input className="listItem" type="button" value={this.state.name ? this.state.name : 'Add name...'} onClick={this.showItems}/>
-                <ul className={this.state.classes}>
-                    <NotesByBookList id={this.state.id}
-                        onSelect={this.handleSelect}
-                        />
+                <span className="bookList">
+                    <img src="https://www.flaticon.com/svg/static/icons/svg/1632/1632708.svg"
+                        alt="delete book" onClick={this.deleteBook} 
+                    width="10px"/>
+                    <input className="listItem" type="button" value={this.state.name ? this.state.name : 'Add name...'} onClick={this.showItems}/>
+                    <ul className={this.state.classes}>
+                        <NotesByBookList id={this.state.id}
+                            onSelect={this.handleSelect}
+                            />
                 </ul>
+                </span>
             </div>
         );
     }

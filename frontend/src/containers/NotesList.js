@@ -63,7 +63,7 @@ class NotesList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="listContainer">
                 <input className="mainList" type="button" value="Notes" onClick={this.showItems}/>
                 <ul className={this.state.classes}>
                     {this.state.notes.map((note, index) => <Note key={index} 
