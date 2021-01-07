@@ -64,6 +64,11 @@ class Menu extends Component {
             });
         }
 
+        this.handleSearch = () => {
+            // TODO
+            // perhaps?
+        }
+
         this.handleCreate = async (value) => {
             switch(value) {
                 case "note":
@@ -136,7 +141,7 @@ class Menu extends Component {
                         onLogin={this.handleLogin}/>
                     </li>
                     <li>
-                        <input id="search" type="text" placeholder="Search"/>
+                        <input id="search" type="text" placeholder="Search" onChange={this.handleSearch}/>
                     </li>
                     <li>
                         <New  id={this.state.id} onCreate={this.handleCreate}/>

@@ -32,7 +32,7 @@ class NotesByBookList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="listContainer">
                 <span className="notesByBook">
                 {this.state.notes.map((note, index) => <Note key={index} 
                                                     id = {note.id}
