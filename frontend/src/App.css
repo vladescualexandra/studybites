@@ -6,22 +6,18 @@
   top: 0;
   bottom: 0;
   left: 0;
-  right: 75%; 
+  right: 80%; 
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
 }
-
-#toolbar {
-  margin-top: 100px;
-  background-color: pink;
-
-}
-
 
 #editor {
   background-color: #1a1a1a;
   position: fixed;
   top:0;
   bottom: 0;
-  left: 25%;
+  left: 20%;
   right: 0; 
 }
 
@@ -63,24 +59,28 @@
 }
 
 #menu .mainList {
-
   width: 100%;
   border: none;
   background-color: transparent;
-  color: #a8b4b8;
+  color: #f2f2f2;
+  text-align: left;
   padding: 5%;
   font-size: 14pt;
+  font-family: "Helvetica";
+  font-weight: bold;
+}
 
-
+#menu .mainList:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 #menu .listItem {
   width: 100%;
   border: none;
-  background-color: #000000;
-  color: #a8b4b8;
+  background-color: transparent;
   padding: 2%;
   text-align: left;
+  color: #f2f2f2;
 }
 
 #logostudybites {
@@ -98,14 +98,74 @@
   margin: 1%;
 }
 
-.new {
-  width: 100%;
-  border: none;
-  background-color: #EB551C;
-  color: #04080F;
-  padding: 5%;
-  font-size: 14pt;
+
+#search {
+  background-color: rgba(255, 255, 255, 0.1);
+  
 }
+
+#new {
+  background-color: #EB551C;
+  display: inline;
+}
+
+#new, #search {
+  padding: 3%;
+  width: 80%;
+  border-radius: 30px;
+  margin-bottom: 10%;
+  margin-left: 5%;
+}
+
+#newNote {
+  border: none;
+  width: 60%;
+  height: 100%;
+  font-size: 10pt;
+  margin-bottom: 15%;
+}
+
+#openNew {
+  border: none;
+  border-left: 1px solid black;
+  width: 20%;
+}
+
+#new * {
+  background-color: transparent;
+}
+
+#listNew {
+  background-color:  rgba(255, 255, 255, 0.1);
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.listItemNew {
+  background-color: transparent;
+  border: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  color:#cacac9;
+  font-family: "Helvetica";
+  padding: 10px;
+  font-weight: bold;
+}
+
+.listItemNew:hover {
+  background-color: rgba(202,202,201, 0.1);
+}
+
+.notesByBook {
+  display: inline;
+}
+
+.bookList {
+  width: 100%;
+  display: inline;
+}
+
 
 .disabled {
   display: none;
@@ -133,13 +193,9 @@ input[value="Delete"], input[value="Save"] {
   border-color: #cacac9;
   color: #cacac9;
   font-weight: bold;
-  font-family: "Helvetica",;
+  font-family: "Helvetica";
   font-size: 12pt;
   padding: 1%;
-}
-
-option {
-  background-color: transparent;
 }
 
 #buttonsEditor {
@@ -160,7 +216,8 @@ option {
   margin-right: 1%;
   border-radius: 10px;
   font-size: 10pt;
-  color: #CCC5B9;
+  color: #1a1a1a;
+  font-family: "Helvetica";
 }
 
 #collabID {
@@ -168,6 +225,8 @@ option {
   border: none;
   color: #EB551C;
   border-bottom: 1px solid #EB551C;
+  padding: 1%;
+  margin: 10px;
 }
 
 #collabID::placeholder {
@@ -196,7 +255,6 @@ input[value="x"] {
 }
 
 
-
 .login {
   width: 85%;
   background-color: transparent;
@@ -214,8 +272,10 @@ input[value="x"] {
   color: #EB551C;
   border: none;
   font-size: 12pt;
-  padding-top: 10%;
-  padding-bottom: 7%;
+}
+
+#signIn, #signUp {
+  margin-top: 10%;
 }
 
 #loginForm {
@@ -226,3 +286,4 @@ input[value="x"] {
 ::-webkit-scrollbar {
   width: 0px;
 }
+

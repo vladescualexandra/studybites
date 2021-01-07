@@ -6,17 +6,9 @@ import SharedStore from '../stores/SharedStore';
 import debounce from '../helpers';
 import BooksStore from '../stores/BooksStore';
 import CollaboratorsStore from '../stores/CollaboratorsStore';
-import Quill from 'quill';
 import ReactQuill from 'react-quill';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
-import { withStyles } from '@material-ui/core/styles';
-import 'react-quill/dist/quill.snow.css'; // ES6
-require('react-quill/dist/quill.snow.css'); // CommonJS
-let Inline = Quill.import('blots/inline');
-class BoldBlot extends Inline { }
-BoldBlot.blotName = 'bold';
-BoldBlot.tagName = 'strong';
-Quill.register('formats/bold', BoldBlot);
+
+
 var modules = {
 	toolbar: [
 		[{ font: [] }, { size: [] }],
@@ -28,7 +20,7 @@ var modules = {
 		[{ list: 'ordered' }, { list: 'bullet'}, { indent: '-1' }, { indent: '+1' }],
 		[ 'link', 'image', 'video' ],
 		[ 'clean' ]
-	],
+    ]
 };
 
 

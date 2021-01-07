@@ -33,11 +33,13 @@ class NotesByBookList extends Component {
     render() {
         return (
             <div>
+                <span className="notesByBook">
                 {this.state.notes.map((note, index) => <Note key={index} 
                                                     id = {note.id}
                                                     title = {note.title}
                                                     onShow={this.showNote}/>
-                )}            
+                )} 
+                </span>            
             </div>
         )
     }

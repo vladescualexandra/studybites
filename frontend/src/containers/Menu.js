@@ -123,19 +123,37 @@ class Menu extends Component {
 
     render() {
         return (
-            <div id="menu" onSelect={this.handleSelect}
-                className="resizable">      
-                <img id="logostudybites" src="https://i.ibb.co/kGHWxGC/logostudybites.png" alt="studybites logo"/>
-
-                <User id={this.state.id} 
+            <div>      
+                <ul id="menu" onSelect={this.handleSelect}
+                className="resizable">
+                    <li>
+                    <img id="logostudybites" src="https://i.ibb.co/kGHWxGC/logostudybites.png" alt="studybites logo"/>
+                    </li>
+                    <li>
+                     <User id={this.state.id} 
                         name={this.state.name}
                         email={this.state.email}
                         onLogin={this.handleLogin}/>
-                <New  id={this.state.id} onCreate={this.handleCreate}/>
-                <NotesList update={this.state.update} id={this.state.id} onSelect={this.handleSelect}/>
-                <BooksList id={this.state.id} onSelect={this.handleSelect}/>
-                <RemindersList id={this.state.id} onSelect={this.handleSelect}/>
-                <SharedList id={this.state.id} onSelect={this.handleSelect}/>
+                    </li>
+                    <li>
+                        <input id="search" type="text" placeholder="Search"/>
+                    </li>
+                    <li>
+                        <New  id={this.state.id} onCreate={this.handleCreate}/>
+                    </li>
+                    <li>
+                        <NotesList update={this.state.update} id={this.state.id} onSelect={this.handleSelect}/>
+                    </li>
+                    <li>
+                        <BooksList id={this.state.id} onSelect={this.handleSelect}/>
+                    </li>
+                    <li>
+                        <RemindersList id={this.state.id} onSelect={this.handleSelect}/>
+                    </li>
+                    <li>
+                        <SharedList id={this.state.id} onSelect={this.handleSelect}/>
+                    </li>
+                </ul> 
             </div>
         )
     }
