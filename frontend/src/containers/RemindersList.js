@@ -60,7 +60,7 @@ class RemindersList extends Component {
 
     render () {
         return (
-            <div>
+            <div className="listContainer">
                 <input className="mainList"  type="button" value="Reminders" onClick={this.showItems} />
                 <ul className={this.state.classes}>
                     {this.state.reminders.map((reminder, index) => <Reminder key={index}

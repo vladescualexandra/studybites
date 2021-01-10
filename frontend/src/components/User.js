@@ -142,16 +142,16 @@ class User extends Component {
         return (
             <div>
 
-                <input className="loginButton" type="button" value="Sign in"
+                <input  className="loginButton" type="button" value="Sign in"
                     onClick={this.handleClickOpenSignIn}/>
 
-                <input className="loginButton" type="button" value="Sign up"
+                <input  className="loginButton" type="button" value="Sign up"
                     onClick={this.handleClickOpenSignUp}/>
                 
-                <div id="signinForm" className="disabled">
+                <div  id="signinForm" className="disabled">
                     <input id="inEmail" className="login" type="email" placeholder="email"/>
                     <input id="inPassword" className="login" type="password" placeholder="password"/>
-                    <input className="loginButton" type="button" value="Login"
+                    <input id="signIn" className="loginButton" type="button" value="Login"
                         onClick={this.handleSignIn}/>
                 </div>
 
@@ -159,7 +159,7 @@ class User extends Component {
                 <input  id="upName" className="login" type="text" placeholder="name"/>
                 <input id="upEmail" className="login" type="email" placeholder="email"/>
                 <input id="upPassword" className="login" type="password" placeholder="password"/>
-                <input className="loginButton" type="button" value="Create new account"
+                <input id="signUp" className="loginButton" type="button" value="Create new account"
                     onClick={this.handleSignUp}/>
                 </div>
             </div>
@@ -171,7 +171,7 @@ class User extends Component {
             <div>
                 <h3 onClick={this.handleClickSignOut}>{this.state.name}</h3>
                 <h6>Your id: {this.state.id}</h6>
-                <input className="loginButton" type="button" value="Sign out" 
+                <input id="signOut" className="loginButton" type="button" value="Sign out" 
                     onClick={this.handleSignOut}/>
             </div>
             );
