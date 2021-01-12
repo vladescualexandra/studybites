@@ -36,6 +36,10 @@ npm install --save cors
 6. În directorul ./backend/config crează un fișier ```secrets.json``` cu structura indicată în ```secrets.sample.json``` și adaugă informațiile necesare pentru testare.
 
 6. Configurează un server MySQL și crează o bază de date (cu numele din db.json).
+```
+mysql -u <username> -p
+create database <db-name>;
+```
 
 7. Execută sciptul ```createdb.js``` pentru a realiza structura bazei de date.
 ```
@@ -73,11 +77,6 @@ Aplicația react va rula pe portul 3000, iar serverul pe portul 8080.
 ## Documentation
 On the first run of the application, no user will be connected to the server (No id, name or content will be displayed).
 Text validation is not implemented yet, meaning the user will have to insert the required input without alterations.
-For testing purposes, an account was previously created and populated with data.
-```
-email: test
-password: test
-```
 
 Functionalities: 
 * Clicking on the login will trigger the login/sign up process.
