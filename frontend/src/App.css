@@ -42,11 +42,18 @@
   background-color: transparent;
   color: #cacac9;
   width: 99%;
-  height: 100%;
+  height: 80%;
   border: none;
   font-size: 14pt;
   font-family: "Tahoma", "Slab Serif", Sans-serif, serif;
   border: none;
+  /* overflow-y: scroll; */
+  margin-bottom: 200px;
+}
+
+.ql-container .ql-editor {
+  overflow: scroll;
+  padding-bottom: 30%;
 }
 
 .list {
