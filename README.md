@@ -35,18 +35,18 @@ npm install --save cors
 
 6. În directorul ./backend/config crează un fișier ```secrets.json``` cu structura indicată în ```secrets.sample.json``` și adaugă informațiile necesare pentru testare.
 
-6. Configurează un server MySQL și crează o bază de date (cu numele din db.json).
+7. Configurează un server MySQL și crează o bază de date (cu numele din db.json).
 ```
 mysql -u <username> -p
 create database <db-name>;
 ```
 
-7. Execută sciptul ```createdb.js``` pentru a realiza structura bazei de date.
+8. Execută sciptul ```createdb.js``` pentru a realiza structura bazei de date.
 ```
 node createdb.js
 ```
 
-8. Execută scriptul server.js pentru a porni serverul.
+9. Execută scriptul server.js pentru a porni serverul.
 ```
 node server.js
 ```
