@@ -1,6 +1,6 @@
 const db = require('../models/index');
 
-module.exports.findUser = (req, res) => {
+module.exports.findUser = async (req, res) => {
     db.Users.findByPk(req.params.id).then((result) => {
         if (result) {
             res.status(200).send(result);
@@ -12,6 +12,21 @@ module.exports.findUser = (req, res) => {
     })
 };
 
+module.exports.findUserByEmail = async (req, res) => {
+    try {
+        let user = await db.Users.findAll({
+            where : {
+                email: req.params.email
+            }
+        });
+        res.status(200).send(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('catch error');
+    }
+    
+}
+
 module.exports.validateUser = async (req, res) => {
     try {
         let email = req.params.email;
@@ -22,7 +37,6 @@ module.exports.validateUser = async (req, res) => {
                 password: password
             }
         });
-        console.log(user);
         res.status(200).send(user);
     } catch (err) {
         console.log(err);

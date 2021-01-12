@@ -7,7 +7,7 @@ import debounce from '../helpers';
 import BooksStore from '../stores/BooksStore';
 import CollaboratorsStore from '../stores/CollaboratorsStore';
 import ReactQuill from 'react-quill';
-
+import UserStore from '../stores/UserStore';
 
 var modules = {
 	toolbar: [
@@ -73,8 +73,6 @@ class Editor extends Component {
 
                     });
 
-
-
                     let bookStore = new BooksStore(this.state.userID);
                     bookStore.getAll(this.state.userID);
                     bookStore.emitter.addListener(CODES.CODE_GET_ALL_BOOKS, async () => {
@@ -118,6 +116,7 @@ class Editor extends Component {
                                 collaborators: collabsStore.collaborators
                             })
                     });
+                    this.getCollaborators();
                     break;
                 default:
                     this.setState({
@@ -158,9 +157,6 @@ class Editor extends Component {
                     className={this.state.type === 'shared' ? "enabled" : "disabled"}>
                     <div>
                         {this.getCollaborators()}
-                        
-
-
                             <span id="addCollab">
                                 <input id="collabID" type="text" placeholder="Add a new collaborator"></input>
                                 <input 
@@ -278,12 +274,21 @@ class Editor extends Component {
         return items;
     }
 
-    addCollaborator() {
-        let collabID = parseInt(document.getElementById('collabID').value);
-        document.getElementById('collabID').value = '';
-        let collabStore = new CollaboratorsStore();
-        collabStore.create(collabID, this.state.id);
-        this.getCollaborators();
+    async addCollaborator() {
+        let email = document.getElementById('collabID').value;
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+
+            let userStore = new UserStore();
+            let user = await userStore.getUserByEmail(email);
+            document.getElementById('collabID').value = '';
+            let collabStore = new CollaboratorsStore();
+            collabStore.create(user.id, this.state.id);
+
+            this.getCollaborators();
+        } else {
+            alert("This is not a valid email adress.");
+        }
+        
     }
 
     deleteCollaborator(id) {

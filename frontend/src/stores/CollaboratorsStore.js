@@ -13,7 +13,7 @@ class CollaboratorsStore {
         this.emitter = new EventEmitter();
     }
 
-
+    
     create(userID, sharedID) {
         if (userID > 0 && sharedID > 0) {
             let collab = {
