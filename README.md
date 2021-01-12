@@ -35,14 +35,18 @@ npm install --save cors
 
 6. În directorul ./backend/config crează un fișier ```secrets.json``` cu structura indicată în ```secrets.sample.json``` și adaugă informațiile necesare pentru testare.
 
-6. Configurează un server MySQL și crează o bază de date (cu numele din db.json).
+7. Configurează un server MySQL și crează o bază de date (cu numele din db.json).
+```
+mysql -u <username> -p
+create database <db-name>;
+```
 
-7. Execută sciptul ```createdb.js``` pentru a realiza structura bazei de date.
+8. Execută sciptul ```createdb.js``` pentru a realiza structura bazei de date.
 ```
 node createdb.js
 ```
 
-8. Execută scriptul server.js pentru a porni serverul.
+9. Execută scriptul server.js pentru a porni serverul.
 ```
 node server.js
 ```
@@ -73,11 +77,6 @@ Aplicația react va rula pe portul 3000, iar serverul pe portul 8080.
 ## Documentation
 On the first run of the application, no user will be connected to the server (No id, name or content will be displayed).
 Text validation is not implemented yet, meaning the user will have to insert the required input without alterations.
-For testing purposes, an account was previously created and populated with data.
-```
-email: test
-password: test
-```
 
 Functionalities: 
 * Clicking on the login will trigger the login/sign up process.
@@ -105,7 +104,7 @@ Functionalities:
 
 ## Minimal functionalities
 
-* First of all, every student need to login in with their istitutional account.
+* First of all, every student need to login in with their institutional account.
 * Second, the notes can be shared with other students, a particularity important especially when you have a project with other classmates.
 * Third, the app allow you to add attachments and you have also a section dedicated for tutorials (with the links) with their notes.
 * Then you can search over the app using keywords as to find everything you need in short time
