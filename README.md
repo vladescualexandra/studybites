@@ -105,7 +105,7 @@ Functionalities:
 
 ## Minimal functionalities
 
-* First of all, every student need to login in with their istitutional account.
+* First of all, every student need to login in with their institutional account.
 * Second, the notes can be shared with other students, a particularity important especially when you have a project with other classmates.
 * Third, the app allow you to add attachments and you have also a section dedicated for tutorials (with the links) with their notes.
 * Then you can search over the app using keywords as to find everything you need in short time
