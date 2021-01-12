@@ -26,7 +26,7 @@ class Menu extends Component {
                 id: this.props.id,
                 type: this.props.type
             },
-            update: 0
+            classes: "disabled"
         }
 
         this.store = null;
@@ -69,6 +69,24 @@ class Menu extends Component {
             // perhaps?
         }
 
+        this.createBook = async () => {
+            this.store = new BooksStore(this.state.id);
+            let name = document.querySelector('#addNewBookName').value;
+            let book = await this.store.create({
+                name: name
+            });
+            this.props.onSelect(book.id, 'book');
+            this.setState({
+                classes: "disabled"
+            });
+        }
+
+        this.cancelCreateBook = () => {
+            this.setState({
+                classes: "disabled"
+            });
+        }
+
         this.handleCreate = async (value) => {
             switch(value) {
                 case "note":
@@ -96,12 +114,9 @@ class Menu extends Component {
                     this.props.onSelect(shared.id, 'shared');
                     break;
                 case "book":
-                    this.store = new BooksStore(this.state.id);
-                    let name = prompt("Choose a name for your book", "");
-                    let book = await this.store.create({
-                        name: name
+                    await this.setState({
+                        classes: "enabled"
                     });
-                    this.props.onSelect(book.id, 'book');
                     break;
                 default:
                     break;
@@ -145,6 +160,11 @@ class Menu extends Component {
                     </li>
                     <li>
                         <New  id={this.state.id} onCreate={this.handleCreate}/>
+                        <div id="addNewBookForm" className={this.state.classes}>
+                            <input id="addNewBookName" type="text" placeholder="Type the book's name ... " />
+                            <input id="addNewBookSave" type="button" value="Save" onClick={this.createBook}/>
+                            <input id="addNewBookCancel" type="button" value="Cancel" onClick={this.cancelCreateBook}/>
+                        </div>
                     </li>
                     <li>
                         <NotesList update={this.state.update} id={this.state.id} onSelect={this.handleSelect}/>

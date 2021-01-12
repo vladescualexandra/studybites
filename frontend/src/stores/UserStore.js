@@ -61,6 +61,25 @@ class UserStore {
             return this.user;
         }
     }
+
+    async getUserByEmail(email) {
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+
+            let response = await fetch(SERVER_URL + `/users/collab/${email}`);
+            let data = await response.json();
+            this.user = {
+                id: data[0].id, 
+                name: data[0].name, 
+                email: data[0].email
+            };
+
+            this.emitter.emit(CODES.CODE_GET_USER_BY_EMAIL);    
+            return this.user;
+
+        } else {
+            console.log("This is not an email adress.");
+        }
+    }
 }
 
 export default UserStore;
