@@ -17,14 +17,26 @@ class Book extends Component {
             }
         }
 
-        this.showItems = async () => {
+      this.checkIfDelete = (e) => {
+        if (e.keyCode === 46) {
+            console.log("delete");
+            this.deleteBook();
+        } else {
+            console.log("not delete");
+        }
+      }
+
+        this.showItems = async (e) => {
+
+            document.addEventListener('keydown', e => this.checkIfDelete(e));
+
             let on = !this.state.active;
             let cls = on ? "list-active" : "list";
 
             await this.setState({
                 active: on,
                 classes: cls
-            })   
+            });   
         }
 
         this.handleSelect = (selectedId, selectedType) => {
@@ -59,18 +71,21 @@ class Book extends Component {
 
     render() {
         return (
-            <div>
-                <span className="bookList">
-                    <img src="https://www.flaticon.com/svg/static/icons/svg/1632/1632708.svg"
-                        alt="delete book" onClick={this.deleteBook} 
-                    width="10px"/>
-                    <input className="listItem" type="button" value={this.state.name ? this.state.name : 'Add name...'} onClick={this.showItems}/>
+            <div className="bookList" > 
+                <li className="bookList">
+                    <input 
+                        className="listItem" 
+                        type="button" value={this.state.name ? this.state.name : 'Add name...'} 
+                        onClick={(e) => this.showItems(e)}/>
+
+                    
+
                     <ul className={this.state.classes}>
                         <NotesByBookList id={this.state.id}
                             onSelect={this.handleSelect}
                             />
                 </ul>
-                </span>
+                </li>
             </div>
         );
     }

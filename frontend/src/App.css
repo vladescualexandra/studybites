@@ -47,7 +47,6 @@
   font-size: 14pt;
   font-family: "Tahoma", "Slab Serif", Sans-serif, serif;
   border: none;
-  /* overflow-y: scroll; */
   margin-bottom: 200px;
 }
 
@@ -59,11 +58,13 @@
 .list {
   display: none;
   margin-bottom: 20px;
+  
 }
 
 .list-active {
-  transition: all linear 0.5s 0.3s;
+  padding-left: 10%;
 }
+
 
 #menu .mainList {
   width: 100%;
@@ -169,10 +170,13 @@
 }
 
 .bookList {
-  width: 100%;
   display: inline;
+  list-style-type: none;
 }
 
+.enabled {
+  display: visible;
+}
 
 .disabled {
   display: none;
@@ -195,8 +199,32 @@ input[value="Delete"], input[value="Save"] {
   color: black;
 }
 
-#bookSelect {
+#addNewBookForm * {
   background-color: transparent;
+}
+
+#addNewBookName:placeholder {
+  color: #cacac9;
+}
+
+#addNewBookName {
+  border: none;
+  border-bottom: 1px solid #cacac9;
+  width: 80%;
+  padding-bottom: 2%;
+  margin: 10%;
+  color:rgba(235,85,28);
+}
+
+#addNewBookSave, #addNewBookCancel {
+  border: none;
+  color: rgba(235,85,28);
+  width: 40%;
+  margin: 5%;
+}
+
+#bookSelect {
+  background-color:#1a1a1a;
   border-color: #cacac9;
   color: #cacac9;
   font-weight: bold;
@@ -204,6 +232,8 @@ input[value="Delete"], input[value="Save"] {
   font-size: 12pt;
   padding: 1%;
 }
+
+
 
 #buttonsEditor {
   padding: 1%;
@@ -292,5 +322,9 @@ input[value="x"] {
 
 ::-webkit-scrollbar {
   width: 0px;
+}
+
+input:focus {
+  outline: none;
 }
 
