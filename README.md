@@ -26,6 +26,7 @@ npm install express
 npm install --save sequelize
 npm install --save mysql2
 npm install --save cors
+npm install pm2@latest -g
 ```
 
 
@@ -49,6 +50,10 @@ node createdb.js
 9. Execută scriptul server.js pentru a porni serverul.
 ```
 node server.js
+```
+sau
+```
+pm2 start server.js
 ```
 ## Configurare frontend
 1. Navighează în directorul frontend
