@@ -29,7 +29,7 @@ class New extends Component {
                 <span id="new">
                     <input id="newNote" type="button" value="New note" onClick={() => this.onCreate("note")}/>
                     <img id="openNew" 
-                        src="https://www.flaticon.com/svg/static/icons/svg/1012/1012135.svg"
+                        src="https://www.flaticon.com/svg/vstatic/svg/152/152415.svg?token=exp=1610896313~hmac=85df12b38b8d6d7e2019ede0c872d2b3"
                         height="15px" alt="open" onClick={this.showItems}/>
                 </span>  
                 <div id="listNew" className={this.state.classes}>

@@ -61,7 +61,7 @@
   
 }
 
-.list-active {
+.list-active{
   padding-left: 10%;
 }
 
@@ -233,6 +233,10 @@ input[value="Delete"], input[value="Save"] {
   padding: 1%;
 }
 
+#bookSelected {
+  background-color: #EB551C;
+}
+
 
 
 #buttonsEditor {
@@ -327,4 +331,5 @@ input[value="x"] {
 input:focus {
   outline: none;
 }
+
 
