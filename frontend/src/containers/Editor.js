@@ -158,7 +158,7 @@ class Editor extends Component {
                     <div>
                         {this.getCollaborators()}
                             <span id="addCollab">
-                                <input id="collabID" type="text" placeholder="Add a new collaborator"></input>
+                                <input id="collabID" type="text" placeholder="Add a new collaborator by id"></input>
                                 <input 
                                     type="button" value="Add" 
                                     onClick={() => this.addCollaborator()}>
@@ -274,20 +274,14 @@ class Editor extends Component {
     }
 
     async addCollaborator() {
-        let email = document.getElementById('collabID').value;
-        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-
+        let id = document.getElementById('collabID').value;
             let userStore = new UserStore();
-            let user = await userStore.getUserByEmail(email);
+            let user = await userStore.getUserById(id);
             document.getElementById('collabID').value = '';
             let collabStore = new CollaboratorsStore();
             collabStore.create(user.id, this.state.id);
 
-            this.getCollaborators();
-        } else {
-            alert("This is not a valid email adress.");
-        }
-        
+            this.getCollaborators();       
     }
 
     deleteCollaborator(id) {

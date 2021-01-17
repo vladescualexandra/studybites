@@ -13,6 +13,7 @@ module.exports.findUser = async (req, res) => {
 };
 
 module.exports.findUserByEmail = async (req, res) => {
+    alert(req.params.email);
     try {
         let user = await db.Users.findAll({
             where : {

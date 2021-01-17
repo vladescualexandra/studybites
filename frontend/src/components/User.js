@@ -169,7 +169,8 @@ class User extends Component {
     displayUser() {
         return ( 
             <div>
-                <h3 onClick={this.handleClickSignOut}>{this.state.name}</h3>
+                <h3>{this.state.name}</h3>
+                <h4>Your id: {this.state.id}</h4>
                 <input id="signOut" className="loginButton" type="button" value="Sign out" 
                     onClick={this.handleSignOut}/>
             </div>
