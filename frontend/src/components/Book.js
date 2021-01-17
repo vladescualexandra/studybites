@@ -11,6 +11,7 @@ class Book extends Component {
             name: props.name,
             active: false,
             classes: "list",
+            bookClasses: "listItem",
             selected: {
                 id: 0, 
                 type: 'note'
@@ -18,25 +19,31 @@ class Book extends Component {
         }
 
       this.checkIfDelete = (e) => {
-        if (e.keyCode === 46) {
-            console.log("delete");
-            this.deleteBook();
-        } else {
-            console.log("not delete");
-        }
+        if (this.state.id > 0) {
+            if (e.keyCode === 46) {
+                this.deleteBook();
+            }
+        }   
       }
 
         this.showItems = async (e) => {
-
             document.addEventListener('keydown', e => this.checkIfDelete(e));
-
             let on = !this.state.active;
             let cls = on ? "list-active" : "list";
-
             await this.setState({
                 active: on,
                 classes: cls
             });   
+
+            let book = document.querySelector(`input[value="${e.target.value}"]`);
+            if (on) {
+                book.style.border = '1px solid #EB551C';
+            } else {
+                book.style.border = 'none';
+                await this.setState({
+                    id: 0
+                });
+            }
         }
 
         this.handleSelect = (selectedId, selectedType) => {
@@ -52,7 +59,8 @@ class Book extends Component {
         this.deleteBook = () => {
             let bs = new BooksStore();
             bs.delete(this.state.id);
-            console.log("Book deleted");
+            bs.emitter.emit("BOOK_DELETED");
+            this.props.onDelete();
         }
     }
 
@@ -65,13 +73,10 @@ class Book extends Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
-    }
-
 
     render() {
         return (
-            <div className="bookList" > 
+            <div> 
                 <li className="bookList">
                     <input 
                         className="listItem" 

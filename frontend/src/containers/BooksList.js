@@ -22,8 +22,7 @@ class BooksList extends Component {
             await  this.setState({
                 active: on,
                 classes: cls
-            });        
-
+            });    
         }
 
         this.showNote = (id) => {
@@ -31,15 +30,21 @@ class BooksList extends Component {
         }
 
         this.handleSelect = async (selectedId, selectedType) => {
-            
-
             this.props.onSelect(selectedId, selectedType);
             await this.setState({
                 selected: {
                     type: selectedType,
                     id: selectedId
                 }
-            });           
+            });     
+        }
+
+        this.handleDelete = () => {
+            this.componentDidMount();
+            this.store.getAll(this.state.id);
+            this.setState({
+                books: this.store.books
+            });
         }
         
     }
@@ -58,17 +63,16 @@ class BooksList extends Component {
 
             await this.setState({
                 id: this.props.id
-            })
-
+            });
             this.store = new BooksStore(this.state.id);
             await this.store.getAll(this.state.id);
-            this.store.emitter.addListener(CODES.CODE_GET_ALL_BOOKS, async () => {
-                
-            });
+
             await this.setState({
                 books: this.store.books
-            })
+            });
         }
+            
+        
     }
 
     render() {
@@ -81,6 +85,7 @@ class BooksList extends Component {
                                                     name = {book.name}
                                                     onShow = {this.showNote}
                                                     onSelect = {this.handleSelect}
+                                                    onDelete = {this.handleDelete}
                                                    />)}
                 </ul>
             </div>

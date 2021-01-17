@@ -242,7 +242,6 @@ class Editor extends Component {
 
     createSelectItems() {
         let items = [];
-        
         for (let i=0; i< this.state.books.length; i++) {
             if (this.state.books[i]) {
                 items.push(<option key={i} value={this.state.books[i].id} 

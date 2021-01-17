@@ -79,6 +79,7 @@ class Menu extends Component {
             this.setState({
                 classes: "disabled"
             });
+            document.querySelector('#addNewBookName').value = '';
         }
 
         this.cancelCreateBook = () => {
@@ -155,9 +156,9 @@ class Menu extends Component {
                         email={this.state.email}
                         onLogin={this.handleLogin}/>
                     </li>
-                    <li>
+                    {/* <li>
                         <input id="search" type="text" placeholder="Search" onChange={this.handleSearch}/>
-                    </li>
+                    </li> */}
                     <li>
                         <New  id={this.state.id} onCreate={this.handleCreate}/>
                         <div id="addNewBookForm" className={this.state.classes}>
