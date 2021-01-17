@@ -29,13 +29,12 @@ module.exports.findUserByEmail = async (req, res) => {
 
 module.exports.validateUser = async (req, res) => {
     try {
-
-        let encodedPassword = Buffer.from(req.params.password).toString('base64');        
         let email = req.params.email;
+        let password = req.params.password;
         let user = await db.Users.findAll({
             where: {
                 email: email,
-                password: encodedPassword
+                password: password
             }
         });
         res.status(200).send(user);
@@ -47,12 +46,10 @@ module.exports.validateUser = async (req, res) => {
 
 module.exports.createUser = async (req, res) => {
     try {
-
-        let encodedPassword = Buffer.from(req.body.password).toString('base64');        
         let user = await db.Users.create({
             name: req.body.name,
             email: req.body.email, 
-            password: encodedPassword
+            password: req.body.password
         });
         res.status(201).send(user);
     } catch (err) {

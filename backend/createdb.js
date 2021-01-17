@@ -14,25 +14,25 @@ db.sequelize.sync({force: true}).then(async () => {
     const ADMIN_BIANCA = await db.Users.create({
         name: 'Vladescu Alexandra-Bianca', 
         email: secrets.email_bianca,
-        password: Buffer.from(secrets.password_bianca).toString('base64') 
+        password: secrets.password_bianca
     });
 
     const ADMIN_ADRIANA = await db.Users.create({
         name: 'Biza Adriana-Valentina',
         email: secrets.email_adriana,
-        password: Buffer.from(secrets.password_adriana).toString('base64') 
+        password: secrets.password_adriana
     });
 
     const ADMIN_CODRUTA = await db.Users.create({
         name: 'Stefan Codruta-Ilinca',
         email: secrets.email_codruta,
-        password: Buffer.from(secrets.password_codruta).toString('base64') 
+        password: secrets.password_codruta
     });
 
     const ADMIN_IONELA = await db.Users.create({
         name: 'Zamfir Ionela-Alina', 
         email: secrets.email_ionela,
-        password: Buffer.from(secrets.password_ionela).toString('base64') 
+        password: secrets.password_ionela 
     });
 
     let test_book1 = await db.Books.create({

@@ -64,7 +64,6 @@ class UserStore {
 
     async getUserByEmail(email) {
         if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-
             let response = await fetch(SERVER_URL + `/users/collab/${email}`);
             let data = await response.json();
             this.user = {
