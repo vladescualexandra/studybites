@@ -1,0 +1,335 @@
+#menu {
+  color: #f2f2f2;
+  background-color: rgb(0, 0, 0);
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 80%; 
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+#editor {
+  background-color: #1a1a1a;
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left: 20%;
+  right: 0; 
+}
+
+#title {
+  background-color: transparent;
+  color: #EB551C;
+  width: 99%;
+  padding-left: 2%;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Helvetica";
+  padding-top: 50px;
+  padding-bottom: 0px;
+}
+
+#title::placeholder {
+  color: rgba(235,85,28, 0.7);
+}
+
+#content {
+  background-color: transparent;
+  color: #cacac9;
+  width: 99%;
+  height: 80%;
+  border: none;
+  font-size: 14pt;
+  font-family: "Tahoma", "Slab Serif", Sans-serif, serif;
+  border: none;
+  margin-bottom: 200px;
+}
+
+.ql-container .ql-editor {
+  overflow: scroll;
+  padding-bottom: 30%;
+}
+
+.list {
+  display: none;
+  margin-bottom: 20px;
+  
+}
+
+.list-active{
+  padding-left: 10%;
+}
+
+
+#menu .mainList {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  color: #f2f2f2;
+  text-align: left;
+  padding: 5%;
+  font-size: 14pt;
+  font-family: "Helvetica";
+  font-weight: bold;
+}
+
+#menu .mainList:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#menu .listItem {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  padding: 2%;
+  text-align: left;
+  color: #f2f2f2;
+}
+
+#logostudybites {
+  width: 100%;
+}
+
+#user{
+  text-align: center;
+  margin-top: 0;
+  padding: 10%;
+  margin-bottom: 5%;
+}
+
+#user * {
+  margin: 1%;
+}
+
+
+#search {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(235,85,28);
+}
+
+#new {
+  background-color: #EB551C;
+  display: inline;
+}
+
+#new, #search {
+  padding: 3%;
+  width: 80%;
+  border-radius: 30px;
+  margin-bottom: 10%;
+  margin-left: 5%;
+}
+
+#newNote {
+  border: none;
+  width: 60%;
+  height: 100%;
+  font-size: 10pt;
+  margin-bottom: 15%;
+}
+
+#openNew {
+  border: none;
+  border-left: 1px solid black;
+  width: 20%;
+}
+
+#new * {
+  background-color: transparent;
+}
+
+#listNew {
+  background-color:  rgba(255, 255, 255, 0.1);
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.listItemNew {
+  background-color: transparent;
+  border: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  color:#cacac9;
+  font-family: "Helvetica";
+  padding: 10px;
+  font-weight: bold;
+}
+
+.listItemNew:hover {
+  background-color: rgba(202,202,201, 0.1);
+}
+
+.notesByBook {
+  display: inline;
+}
+
+.bookList {
+  display: inline;
+  list-style-type: none;
+}
+
+.enabled {
+  display: visible;
+}
+
+.disabled {
+  display: none;
+}
+
+#logout {
+  border: none;
+  background-color: #04080F;
+  color: #EB551C;
+  padding-bottom: 10%;
+}
+
+input[value="Delete"], input[value="Save"] {
+  border: none;
+  color: #EB551C;
+  background-color: transparent;
+}
+
+.disabled {
+  color: black;
+}
+
+#addNewBookForm * {
+  background-color: transparent;
+}
+
+#addNewBookName:placeholder {
+  color: #cacac9;
+}
+
+#addNewBookName {
+  border: none;
+  border-bottom: 1px solid #cacac9;
+  width: 80%;
+  padding-bottom: 2%;
+  margin: 10%;
+  color:rgba(235,85,28);
+}
+
+#addNewBookSave, #addNewBookCancel {
+  border: none;
+  color: rgba(235,85,28);
+  width: 40%;
+  margin: 5%;
+}
+
+#bookSelect {
+  background-color:#1a1a1a;
+  border-color: #cacac9;
+  color: #cacac9;
+  font-weight: bold;
+  font-family: "Helvetica";
+  font-size: 12pt;
+  padding: 1%;
+}
+
+#bookSelected {
+  background-color: #EB551C;
+}
+
+
+
+#buttonsEditor {
+  padding: 1%;
+}
+
+#collaborators {
+  margin: 2%;
+}
+
+#addCollab {
+  display: inline;
+}
+
+#collab {
+  background-color:#EB551C;
+  padding: 1%;
+  margin-right: 1%;
+  border-radius: 10px;
+  font-size: 10pt;
+  color: #1a1a1a;
+  font-family: "Helvetica";
+}
+
+#collabID {
+  background-color: transparent;
+  border: none;
+  color: #EB551C;
+  border-bottom: 1px solid #EB551C;
+  padding: 1%;
+  margin: 10px;
+}
+
+#collabID::placeholder {
+  color:  rgba(235,85,28, 0.5);
+
+
+}
+
+input[value="Add"] {
+  background-color: transparent;
+  border: none;
+  color:  rgb(235,85,28);
+
+}
+
+
+input[value="x"] {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+}
+
+
+#user:hover {
+  cursor: default;
+}
+
+
+.login {
+  width: 85%;
+  background-color: transparent;
+  color: white;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid white;
+  padding: 5%;
+  font-size: 12pt;
+}
+
+.loginButton {
+  background-color: transparent;
+  color: #EB551C;
+  border: none;
+  font-size: 12pt;
+}
+
+#signIn, #signUp {
+  margin-top: 10%;
+}
+
+#loginForm {
+  display: inline;
+}
+
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+input:focus {
+  outline: none;
+}
+
+
