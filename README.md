@@ -26,6 +26,7 @@ npm install --save sequelize
 npm install --save mysql2
 npm install --save cors
 npm install pm2@latest -g
+npm install quill
 ```
 
 
