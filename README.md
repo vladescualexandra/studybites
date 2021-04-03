@@ -26,8 +26,6 @@ npm install --save sequelize
 npm install --save mysql2
 npm install --save cors
 npm install pm2@latest -g
-npm install quill
-npm install react-quill --save
 ```
 
 
@@ -64,6 +62,8 @@ cd frontend
 2. Instalează modulele npm
 ```
 npm install
+npm install quill
+npm install react-quill --save
 ```
 3. Adăugați setările pentru mediu în fișierul .env
 ```
